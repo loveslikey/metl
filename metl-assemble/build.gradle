@@ -1,5 +1,4 @@
 import java.text.SimpleDateFormat
-import java.util.Date
 
 buildscript {
     repositories {
@@ -40,6 +39,13 @@ configurations {
 
 dependencies {
     sshAntTask 'org.apache.ant:ant-jsch:1.7.1', 'jsch:jsch:0.1.29'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
 }
 
 github {

@@ -1,17 +1,14 @@
-import org.apache.tools.ant.filters.FixCrLfFilter
-import org.apache.tools.ant.filters.ReplaceTokens
 import java.text.SimpleDateFormat
-import java.util.Date
 
-    apply from: metlAssembleDir + '/asciidoc.gradle'
+apply from: metlAssembleDir + '/asciidoc.gradle'
 
     group = 'org.jumpmind.metl'
         
     apply plugin: 'eclipse-wtp'
     apply plugin: 'java'
-    apply plugin: 'license-report'
+
 	apply plugin: 'jacoco'
-	apply plugin: 'license'
+
 	apply plugin: 'maven'
 	
 	ext {
@@ -41,12 +38,7 @@ import java.util.Date
         }
     }   
     
-    license {
-        header rootProject.file('HEADER')
-        strictCheck true
-        includes(["**/*.java", "**/*.properties", "**/*.xml"])
-        excludes(["**/AppWidgetSet.gwt.xml"])
-    }     
+
     
     ext {
         majorMinorVersion = version.substring(0, version.indexOf(".", version.indexOf(".")+ 1))
