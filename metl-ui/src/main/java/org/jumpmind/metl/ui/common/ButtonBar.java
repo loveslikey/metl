@@ -84,7 +84,7 @@ public class ButtonBar extends HorizontalLayout {
         TextField textField = new TextField();
         textField.setColumns(15);
         textField.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
-        textField.setInputPrompt("Filter");
+        textField.setInputPrompt("查找");
         textField.setIcon(FontAwesome.SEARCH);
         textField.setTextChangeEventMode(TextChangeEventMode.LAZY);
         textField.setTextChangeTimeout(500);

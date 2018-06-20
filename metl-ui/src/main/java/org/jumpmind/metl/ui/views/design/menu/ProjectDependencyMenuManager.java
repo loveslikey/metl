@@ -41,12 +41,12 @@ public class ProjectDependencyMenuManager extends AbstractDesignSelectedValueMen
     @Override
     protected String[] getDisabledPaths(Object selected) {
         if (isReadOnly(selected)) {
-            return (String[])ArrayUtils.addAll(super.getDisabledPaths(selected), new String[] { "Edit|Remove",
-                    "Edit|Change Dependency Version"
+            return (String[])ArrayUtils.addAll(super.getDisabledPaths(selected), new String[] { "编辑|删除",
+                    "编辑|更改依赖版本"
             });            
         } else {
             return (String[])ArrayUtils.addAll(super.getDisabledPaths(selected), new String[] {
-                    "Edit|Copy"
+                    "编辑|复制"
             });
         }
     }
@@ -54,22 +54,22 @@ public class ProjectDependencyMenuManager extends AbstractDesignSelectedValueMen
     @Override
     protected String[] getEnabledPaths(Object selected) {
         return (String[])ArrayUtils.addAll(super.getEnabledPaths(selected), new String[] {
-                "File|New|Project Dependency",
-                "File|New|Flow|Design",
-                "File|New|Flow|Test",
-                "File|New|Model|Hierarchical",
-                "File|New|Model|Relational",
-                "File|New|Resource|Database",
-                "File|New|Resource|Directory|FTP",
-                "File|New|Resource|Directory|File System",
-                "File|New|Resource|Directory|JMS",
-                "File|New|Resource|Directory|SFTP",
-                "File|New|Resource|Directory|SMB",
-                "File|New|Resource|HTTP",
-                "File|New|Resource|Mail Session",
-                "File|New|Resource|Subscribe|JMS",
-                "Edit|Change Dependency Version",
-                "Edit|Remove",
+                "文件|新建|项目依赖",
+                "文件|新建|流程|设计",
+                "文件|新建|流程|测试",
+                "文件|新建|模型|层级",
+                "文件|新建|模型|关系",
+                "文件|新建|资源|数据库",
+                "文件|新建|资源|目录|FTP",
+                "文件|新建|资源|目录|文件系统",
+                "文件|新建|资源|目录|JMS",
+                "文件|新建|资源|目录|SFTP",
+                "文件|新建|资源|目录|SMB",
+                "文件|新建|资源|HTTP",
+                "文件|新建|资源|邮件会话",
+                "文件|新建|资源|订阅|JMS",
+                "编辑|更改依赖版本",
+                "编辑|删除",
         });
     }
 }

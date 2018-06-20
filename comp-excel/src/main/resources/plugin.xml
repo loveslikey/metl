@@ -27,7 +27,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='entity'
              resourceCategory='streamable'>
-    <name>Excel File Reader</name>
+    <name>Excel文件读取器</name>
     <className>org.jumpmind.metl.core.runtime.component.ExcelFileReader</className>
     <keywords>excel,file,files</keywords>
     <description></description>
@@ -35,7 +35,7 @@
       <setting id='run.when'
                required='false'
                type='choice'>
-        <name>Run When</name>
+        <name>当...时运行</name>
         <defaultValue>PER UNIT OF WORK</defaultValue>
         <choices>
           <choice>PER UNIT OF WORK</choice>
@@ -45,36 +45,36 @@
       <setting id='get.file.name.from.message'
                required='false'
                type='boolean'>
-        <name>Get File Name From Message</name>
+        <name>从消息获取文件名</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='must.exist'
                required='false'
                type='boolean'>
-        <name>Must Exist</name>
+        <name>必须存在</name>
         <defaultValue>false</defaultValue>
-      </setting>  
+      </setting>
       <setting id='ignore.error'
                required='true'
                type='boolean'>
         <defaultValue>false</defaultValue>
-        <name>Ignore on Formula Error</name>
+        <name>忽略公式错误</name>
       </setting>
       <setting id='relative.path'
                required='false'
                type='text'>
-        <name>File Path</name>
+        <name>文件路径</name>
       </setting>
       <setting id='rows.per.message'
                required='false'
                type='integer'>
-        <name>Rows/Msg</name>
+        <name>n行/消息</name>
         <defaultValue>1000</defaultValue>
       </setting>
       <setting id='action.on.success'
                required='false'
                type='choice'>
-        <name>Action on Flow Success</name>
+        <name>成功后的动作</name>
         <defaultValue>NONE</defaultValue>
         <choices>
           <choice>None</choice>
@@ -85,12 +85,12 @@
       <setting id='archive.on.success.path'
                required='false'
                type='text'>
-        <name>Archive On Success Path</name>
+        <name>成功（文件）存档路径</name>
       </setting>
       <setting id='action.on.error'
                required='false'
                type='choice'>
-        <name>Action on Error</name>
+        <name>出错后的动作</name>
         <defaultValue>NONE</defaultValue>
         <choices>
           <choice>None</choice>
@@ -101,17 +101,17 @@
       <setting id='archive.on.error.path'
                required='false'
                type='text'>
-        <name>Archive On Error Path</name>
+        <name>出错（文件）存档路径</name>
       </setting>
       <setting id='header.lines.to.skip'
                required='false'
                type='integer'>
-        <name>Header Lines to Skip</name>
+        <name>头部跳过行数</name>
       </setting>
       <setting id='control.message.on.eof'
                required='false'
                type='boolean'>
-        <name>Send Control Message on EOF</name>
+        <name>在EOF发送控制消息</name>
       </setting>
     </settings>
   </component>
@@ -121,7 +121,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='streamable'>
-    <name>Excel File Writer</name>
+    <name>Excel文件写入器</name>
     <className>org.jumpmind.metl.core.runtime.component.ExcelFileWriter</className>
     <keywords>excel,file,files</keywords>
     <description></description>
@@ -129,52 +129,52 @@
       <setting id='excel.output.type'
                required='true'
                type='choice'>
-        <name>Excel Output Type</name>
+        <name>Excel输出类型</name>
         <defaultValue>Microsoft Excel XML (.xlsx)</defaultValue>
         <choices>
           <choice>Microsoft Excel XML (.xlsx)</choice>
           <choice>Microsoft Excel (.xls)</choice>
         </choices>
       </setting>
-      <setting id='must.exist' 
-               required='true' 
+      <setting id='must.exist'
+               required='true'
                type='boolean'>
-        <name>Must Exist</name>
+        <name>必须存在</name>
         <defaultValue>false</defaultValue>
       </setting>
-      <setting id='empty.file' 
-               required='true' 
+      <setting id='empty.file'
+               required='true'
                type='boolean'>
-        <name>Empty File On No Input</name>
+        <name>无输入时输出空文件</name>
         <defaultValue>true</defaultValue>
       </setting>
-      <setting id='relative.path' 
-               required='false' 
+      <setting id='relative.path'
+               required='false'
                type='text'>
-        <name>Path and File</name>
+        <name>路径和文件</name>
       </setting>
-      <setting id='sheet.name' 
-               required='false' 
+      <setting id='sheet.name'
+               required='false'
                type='text'>
-        <name>Sheet Name</name>
+        <name>工作表名称</name>
       </setting>
-      <setting id='include.header' 
-               required='true' 
+      <setting id='include.header'
+               required='true'
                type='boolean'>
-        <name>Include Header Row</name>
+        <name>包含标题行</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='get.file.name.from.message'
                required='false'
                type='boolean'>
-        <name>Get File Name From Message</name>
+        <name>从消息获取文件名</name>
         <defaultValue>false</defaultValue>
       </setting>
-      <setting id='filename.property' 
-               required='false' 
+      <setting id='filename.property'
+               required='false'
                type='text'>
-        <name>Param Name For Msg Based File Name</name>
+        <name>文件名在消息中的参数名称</name>
       </setting>
     </settings>
-  </component> 
+  </component>
 </definitions>

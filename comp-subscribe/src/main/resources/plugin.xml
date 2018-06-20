@@ -27,7 +27,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='subscribe'>
-    <name>Subscriber</name>
+    <name>消息订阅</name>
     <className>org.jumpmind.metl.core.runtime.component.Subscriber</className>
     <deploymentListenerClassName>org.jumpmind.metl.core.runtime.component.SubscribeDeploymentListener</deploymentListenerClassName>
     <keywords>jms,subscribe,listen</keywords>

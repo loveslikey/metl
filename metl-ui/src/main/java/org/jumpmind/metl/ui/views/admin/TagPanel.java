@@ -66,13 +66,13 @@ public class TagPanel extends VerticalLayout implements IUiPanel {
         ButtonBar buttonBar = new ButtonBar();
         addComponent(buttonBar);
 
-        newButton = buttonBar.addButton("New", FontAwesome.PLUS);
+        newButton = buttonBar.addButton("新建", FontAwesome.PLUS);
         newButton.addClickListener(new NewClickListener());
 
-        editButton = buttonBar.addButton("Edit", FontAwesome.EDIT);
+        editButton = buttonBar.addButton("编辑", FontAwesome.EDIT);
         editButton.addClickListener(new EditClickListener());
 
-        removeButton = buttonBar.addButton("Remove", FontAwesome.TRASH_O);
+        removeButton = buttonBar.addButton("删除", FontAwesome.TRASH_O);
         removeButton.addClickListener(new RemoveClickListener());
 
         container = new BeanItemContainer<Tag>(Tag.class);
@@ -87,7 +87,7 @@ public class TagPanel extends VerticalLayout implements IUiPanel {
 
         table.setContainerDataSource(container);
         table.setVisibleColumns("name", "color");
-        table.setColumnHeaders("Tag Name", "Color");
+        table.setColumnHeaders("标签名", "颜色");
         table.addItemClickListener(new TableItemClickListener());
         table.addValueChangeListener(new TableValueChangeListener());
         table.setSortContainerPropertyId("name");
@@ -145,7 +145,7 @@ public class TagPanel extends VerticalLayout implements IUiPanel {
         public void buttonClick(ClickEvent event) {
             Tag tag = new Tag();
             TagEditPanel editPanel = new TagEditPanel(context, tag);
-            tabbedPanel.addCloseableTab(tag.getId(), "Edit Tag", getIcon(), editPanel);
+            tabbedPanel.addCloseableTab(tag.getId(), "新增标签", getIcon(), editPanel);
         }
     }
 
@@ -155,7 +155,7 @@ public class TagPanel extends VerticalLayout implements IUiPanel {
 //TODO: refresh if we want to do things like show all entities that are tagged            
 //            context.getOperationsService().refresh(tag);
             TagEditPanel editPanel = new TagEditPanel(context, tag);
-            tabbedPanel.addCloseableTab(tag.getId(), "Edit Tag", getIcon(), editPanel);
+            tabbedPanel.addCloseableTab(tag.getId(), "编辑标签", getIcon(), editPanel);
         }
     }
 

@@ -27,7 +27,7 @@
              showInputModel='true'
              outputMessageType='entity'
              resourceCategory='datasource'>
-    <name>RDBMS Reader</name>
+    <name>RDBMS读取器</name>
     <className>org.jumpmind.metl.core.runtime.component.RdbmsReader</className>
     <keywords>database,db,sql</keywords>
     <description></description>
@@ -40,7 +40,7 @@
       <setting id='run.when'
                required='false'
                type='choice'>
-        <name>Run When</name>
+        <name>当...时运行</name>
         <defaultValue>PER UNIT OF WORK</defaultValue>
         <choices>
           <choice>PER UNIT OF WORK</choice>
@@ -51,7 +51,7 @@
       <setting id='unit.of.work'
                required='false'
                type='choice'>
-        <name>Unit of Work</name>
+        <name>工作单元</name>
         <defaultValue>COMPONENT LIFETIME</defaultValue>
         <choices>
           <choice>COMPONENT LIFETIME</choice>
@@ -62,31 +62,31 @@
       <setting id='query.timeout.seconds'
                required='true'
                type='integer'>
-        <name>Query Timeout (seconds)</name>
+        <name>查询超时(秒)</name>
         <defaultValue>-1</defaultValue>
-      </setting>      
+      </setting>
       <setting id='rows.per.message'
                required='true'
                type='integer'>
-        <name>Rows/Msg</name>
+        <name>n行/消息</name>
         <defaultValue>1000</defaultValue>
       </setting>
       <setting id='trim.columns'
                required='true'
                type='boolean'>
-        <name>Trim Columns</name>
+        <name>裁剪列</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='match.on.column.name'
                required='true'
                type='boolean'>
-        <name>Match On Column Name</name>
+        <name>匹配列名称</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='pass.input.rows.through'
                required='true'
                type='boolean'>
-        <name>Pass Input Rows Through</name>
+        <name>传递输入行</name>
         <defaultValue>false</defaultValue>
       </setting>
     </settings>

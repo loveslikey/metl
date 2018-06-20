@@ -43,7 +43,7 @@ public class ChooseWsdlServiceOperationWindow extends Window {
 
     public ChooseWsdlServiceOperationWindow(List<SoapOperation> operations,
             final ServiceChosenListener listener) {
-        setCaption("Choose SOAP Operation");
+        setCaption("选择SOAP操作");
         setModal(true);
         setResizable(false);
         setSizeUndefined();
@@ -54,7 +54,7 @@ public class ChooseWsdlServiceOperationWindow extends Window {
         layout.setMargin(true);
         setContent(layout);
 
-        layout.addComponent(new Label("Choose the SOAP operation to use."));
+        layout.addComponent(new Label("选择使用的SOAP操作。"));
 
         final ListSelect field = new ListSelect();
         field.setNullSelectionAllowed(false);
@@ -82,7 +82,7 @@ public class ChooseWsdlServiceOperationWindow extends Window {
         buttonLayout.addComponent(spacer);
         buttonLayout.setExpandRatio(spacer, 1);
 
-        Button cancelButton = new Button("Cancel");
+        Button cancelButton = new Button("取消");
         cancelButton.setClickShortcut(KeyCode.ESCAPE);
         cancelButton.addClickListener(new ClickListener() {
             public void buttonClick(ClickEvent event) {
@@ -91,7 +91,7 @@ public class ChooseWsdlServiceOperationWindow extends Window {
         });
         buttonLayout.addComponent(cancelButton);
 
-        Button okButton = new Button("Ok");
+        Button okButton = new Button("确定");
         okButton.setClickShortcut(KeyCode.ENTER);
         okButton.addClickListener(new ClickListener() {
             public void buttonClick(ClickEvent event) {

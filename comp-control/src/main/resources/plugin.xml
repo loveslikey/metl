@@ -28,7 +28,7 @@
              outputMessageType='any'
              resourceCategory='none'
              supportsMultipleThreads='true'>
-    <name>Delay</name>
+    <name>延迟</name>
     <keywords>sleep,wait</keywords>
     <className>org.jumpmind.metl.core.runtime.component.Delay</className>
     <description></description>
@@ -36,7 +36,7 @@
       <setting id='run.when'
                required='false'
                type='choice'>
-        <name>Run When</name>
+        <name>当...时运行</name>
         <defaultValue>PER UNIT OF WORK</defaultValue>
         <choices>
           <choice>PER UNIT OF WORK</choice>
@@ -46,7 +46,7 @@
       <setting id='delay.in.ms'
                required='true'
                type='integer'>
-        <name>Delay (ms)</name>
+        <name>延迟(ms)</name>
         <defaultValue>1000</defaultValue>
       </setting>
     </settings>
@@ -57,7 +57,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='any'
              resourceCategory='none'>
-    <name>Last Unit of Work</name>
+    <name>工作单元截止器件</name>
     <className>org.jumpmind.metl.core.runtime.component.LastUnitOfWork</className>
     <description></description>
   </component>
@@ -67,19 +67,19 @@
              inputOutputModelsMatch='false'
              outputMessageType='any'
              resourceCategory='none'>
-    <name>Gate</name>
+    <name>网关</name>
     <className>org.jumpmind.metl.core.runtime.component.Gate</className>
     <description></description>
     <settings>
       <setting id='gate.control.source.step'
                required='true'
                type='source_step'>
-        <name>Gate Control Source</name>
+        <name>控制源</name>
       </setting>
       <setting id='force.gate.open'
                required='false'
                type='boolean'>
-        <name>Force Gate Open On No Source Message</name>
+        <name>无控制信号时强制打开网关</name>
       </setting>
     </settings>
   </component>

@@ -112,7 +112,7 @@ public class EditAgentDeploymentPanel extends VerticalSplitPanel implements IUiP
         table.setSelectable(true);
         table.setTableFieldFactory(new EditFieldFactory());
         table.setVisibleColumns("name", "value");
-        table.setColumnHeaders("Parameter Name", "Value");
+        table.setColumnHeaders("变量名称", "值");
 
         container.addAll(agentDeployment.getAgentDeploymentParms());
 
@@ -147,7 +147,7 @@ public class EditAgentDeploymentPanel extends VerticalSplitPanel implements IUiP
     }
 
     protected TextField getNameComponent() {
-        ImmediateUpdateTextField textField = new ImmediateUpdateTextField("Name") {
+        ImmediateUpdateTextField textField = new ImmediateUpdateTextField("名称") {
             protected void save(String text) {
                 agentDeployment.setName(text);
                 saveAgentDeployment(agentDeployment);
@@ -159,7 +159,7 @@ public class EditAgentDeploymentPanel extends VerticalSplitPanel implements IUiP
     }
 
     protected ComboBox getLogLevelComponent() {
-        final ComboBox combo = new ComboBox("Log Level");
+        final ComboBox combo = new ComboBox("日志级别");
         combo.setNullSelectionAllowed(false);
         combo.setWidth(200, Unit.PIXELS);
         LogLevel[] levels = LogLevel.values();
@@ -177,7 +177,7 @@ public class EditAgentDeploymentPanel extends VerticalSplitPanel implements IUiP
     }
 
     protected ComboBox getStartTypeComponent() {
-        startTypeCombo = new ComboBox("Start Type");
+        startTypeCombo = new ComboBox("启动类型");
         startTypeCombo.setWidth(200, Unit.PIXELS);
         startTypeCombo.setNullSelectionAllowed(false);
         StartType[] values = StartType.values();
@@ -248,7 +248,7 @@ public class EditAgentDeploymentPanel extends VerticalSplitPanel implements IUiP
     }
 
     protected TextField getCronComponent() {
-        startExpressionTextField = new ImmediateUpdateTextField("Start Expression") {
+        startExpressionTextField = new ImmediateUpdateTextField("启动表达式") {
             protected void save(String text) {
                 agentDeployment.setStartExpression(text);
                 updateScheduleFields();

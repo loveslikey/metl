@@ -28,45 +28,45 @@
              inputOutputModelsMatch='false'
              outputMessageType='any'
              resourceCategory='mailsession'>
-    <name>Email Writer</name>
+    <name>电子邮件写入器</name>
     <keywords>send,email,smtp,write</keywords>
     <className>org.jumpmind.metl.core.runtime.component.EmailWriter</className>
     <description></description>
-    <settings>    
+    <settings>
       <setting id='subject'
                required='true'
                type='text'>
-        <name>Subject</name>
+        <name>主题</name>
       </setting>
       <setting id='body'
                required='true'
                type='multiline_text'>
-        <name>Body</name>
+        <name>信息</name>
       </setting>
       <setting id='from.line'
                required='true'
                type='text'>
-        <name>From:</name>
-      </setting>      
+        <name>发件人:</name>
+      </setting>
       <setting id='to.line'
                required='false'
                type='text'>
-        <name>To:</name>
+        <name>收件人:</name>
       </setting>
       <setting id='cc.line'
                required='false'
                type='text'>
-        <name>CC:</name>
+        <name>抄送:</name>
       </setting>
       <setting id='bcc.line'
                required='false'
                type='text'>
-        <name>BCC:</name>
+        <name>密送:</name>
       </setting>
       <setting id='body.charset'
                required='false'
                type='text'>
-        <name>Character Set:</name>
+        <name>字符集:</name>
       </setting>
       <setting id='sub.type'
                required='false'
@@ -88,19 +88,19 @@
           <choice>CC</choice>
           <choice>BCC</choice>
         </choices>
-      </setting>       
+      </setting>
       <setting id='one.email.per.recipient'
                required='false'
                type='boolean'>
         <name>One Email per Recipient</name>
         <defaultValue>false</defaultValue>
-      </setting>          
+      </setting>
       <setting id='include.attachment'
                required='false'
                type='boolean'>
         <name>Include Attachment</name>
         <defaultValue>false</defaultValue>
-      </setting>          
+      </setting>
       <setting id='attachment.file.path'
                required='false'
                type='text'>
@@ -109,7 +109,7 @@
       <setting id='run.when'
                required='false'
                type='choice'>
-        <name>Run When</name>
+        <name>当...时运行</name>
         <defaultValue>PER UNIT OF WORK</defaultValue>
         <choices>
           <choice>PER UNIT OF WORK</choice>

@@ -27,14 +27,14 @@
              inputOutputModelsMatch='false'
              outputMessageType='entity'
              resourceCategory='none'>
-    <name>Deserializer</name>
+    <name>反序列化</name>
     <className>org.jumpmind.metl.core.runtime.component.Deserializer</className>
     <keywords>REST,ws,webservice,web</keywords>
     <settings>
       <setting id='format'
                required='false'
                type='choice'>
-        <name>Format</name>
+        <name>格式</name>
         <defaultValue>AUTOMATIC</defaultValue>
         <choices>
           <choice>AUTOMATIC</choice>
@@ -45,7 +45,7 @@
       <setting id='structure'
                required='false'
                type='choice'>
-        <name>Structure</name>
+        <name>结构</name>
         <defaultValue>BY_INBOUND_ROW</defaultValue>
         <choices>
           <choice>BY_INBOUND_ROW</choice>
@@ -60,14 +60,14 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='none'>
-    <name>Serializer</name>
+    <name>序列化</name>
     <className>org.jumpmind.metl.core.runtime.component.Serializer</className>
     <keywords>REST,ws,webservice,web</keywords>
     <settings>
       <setting id='format'
                required='false'
                type='choice'>
-        <name>Format</name>
+        <name>格式</name>
         <defaultValue>AUTOMATIC</defaultValue>
         <choices>
           <choice>AUTOMATIC</choice>
@@ -78,7 +78,7 @@
       <setting id='structure'
                required='false'
                type='choice'>
-        <name>Structure</name>
+        <name>结构</name>
         <defaultValue>BY_INBOUND_ROW</defaultValue>
         <choices>
           <choice>BY_INBOUND_ROW</choice>

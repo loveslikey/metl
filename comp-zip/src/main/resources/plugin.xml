@@ -27,7 +27,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='none'
              resourceCategory='none'>
-    <name>Zip</name>
+    <name>压缩</name>
     <className>org.jumpmind.metl.core.runtime.component.Zip</className>
     <keywords>compress</keywords>
     <description></description>
@@ -35,34 +35,34 @@
       <setting id='source.resource'
                required='true'
                type='streamable_resource'>
-        <name>Source Directory Resource</name>
+        <name>源目录资源</name>
       </setting>
       <setting id='target.resource'
                required='true'
                type='streamable_resource'>
-        <name>Zip Target Directory Resource</name>
+        <name>目的地目录资源</name>
       </setting>
       <setting id='target.relative.path'
                required='false'
                type='text'>
-        <name>Target Path</name>
+        <name>目标路径</name>
       </setting>
       <setting id='must.exist'
                required='false'
                type='boolean'>
-        <name>Must Exist</name>
+        <name>必须存在</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='delete.on.complete'
                required='false'
                type='boolean'>
-        <name>Delete Source Files</name>
+        <name>删除源文件</name>
         <defaultValue>true</defaultValue>
       </setting>
       <setting id='encoding'
                required='false'
                type='text'>
-        <name>Encoding</name>
+        <name>编码</name>
         <defaultValue>UTF-8</defaultValue>
       </setting>
     </settings>
@@ -73,7 +73,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='none'>
-    <name>UnZip</name>
+    <name>解压</name>
     <className>org.jumpmind.metl.core.runtime.component.UnZip</className>
     <keywords>compress</keywords>
     <description></description>
@@ -81,45 +81,45 @@
       <setting id='source.resource'
                required='true'
                type='streamable_resource'>
-        <name>Zip Source Directory Resource</name>
+        <name>压缩文件源目录资源</name>
       </setting>
       <setting id='target.resource'
                required='true'
                type='streamable_resource'>
-        <name>Unzip Target Directory Resource</name>
+        <name>解压缩目标资源</name>
       </setting>
       <setting id='target.relative.path'
                required='false'
                type='text'>
-        <name>Target Path</name>
+        <name>目标路径</name>
       </setting>
       <setting id='target.sub.dir'
                required='false'
                type='boolean'>
-        <name>Create Sub Dir From File Name</name>
+        <name>从文件名创建子目录</name>
       </setting>
       <setting id='extract.empty.files'
                required='false'
                type='boolean'>
-        <name>Extract Empty Files</name>
+        <name>提取空文件</name>
         <defaultValue>true</defaultValue>
       </setting>
       <setting id='overwrite'
                required='false'
                type='boolean'>
-        <name>Overwrite</name>
+        <name>覆盖</name>
         <defaultValue>true</defaultValue>
       </setting>
       <setting id='encoding'
                required='false'
                type='text'>
-        <name>Encoding</name>
+        <name>编码</name>
         <defaultValue>UTF-8</defaultValue>
       </setting>
       <setting id='delete.on.complete'
                required='false'
                type='boolean'>
-        <name>Delete Source File</name>
+        <name>删除源文件</name>
         <defaultValue>true</defaultValue>
       </setting>
     </settings>

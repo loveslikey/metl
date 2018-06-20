@@ -58,71 +58,71 @@ public class GeneralSettingsPanel extends Panel implements IUiPanel {
         form = new FormLayout();
         form.addStyleName(ValoTheme.FORMLAYOUT_LIGHT);
 
-        Label section = new Label("Display Settings");
+        Label section = new Label("显示设置");
         section.addStyleName(ValoTheme.LABEL_H3);
         section.addStyleName(ValoTheme.LABEL_COLORED);
         form.addComponent(section);
 
-        addSetting("System Text", GlobalSetting.SYSTEM_TEXT, "",
-                "Set HTML content to be displayed in the top bar that can identify a particular environment")
+        addSetting("系统文本", GlobalSetting.SYSTEM_TEXT, "",
+                "将HTML内容设置为显示在可以标识特定环境的顶部栏中")
                         .focus();
 
-        section = new Label("Purge Settings");
+        section = new Label("清除设置");
         section.addStyleName(ValoTheme.LABEL_H3);
         section.addStyleName(ValoTheme.LABEL_COLORED);
         form.addComponent(section);
 
-        addSetting("Audit Event Retention in Days", GlobalSetting.AUDIT_EVENT_RETENTION_IN_DAYS,
+        addSetting("保留多少天内的审计事件", GlobalSetting.AUDIT_EVENT_RETENTION_IN_DAYS,
                 Integer.toString(GlobalSetting.DEFAULT_AUDIT_EVENT_RETENTION_IN_DAYS), "",
                 Integer.class);
         
-        section = new Label("Auto Backup");
+        section = new Label("自动备份");
         section.addStyleName(ValoTheme.LABEL_H3);
         section.addStyleName(ValoTheme.LABEL_COLORED);
         form.addComponent(section); 
         
-        Label instructions = new Label("A restart is required after changing these settings");
+        Label instructions = new Label("更改以下设置后需要重新启动");
         instructions.addStyleName(ValoTheme.LABEL_LIGHT);
         form.addComponent(instructions);
         
-        addSetting("Enable Backup", GlobalSetting.CONFIG_BACKUP_ENABLED,
+        addSetting("启用备份", GlobalSetting.CONFIG_BACKUP_ENABLED,
                 Boolean.toString(GlobalSetting.DEFAULT_CONFIG_BACKUP_ENABLED),
                 THIS_WILL_TAKE_EFFECT_ON_THE_NEXT_SERVER_RESTART, Boolean.class);
 
-        addSetting("Backup Cron Expression", GlobalSetting.CONFIG_BACKUP_CRON,
+        addSetting("备份Cron表达式", GlobalSetting.CONFIG_BACKUP_CRON,
                 GlobalSetting.DEFAULT_CONFIG_BACKUP_CRON,
                 THIS_WILL_TAKE_EFFECT_ON_THE_NEXT_SERVER_RESTART, String.class);
 
-        addSetting("Retention in Days", GlobalSetting.CONFIG_BACKUP_RETENTION_IN_DAYS,
+        addSetting("保留天数", GlobalSetting.CONFIG_BACKUP_RETENTION_IN_DAYS,
                 Integer.toString(GlobalSetting.DEFAULT_CONFIG_BACKUP_RETENTION_IN_DAYS),
                 THIS_WILL_TAKE_EFFECT_ON_THE_NEXT_SERVER_RESTART, Integer.class);       
 
-        section = new Label("User Password Settings");
+        section = new Label("用户密码设置");
         section.addStyleName(ValoTheme.LABEL_H3);
         section.addStyleName(ValoTheme.LABEL_COLORED);
         form.addComponent(section);
 
-        addSetting("Minimum Length", GlobalSetting.PASSWORD_MIN_LENGTH, "6", "", Integer.class);
+        addSetting("最大长度", GlobalSetting.PASSWORD_MIN_LENGTH, "6", "", Integer.class);
 
-        addSetting("Prohibit Reuse", GlobalSetting.PASSWORD_PROHIBIT_PREVIOUS, "5", "",
+        addSetting("禁止重复使用", GlobalSetting.PASSWORD_PROHIBIT_PREVIOUS, "5", "",
                 Integer.class);
 
-        addSetting("Expiration in Days", GlobalSetting.PASSWORD_EXPIRE_DAYS, "60", "",
+        addSetting("到期天数", GlobalSetting.PASSWORD_EXPIRE_DAYS, "60", "",
                 Integer.class);
         
-        addSetting("Number of Failed Attempts", GlobalSetting.PASSWORD_FAILED_ATTEMPTS, 
+        addSetting("失败尝试次数", GlobalSetting.PASSWORD_FAILED_ATTEMPTS,
         		Integer.toString(GlobalSetting.PASSWORD_FAILED_ATTEMPTS_DEFAULT), "", Integer.class);
 
-        addSetting("Prohibit Common Words", GlobalSetting.PASSWORD_PROHIBIT_COMMON_WORDS, "true",
+        addSetting("禁止常用单词", GlobalSetting.PASSWORD_PROHIBIT_COMMON_WORDS, "true",
                 "", Boolean.class);
 
-        addSetting("Require Alphanumeric", GlobalSetting.PASSWORD_REQUIRE_ALPHANUMERIC, "true", "",
+        addSetting("要求字数", GlobalSetting.PASSWORD_REQUIRE_ALPHANUMERIC, "true", "",
                 Boolean.class);
 
-        addSetting("Require Symbol", GlobalSetting.PASSWORD_REQUIRE_SYMBOL, "true", "",
+        addSetting("需要的象征", GlobalSetting.PASSWORD_REQUIRE_SYMBOL, "true", "",
                 Boolean.class);
 
-        addSetting("Require Mixed Case", GlobalSetting.PASSWORD_REQUIRE_MIXED_CASE, "true", "",
+        addSetting("需要混合的情况", GlobalSetting.PASSWORD_REQUIRE_MIXED_CASE, "true", "",
                 Boolean.class);
 
         VerticalLayout paddedLayout = new VerticalLayout();

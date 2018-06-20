@@ -27,7 +27,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='entity'
              resourceCategory='none'>
-    <name>Mapping</name>
+    <name>映射</name>
     <className>org.jumpmind.metl.core.runtime.component.Mapping</className>
     <keywords>map</keywords>
     <description></description>
@@ -35,13 +35,13 @@
       <setting id='set.unmapped.attributes.to.null'
                required='false'
                type='boolean'>
-        <name>Set Unmapped Attributes To Null</name>
+        <name>将未映射到的属性设置为空</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='entity.per.record'
                required='false'
                type='boolean'>
-        <name>Entity Per Record</name>
+        <name>每个实体一个记录</name>
         <defaultValue>false</defaultValue>
       </setting>
     </settings>
@@ -52,7 +52,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='entity'
              resourceCategory='none'>
-    <name>Rel/Hier Map</name>
+    <name>关系/层级 映射</name>
     <className>org.jumpmind.metl.core.runtime.component.RelationalHierarchicalMapping</className>
     <keywords>map</keywords>
     <description></description>
@@ -60,19 +60,19 @@
       <setting id='set.unmapped.attributes.to.null'
                required='false'
                type='boolean'>
-        <name>Set Unmapped Attributes To Null</name>
+        <name>将未映射到的属性设置为空</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='hierarchical.query.method'
                required='false'
                type='choice'>
-        <name>Hierarchical Query Method</name>
+        <name>分级查询方法</name>
         <defaultValue>BY JOIN</defaultValue>
         <choices>
           <choice>BY JOIN</choice>
           <choice>BY QUERY</choice>
         </choices>
-      </setting>      
+      </setting>
     </settings>
-  </component>  
+  </component>
 </definitions>

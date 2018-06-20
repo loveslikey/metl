@@ -76,7 +76,7 @@ import com.vaadin.ui.VerticalLayout;
 
 @UiComponent
 @Scope(value = "ui")
-@TopBarLink(id = "release", category = Category.Release, menuOrder = 20, name = "Release", icon = FontAwesome.CUBE)
+@TopBarLink(id = "release", category = Category.Release, menuOrder = 20, name = "发布", icon = FontAwesome.CUBE)
 public class ReleasesView extends VerticalLayout implements View, IReleasePackageListener {
 
     private static final long serialVersionUID = 1L;
@@ -110,13 +110,13 @@ public class ReleasesView extends VerticalLayout implements View, IReleasePackag
         setSizeFull();
         setMargin(false);
         ButtonBar buttonBar = new ButtonBar();
-        addButton = buttonBar.addButton("Add", FontAwesome.PLUS, e -> add());
-        editButton = buttonBar.addButton("Edit", FontAwesome.EDIT, e -> edit());
-        exportButton = buttonBar.addButton("Export", FontAwesome.DOWNLOAD, e -> export());
-        archiveButton = buttonBar.addButton("Archive", FontAwesome.ARCHIVE, e -> archive());
+        addButton = buttonBar.addButton("添加", FontAwesome.PLUS, e -> add());
+        editButton = buttonBar.addButton("编辑", FontAwesome.EDIT, e -> edit());
+        exportButton = buttonBar.addButton("导出", FontAwesome.DOWNLOAD, e -> export());
+        archiveButton = buttonBar.addButton("归档", FontAwesome.ARCHIVE, e -> archive());
         // TODO add support for the archive button
         archiveButton.setVisible(false);
-        finalizeButton = buttonBar.addButton("Finalize", FontAwesome.CUBE, e -> finalize());
+        finalizeButton = buttonBar.addButton("形成最终版", FontAwesome.CUBE, e -> finalize());
         addComponent(buttonBar);
         enableDisableButtonsForSelectionSize(0);
         grid = new Grid();
@@ -228,10 +228,10 @@ public class ReleasesView extends VerticalLayout implements View, IReleasePackag
     }
 
     protected void finalize() {
-        ConfirmDialog.show("Release the selected packages?",
-                "Are you sure you want to release the selected packages?", () -> {
-                    InProgressDialog<Object> dialog = new InProgressDialog<Object>("Finalizing Release Package", 
-                            new ReleaseWorker(), context.getBackgroundRefresherService(), "Finalize of Release Package Failed");
+        ConfirmDialog.show("发布所选包?",
+                "你确定发布所选的包吗?", () -> {
+                    InProgressDialog<Object> dialog = new InProgressDialog<Object>("正在发布包",
+                            new ReleaseWorker(), context.getBackgroundRefresherService(), "发布包失败");
                     dialog.show();
                     return true;
                 });                
@@ -246,7 +246,7 @@ public class ReleasesView extends VerticalLayout implements View, IReleasePackag
             releasePackage = configurationService.findReleasePackage(releasePackage.getId());
             if (releasePackage.isReleased()) {
                 CommonUiUtils.notify(String.format(
-                        "The release package '%s:%s' is already released.  It cannot be re-released.  Skipping this release package.",
+                        "要发布的包 '%s:%s' 已经发布了，不能重复发布，跳过发布包。",
                         releasePackage.getName(), releasePackage.getVersionLabel()));
             } else {
                 releasePackage.setReleaseDate(new Date());
@@ -345,7 +345,7 @@ public class ReleasesView extends VerticalLayout implements View, IReleasePackag
                     return new ByteArrayInputStream(export.getBytes(Charset.forName("utf-8")));
                 } catch (Exception e) {
                     log.error("Failed to export configuration", e);
-                    CommonUiUtils.notify("Failed to export configuration.", Type.ERROR_MESSAGE);
+                    CommonUiUtils.notify("导出配置文件失败！", Type.ERROR_MESSAGE);
                     return null;
                 }
             }

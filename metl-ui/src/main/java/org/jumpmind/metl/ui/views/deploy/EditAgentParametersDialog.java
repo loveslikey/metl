@@ -57,18 +57,18 @@ class EditAgentParametersDialog extends ResizableWindow implements ValueChangeLi
     Button removeButton;
 
     public EditAgentParametersDialog(final ApplicationContext context, final Agent agent) {
-        super("Agent Parameters");
+        super("代理参数");
         this.context = context;
         this.agent = agent;
 
-        Button closeButton = new Button("Close");
+        Button closeButton = new Button("关闭");
         closeButton.addStyleName(ValoTheme.BUTTON_PRIMARY);
         closeButton.addClickListener(new CloseClickListener());
 
         ButtonBar buttonBar = new ButtonBar();
-        buttonBar.addButton("Add", FontAwesome.PLUS, new AddClickListener());
+        buttonBar.addButton("添加", FontAwesome.PLUS, new AddClickListener());
 
-        removeButton = buttonBar.addButton("Remove", FontAwesome.TRASH_O, new RemoveClickListener());
+        removeButton = buttonBar.addButton("删除", FontAwesome.TRASH_O, new RemoveClickListener());
         removeButton.setEnabled(false);
         addComponent(buttonBar);
 
@@ -80,7 +80,7 @@ class EditAgentParametersDialog extends ResizableWindow implements ValueChangeLi
         table.setSelectable(true);
         table.setTableFieldFactory(new EditFieldFactory());
         table.setVisibleColumns("name", "value");
-        table.setColumnHeaders("Name", "Value");
+        table.setColumnHeaders("名称", "值");
         table.addValueChangeListener(this);
         addComponent(table, 1);
 

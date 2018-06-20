@@ -121,7 +121,7 @@ public class ImportXmlTemplateWindow extends ResizableWindow implements ValueCha
         this.listener = listener;
         this.component = component;
         this.context = context;
-        setCaption("Import XML Template");
+        setCaption("导入XML模板");
         setWidth(600.0f, Unit.PIXELS);
         setHeight(500.0f, Unit.PIXELS);
 
@@ -130,9 +130,9 @@ public class ImportXmlTemplateWindow extends ResizableWindow implements ValueCha
         layout.setSpacing(true);
         layout.setMargin(true);
         layout.addStyleName(ValoTheme.WINDOW_BOTTOM_TOOLBAR);
-        layout.addComponent(new Label("Import XML from either an XSD or WSDL source."));
+        layout.addComponent(new Label("从另一个XSD或WSDL资源，导入XML模板。"));
 
-        optionGroup = new OptionGroup("Select the location of the XSD or WSDL.");
+        optionGroup = new OptionGroup("选择XSD或WSDL的位置。");
         optionGroup.addItem(OPTION_TEXT);
         optionGroup.addItem(OPTION_FILE);
         optionGroup.addItem(OPTION_URL);
@@ -147,19 +147,19 @@ public class ImportXmlTemplateWindow extends ResizableWindow implements ValueCha
         optionLayout.setSizeFull();
 
         editor = new AceEditor();
-        editor.setCaption("Enter the XML text:");
+        editor.setCaption("输入XML文本:");
         editor.setMode(AceMode.xml);
         editor.setSizeFull();
         editor.setHighlightActiveLine(true);
         editor.setShowPrintMargin(false);
 
-        Button importButton = new Button("Import");
+        Button importButton = new Button("导入");
         importButton.addClickListener(this);
 
         upload = new Upload(null, this);
         upload.addSucceededListener(this);
         upload.setButtonCaption(null);
-        urlTextField = new TextField("Enter the URL:");
+        urlTextField = new TextField("输入URL:");
         urlTextField.setWidth(100.0f, Unit.PERCENTAGE);
         
         resourceComboBox = createResourceCB();
@@ -174,7 +174,7 @@ public class ImportXmlTemplateWindow extends ResizableWindow implements ValueCha
     }
     
     protected ComboBox createResourceCB() {
-        ComboBox cb = new ComboBox("HTTP Resource");
+        ComboBox cb = new ComboBox("HTTP资源");
         
         String projectVersionId = component.getProjectVersionId();
         IConfigurationService configurationService = context.getConfigurationService();
@@ -277,7 +277,7 @@ public class ImportXmlTemplateWindow extends ResizableWindow implements ValueCha
                 } else if (rootName.equals("schema")) {
                     importFromXsd(text);
                 } else {
-                    Notification note = new Notification("Unrecognized Content", "The XML file has a root element of " + rootName
+                    Notification note = new Notification("未识别的内容", "The XML file has a root element of " + rootName
                             + ", but expected \"definitions\" for WSDL or \"schema\" for XSD.");
                     note.show(Page.getCurrent());
                 }
@@ -319,7 +319,7 @@ public class ImportXmlTemplateWindow extends ResizableWindow implements ValueCha
         }
 
         if (allOperations.size() == 0) {
-            Notification note = new Notification("No operations", "No operations found in the WSDL.");
+            Notification note = new Notification("无操作", "在WSDL中没有找到操作。");
             note.show(Page.getCurrent());
         } else if (allOperations.size() == 1) {
             importFromWsdl(wsdl, allOperations.get(0));

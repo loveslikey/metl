@@ -49,37 +49,37 @@ public class DesignMenuBar extends AbstractMenuBar {
 
     @Override
     protected void buildMenu() {
-        add("File|New|Project");
-        add("File|New|Project Branch");
-        add("File|New|Project Dependency");
-        add("File|New|Flow|Design");
-        add("File|New|Flow|Test");
-        add("File|New|Model|Hierarchical");
-        add("File|New|Model|Relational");
-        add("File|New|Resource|Database");
-        add("File|New|Resource|Directory|FTP");
-        add("File|New|Resource|Directory|File System");
-        add("File|New|Resource|Directory|JMS");
-        add("File|New|Resource|Directory|SFTP");
-        add("File|New|Resource|Directory|SMB");
-        add("File|New|Resource|HTTP");
-        add("File|New|Resource|Mail Session");
-        add("File|New|Resource|Subscribe|JMS");
-        add("File|Open");
-        addSeparator("File");
-        add("File|Import...");        
-        add("File|Export...");
+        add("文件|新建|项目");
+        add("文件|新建|项目分支");
+        add("文件|新建|项目依赖");
+        add("文件|新建|流程|设计");
+        add("文件|新建|流程|测试");
+        add("文件|新建|模型|层级");
+        add("文件|新建|模型|关系");
+        add("文件|新建|资源|数据库");
+        add("文件|新建|资源|目录|FTP");
+        add("文件|新建|资源|目录|文件系统");
+        add("文件|新建|资源|目录|JMS");
+        add("文件|新建|资源|目录|SFTP");
+        add("文件|新建|资源|目录|SMB");
+        add("文件|新建|资源|HTTP");
+        add("文件|新建|资源|邮件会话");
+        add("文件|新建|资源|订阅|JMS");
+        add("文件|打开");
+        addSeparator("文件");
+        add("文件|导入...");
+        add("文件|导出...");
         
-        add("Edit|Rename");
-        add("Edit|Cut");
-        add("Edit|Copy");
-        add("Edit|Paste");
-        addSeparator("Edit");
-        add("Edit|Change Dependency Version");
-        addSeparator("Edit");
-        add("Edit|Remove");
+        add("编辑|重命名");
+        add("编辑|剪贴");
+        add("编辑|复制");
+        add("编辑|粘贴");
+        addSeparator("编辑");
+        add("编辑|更改依赖版本");
+        addSeparator("编辑");
+        add("编辑|删除");
         
-        add("Tag");
+        add("标签");
     }
 
     static class NothingSelectAction extends AbstractDesignSelectedValueMenuManager {

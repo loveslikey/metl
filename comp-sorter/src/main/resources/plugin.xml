@@ -27,19 +27,19 @@
              inputOutputModelsMatch='true'
              outputMessageType='entity'
              resourceCategory='none'>
-    <name>Sorter</name>
+    <name>排序器</name>
     <className>org.jumpmind.metl.core.runtime.component.Sorter</className>
     <description></description>
     <settings>
       <setting id='sort.attribute'
                required='true'
                type='text'>
-        <name>Sort Entity.Attribute</name>
+        <name>排序 实体.属性</name>
       </setting>
       <setting id='rows.per.message'
                required='false'
                type='integer'>
-        <name>Rows/Msg</name>
+        <name>n行/消息</name>
         <defaultValue>10</defaultValue>
       </setting>
     </settings>

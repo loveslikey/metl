@@ -72,7 +72,7 @@ public class UserEditPanel extends VerticalLayout implements IUiPanel {
         FormLayout form = new FormLayout();
         form.setSpacing(true);
         
-        NativeSelect authField = new NativeSelect("Authentication Method");
+        NativeSelect authField = new NativeSelect("认证方法");
         authField.setWidth(16, Unit.EM);
         authField.setHeight(2.15f, Unit.EM);
         authField.setNullSelectionAllowed(false);
@@ -86,19 +86,19 @@ public class UserEditPanel extends VerticalLayout implements IUiPanel {
         }
         authField.setImmediate(true);
         authField.setRequired(true);
-        authField.setRequiredError("Field Authentication Method is required");
+        authField.setRequiredError("认证方法字段时必须的");
         form.addComponent(authField);
 
-        TextField loginField = new TextField("Login ID", StringUtils.trimToEmpty(user.getLoginId()));
+        TextField loginField = new TextField("登陆用户名", StringUtils.trimToEmpty(user.getLoginId()));
         form.addComponent(loginField);
         loginField.addValueChangeListener(new LoginChangeListener());
         loginField.focus();
 
-        TextField nameField = new TextField("Full Name", StringUtils.trimToEmpty(user.getName()));
+        TextField nameField = new TextField("全名", StringUtils.trimToEmpty(user.getName()));
         nameField.addValueChangeListener(new NameChangeListener());
         form.addComponent(nameField);
 
-        PasswordField passwordField = new PasswordField("Password", NOCHANGE);
+        PasswordField passwordField = new PasswordField("密码", NOCHANGE);
         passwordField.addValueChangeListener(new PasswordChangeListener());
         form.addComponent(passwordField);
         if (User.AUTH_METHOD_INTERNAL.equals(authField.getValue())) {
@@ -139,8 +139,8 @@ public class UserEditPanel extends VerticalLayout implements IUiPanel {
         groupSelect.setNullSelectionAllowed(true);
         groupSelect.setMultiSelect(true);
         groupSelect.setImmediate(true);
-        groupSelect.setLeftColumnCaption("Available groups");
-        groupSelect.setRightColumnCaption("Selected groups");
+        groupSelect.setLeftColumnCaption("可用组");
+        groupSelect.setRightColumnCaption("选择的组");
         groupSelect.addValueChangeListener(new GroupChangeListener());
         form.addComponent(groupSelect);
 

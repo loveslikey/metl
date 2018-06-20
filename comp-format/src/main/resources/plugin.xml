@@ -27,7 +27,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='none'>
-    <name>Format Delimited</name>
+    <name>分隔符格式化</name>
     <className>org.jumpmind.metl.core.runtime.component.DelimitedFormatter</className>
     <keywords>csv,generate,file,files,text</keywords>
     <description></description>
@@ -35,25 +35,25 @@
       <setting id='delimited.formatter.delimiter'
                required='true'
                type='text'>
-        <name>Delimiter</name>
+        <name>分隔符</name>
         <defaultValue>,</defaultValue>
       </setting>
       <setting id='delimited.formatter.quote.character'
                required='false'
                type='text'>
-        <name>Quote Character</name>
+        <name>引用字符</name>
         <defaultValue>&quot;</defaultValue>
       </setting>
       <setting id='delimited.formatter.header'
                required='false'
                type='boolean'>
-        <name>Header line</name>
+        <name>标题行</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='delimited.formatter.attribute.trim.columns'
                required='true'
                type='boolean'>
-        <name>Trim Columns</name>
+        <name>修剪列</name>
         <defaultValue>true</defaultValue>
       </setting>
     </settings>
@@ -64,7 +64,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='none'>
-    <name>Format Fixed</name>
+    <name>定长格式化</name>
     <className>org.jumpmind.metl.core.runtime.component.FixedLengthFormatter</className>
     <keywords>file,files,text,generate</keywords>
     <description></description>
@@ -72,7 +72,7 @@
       <setting id='fixed.length.formatter.header'
                required='false'
                type='boolean'>
-        <name>Header line</name>
+        <name>标题行</name>
         <defaultValue>false</defaultValue>
       </setting>
     </settings>
@@ -84,7 +84,7 @@
              outputMessageType='entity'
              resourceCategory='none'
              supportsMultipleThreads='true'>
-    <name>Parse Delimited</name>
+    <name>格式化解析器</name>
     <className>org.jumpmind.metl.core.runtime.component.DelimitedParser</className>
     <keywords>parse,files,file,csv</keywords>
     <description></description>
@@ -92,31 +92,31 @@
       <setting id='delimiter'
                required='true'
                type='text'>
-        <name>Delimiter</name>
+        <name>分隔符</name>
         <defaultValue>,</defaultValue>
       </setting>
       <setting id='quote.character'
                required='false'
                type='text'>
-        <name>Quote Character</name>
+        <name>引用字符</name>
         <defaultValue>&quot;</defaultValue>
       </setting>
       <setting id='header.lines.to.skip'
                required='false'
                type='integer'>
-        <name>Number of Header Lines to Skip</name>
+        <name>忽略头部行数</name>
         <defaultValue>0</defaultValue>
       </setting>
       <setting id='footer.lines.to.skip'
                required='false'
                type='integer'>
-        <name>Number of Footer Lines to Skip</name>
+        <name>忽略页脚行数</name>
         <defaultValue>0</defaultValue>
       </setting>
       <setting id='encoding'
                required='false'
                type='text'>
-        <name>Encoding</name>
+        <name>编码</name>
         <defaultValue>UTF-8</defaultValue>
       </setting>
     </settings>
@@ -125,7 +125,7 @@
              id='Parse Fixed'
              inputMessageType='text'
              outputMessageType='entity'>
-    <name>Parse Fixed Length</name>
+    <name>定长解析器</name>
     <className>org.jumpmind.metl.core.runtime.component.FixedLengthParser</className>
     <keywords>parse,file,files</keywords>
     <description></description>
@@ -133,19 +133,19 @@
       <setting id='header.lines.to.skip'
                required='false'
                type='integer'>
-        <name>Number of Header Lines to Skip</name>
+        <name>忽略头部行数</name>
         <defaultValue>0</defaultValue>
       </setting>
       <setting id='footer.lines.to.skip'
                required='false'
                type='integer'>
-        <name>Number of Footer Lines to Skip</name>
+        <name>忽略页脚行数</name>
         <defaultValue>0</defaultValue>
       </setting>
       <setting id='trim.parsed.column'
                required='false'
                type='boolean'>
-        <name>Trim Parsed Columns</name>
+        <name>修剪解析列</name>
         <defaultValue>true</defaultValue>
       </setting>
     </settings>

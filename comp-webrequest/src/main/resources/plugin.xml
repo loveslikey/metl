@@ -28,7 +28,7 @@
              outputMessageType='text'
              resourceCategory='http'
              supportsMultipleThreads='true'>
-    <name>Web Request</name>
+    <name>Web请求</name>
     <className>org.jumpmind.metl.core.runtime.component.Web</className>
     <keywords>invoke,rest,http</keywords>
     <description></description>
@@ -36,7 +36,7 @@
       <setting id='run.when'
                required='false'
                type='choice'>
-        <name>Run When</name>
+        <name>当...时运行</name>
         <defaultValue>PER MESSAGE</defaultValue>
         <choices>
           <choice>PER UNIT OF WORK</choice>
@@ -44,7 +44,7 @@
         </choices>
       </setting>
       <setting id='http.method' required='false' type='choice'>
-          <name>HTTP Method</name>
+          <name>请求方式</name>
           <defaultValue>GET</defaultValue>
           <choices>
               <choice>GET</choice>
@@ -53,48 +53,48 @@
               <choice>POST</choice>
               <choice>DELETE</choice>
           </choices>
-      </setting>  
+      </setting>
       <setting id='relative.path'
                required='false'
                type='text'>
-        <name>Append To Url</name>
+        <name>附加到Url</name>
       </setting>
       <setting id='body.from'
                required='true'
                type='choice'>
-        <name>Body From</name>
+        <name>消息体来自</name>
         <defaultValue>Message</defaultValue>
         <choices>
           <choice>Message</choice>
           <choice>Provided</choice>
         </choices>
-      </setting>      
+      </setting>
       <setting id='body.text'
                required='false'
                type='multiline_text'>
-        <name>Body Text</name>
+        <name>消息体文本</name>
       </setting>
       <setting id='http.headers'
                required='false'
                type='multiline_text'>
-        <name>Http Headers</name>
+        <name>Http头信息</name>
         <defaultValue>User-Agent:Metl</defaultValue>
       </setting>
       <setting id='http.parameters'
          required='false'
          type='multiline_text'>
-         <name>Http Parameters</name>
-      </setting>                  
+         <name>Http参数</name>
+      </setting>
       <setting id='parameter.replacement'
                required='false'
                type='boolean'>
-        <name>Parameter replacement</name>
+        <name>用参数替换</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='encoding' required='false' type='text'>
-          <name>Encoding</name>
+          <name>编码</name>
           <defaultValue>UTF-8</defaultValue>
       </setting>
     </settings>
-  </component>  
+  </component>
 </definitions>

@@ -200,34 +200,34 @@ public class EditFlowPanel extends HorizontalLayout implements IUiPanel, IFlowRu
     protected HorizontalLayout buildButtonBar() {
         ButtonBar buttonBar = new ButtonBar();
         if (!readOnly) {
-            runButton = buttonBar.addButton("Run", Icons.RUN);
+            runButton = buttonBar.addButton("执行", Icons.RUN);
             runButton.addClickListener((event)->runFlow());
         }
 
-        settingsButton = buttonBar.addButton("Settings", FontAwesome.GEARS);
+        settingsButton = buttonBar.addButton("设置", FontAwesome.GEARS);
         settingsButton.addClickListener((event) -> new EditFlowSettingsDialog(context, flow, readOnly).showAtSize(.75));        
 
         if (!readOnly) {
-            Button selectAllButton = buttonBar.addButton("Select All", FontAwesome.CROSSHAIRS);
+            Button selectAllButton = buttonBar.addButton("全选", FontAwesome.CROSSHAIRS);
             selectAllButton.addClickListener((event)->setSelectedAll());
 
-            copyButton = buttonBar.addButton("Copy", FontAwesome.COPY);
+            copyButton = buttonBar.addButton("复制", FontAwesome.COPY);
             copyButton.addClickListener((event)->copySelected());
             copyButton.setEnabled(false);
 
-            delButton = buttonBar.addButton("Remove", FontAwesome.TRASH_O);
+            delButton = buttonBar.addButton("删除", FontAwesome.TRASH_O);
             delButton.addClickListener((event)->deleteSelected());
             delButton.setEnabled(false);;
 
         }
         
-        advancedEditButton = buttonBar.addButton("Advanced Edit", FontAwesome.EDIT, e->openAdvancedEditor());
+        advancedEditButton = buttonBar.addButton("高级编辑", FontAwesome.EDIT, e->openAdvancedEditor());
         advancedEditButton.setEnabled(false);
 
-        Button exportButton = buttonBar.addButtonRight("Capture", FontAwesome.CAMERA, (event)->export());
+        Button exportButton = buttonBar.addButtonRight("快照", FontAwesome.CAMERA, (event)->export());
         exportButton.setId("exportButton");
         
-        buttonBar.addButtonRight("Layout", FontAwesome.COLUMNS, (event)->toggleView());
+        buttonBar.addButtonRight("布局", FontAwesome.COLUMNS, (event)->toggleView());
         
         return buttonBar;
     }
@@ -467,14 +467,14 @@ public class EditFlowPanel extends HorizontalLayout implements IUiPanel, IFlowRu
 
         if (flow.isWebService()) {
             CallWebServicePanel panel = new CallWebServicePanel(deployment, context, tabs);
-            tabs.addCloseableTab(deployment.getId(), "Call " + flow.getName(), Icons.RUN, panel);
+            tabs.addCloseableTab(deployment.getId(), "调用 " + flow.getName(), Icons.RUN, panel);
         } else {
             String executionId = agentManager.getAgentRuntime(myDesignAgent.getId()).scheduleNow(context.getUser().getLoginId(), deployment,
                     flow.toFlowParametersAsString());
             if (executionId != null) {
                 ExecutionRunPanel logPanel = new ExecutionRunPanel(executionId, context, tabs,
                         this);
-                tabs.addCloseableTab(executionId, "Run " + flow.getName(), Icons.LOG, logPanel);
+                tabs.addCloseableTab(executionId, "执行 " + flow.getName(), Icons.LOG, logPanel);
                 logPanel.onBackgroundUIRefresh(logPanel.onBackgroundDataRefresh());
             }
         }

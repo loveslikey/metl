@@ -44,7 +44,7 @@ public class ImagePreviewDialog extends ResizableWindow {
         panel.setHeight("100%");
         addComponent(panel,1);
         
-        Button closeButton = new Button("Close");
+        Button closeButton = new Button("关闭");
         closeButton.addStyleName(ValoTheme.BUTTON_PRIMARY);
         closeButton.addClickListener(new ClickListener() {
             @Override

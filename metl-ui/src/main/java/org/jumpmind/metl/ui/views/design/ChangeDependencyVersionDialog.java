@@ -54,7 +54,7 @@ public class ChangeDependencyVersionDialog extends ResizableWindow  {
     DesignNavigator designNavigator;
 
     public ChangeDependencyVersionDialog(ApplicationContext context, Object selectedElement, DesignNavigator designNavigator) {
-        super("Change Dependency Version");
+        super("改变依赖版本");
         this.configService = context.getConfigurationService();
         this.designNavigator = designNavigator;
         initWindow(selectedElement);
@@ -90,12 +90,12 @@ public class ChangeDependencyVersionDialog extends ResizableWindow  {
     @SuppressWarnings("unchecked")
     protected Panel buildPossibleTargetVersions(ProjectVersion targetProjectVersion) {
 
-        Panel possibleTargetVersionsPanel = new Panel("Available Target Versions");        
+        Panel possibleTargetVersionsPanel = new Panel("可用目标版本");
         possibleTargetVersionsPanel.addStyleName(ValoTheme.PANEL_SCROLL_INDICATOR);
         possibleTargetVersionsPanel.setSizeFull();
 
         IndexedContainer container = new IndexedContainer();
-        optionGroup = new OptionGroup("Project Version", container);
+        optionGroup = new OptionGroup("项目版本", container);
         optionGroup.addStyleName(ValoTheme.OPTIONGROUP_SMALL);
         optionGroup.setItemCaptionMode(ItemCaptionMode.PROPERTY);
         optionGroup.setItemCaptionPropertyId("versionLabel");
@@ -118,15 +118,15 @@ public class ChangeDependencyVersionDialog extends ResizableWindow  {
         FormLayout form = new FormLayout();
         form.addStyleName(ValoTheme.FORMLAYOUT_LIGHT);
         form.setMargin(true);
-        TextField sourceProjectNameField = new TextField("Source Project");
+        TextField sourceProjectNameField = new TextField("源项目");
         sourceProjectNameField.setValue(sourceProjectVersion.getProject().getName());
         sourceProjectNameField.setEnabled(false);
         form.addComponent(sourceProjectNameField);
-        TextField targetProjectNameField = new TextField("Target Project");
+        TextField targetProjectNameField = new TextField("目标项目");
         targetProjectNameField.setValue(targetProjectVersion.getProject().getName());
         targetProjectNameField.setEnabled(false);
         form.addComponent(targetProjectNameField);
-        TextField currentDependencyVersion = new TextField("Current Dependency Version");
+        TextField currentDependencyVersion = new TextField("当前依赖版本");
         currentDependencyVersion.setValue(targetProjectVersion.getVersionLabel());
         currentDependencyVersion.setEnabled(false);
         form.addComponent(currentDependencyVersion);
@@ -135,8 +135,8 @@ public class ChangeDependencyVersionDialog extends ResizableWindow  {
     }
 
     protected HorizontalLayout buildButtonBar() {
-        Button cancelButton = new Button("Cancel", e->cancel());
-        Button changeButton = new Button("Change", e->change());
+        Button cancelButton = new Button("取消", e->cancel());
+        Button changeButton = new Button("改变", e->change());
         changeButton.setDisableOnClick(true);
         changeButton.addStyleName(ValoTheme.BUTTON_PRIMARY);
         changeButton.setClickShortcut(KeyCode.ENTER);

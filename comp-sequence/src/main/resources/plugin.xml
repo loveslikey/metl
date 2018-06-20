@@ -27,47 +27,47 @@
              inputOutputModelsMatch='true'
              outputMessageType='entity'
              resourceCategory='datasource'>
-    <name>Sequence</name>
+    <name>顺序化</name>
     <className>org.jumpmind.metl.core.runtime.component.SequenceGenerator</className>
     <description></description>
     <settings>
       <setting id='sequence.attribute'
                required='true'
                type='text'>
-        <name>Sequence Attribute Name</name>
+        <name>序列号属性字段名称</name>
       </setting>
       <setting id='sequence.sql'
                required='false'
                type='multiline_text'>
-        <name>Select Starting Sequence Sql</name>
+        <name>选择的启动顺序序列Sql语句</name>
       </setting>
       <setting id='sequence.start.value'
                required='false'
-               type='integer'>            
-        <name>Starting Sequence Value</name>
-      </setting>      
+               type='integer'>
+        <name>启动序列值</name>
+      </setting>
       <setting id='shared'
                required='true'
                type='boolean'>
         <defaultValue>false</defaultValue>
-        <name>Is Sequence Shared?</name>
+        <name>顺序序列共享？</name>
       </setting>
       <setting id='shared.name'
                required='false'
                type='text'>
-        <name>Shared Name</name>
+        <name>共享名称</name>
       </setting>
       <setting id='reset.on.attribute.change'
                required='true'
                type='boolean'>
         <defaultValue>false</defaultValue>
-        <name>Reset on Attribute Change?</name>
+        <name>属性变化时重置?</name>
       </setting>
       <setting id='reset.attribute'
                required='false'
                type='entity_column'>
-        <name>Reset Attribute Name</name>
-      </setting>      
+        <name>重置属性名称</name>
+      </setting>
     </settings>
   </component>
 </definitions>

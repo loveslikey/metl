@@ -7,3 +7,6 @@ dependencies {
     compile project(':comp-abstract')
     testCompile project(path: ':metl-core', configuration: 'testArtifacts')     
 }
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+}

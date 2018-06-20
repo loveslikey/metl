@@ -76,7 +76,7 @@ public class MailServerPanel extends Panel implements IUiPanel {
         FormLayout form = new FormLayout();
         form.setSpacing(true);
 
-        ImmediateUpdateTextField hostField = new ImmediateUpdateTextField("Host name") {
+        ImmediateUpdateTextField hostField = new ImmediateUpdateTextField("主机名") {
             protected void save(String value) {
                 saveSetting(hostNameSetting, value);
             }
@@ -86,7 +86,7 @@ public class MailServerPanel extends Panel implements IUiPanel {
         form.addComponent(hostField);
         hostField.focus();
 
-        NativeSelect transportField = new NativeSelect("Transport");
+        NativeSelect transportField = new NativeSelect("传输方式");
         transportField.addItem("smtp");
         transportField.addItem("smtps");
         transportField.addItem("mock_smtp");
@@ -101,7 +101,7 @@ public class MailServerPanel extends Panel implements IUiPanel {
         });
         form.addComponent(transportField);
 
-        ImmediateUpdateTextField portField = new ImmediateUpdateTextField("Port") {
+        ImmediateUpdateTextField portField = new ImmediateUpdateTextField("端口") {
             protected void save(String value) {
                 saveSetting(portSetting, value);
             }
@@ -110,7 +110,7 @@ public class MailServerPanel extends Panel implements IUiPanel {
         portField.setWidth(25f, Unit.EM);
         form.addComponent(portField);
 
-        ImmediateUpdateTextField fromField = new ImmediateUpdateTextField("From Address") {
+        ImmediateUpdateTextField fromField = new ImmediateUpdateTextField("发送地址") {
             protected void save(String value) {
                 saveSetting(fromSetting, value);
             }
@@ -119,7 +119,7 @@ public class MailServerPanel extends Panel implements IUiPanel {
         fromField.setWidth(25f, Unit.EM);
         form.addComponent(fromField);
 
-        CheckBox tlsField = new CheckBox("Use TLS", Boolean.valueOf(useTlsSetting.getValue()));
+        CheckBox tlsField = new CheckBox("使用TLS", Boolean.valueOf(useTlsSetting.getValue()));
         tlsField.setImmediate(true);
         tlsField.addValueChangeListener(new ValueChangeListener() {
             public void valueChange(ValueChangeEvent event) {
@@ -128,7 +128,7 @@ public class MailServerPanel extends Panel implements IUiPanel {
         });
         form.addComponent(tlsField);
 
-        final ImmediateUpdateTextField userField = new ImmediateUpdateTextField("Username") {
+        final ImmediateUpdateTextField userField = new ImmediateUpdateTextField("用户名") {
             protected void save(String value) {
                 saveSetting(usernameSetting, value);
             }            
@@ -136,7 +136,7 @@ public class MailServerPanel extends Panel implements IUiPanel {
         userField.setValue(usernameSetting.getValue());
         userField.setWidth(25f, Unit.EM);
 
-        final ImmediateUpdatePasswordField passwordField = new ImmediateUpdatePasswordField("Password") {
+        final ImmediateUpdatePasswordField passwordField = new ImmediateUpdatePasswordField("密码") {
             protected void save(String value) {
                 saveSetting(passwordSetting, value);
             }            
@@ -144,7 +144,7 @@ public class MailServerPanel extends Panel implements IUiPanel {
         passwordField.setValue(passwordSetting.getValue());
         passwordField.setWidth(25f, Unit.EM);
 
-        CheckBox authField = new CheckBox("Use Authentication", Boolean.valueOf(useAuthSetting.getValue()));
+        CheckBox authField = new CheckBox("使用身份验证", Boolean.valueOf(useAuthSetting.getValue()));
         authField.setImmediate(true);
         authField.addValueChangeListener(new ValueChangeListener() {
             public void valueChange(ValueChangeEvent event) {
@@ -160,7 +160,7 @@ public class MailServerPanel extends Panel implements IUiPanel {
         passwordField.setEnabled(authField.getValue());
         form.addComponent(passwordField);
         
-        Button testButton = new Button("Test Connection");
+        Button testButton = new Button("测试连接");
         testButton.addClickListener(new TestClickListener());
         form.addComponent(testButton);
         
@@ -212,12 +212,12 @@ public class MailServerPanel extends Panel implements IUiPanel {
             MailSession mailSession = new MailSession(context.getOperationsService().findGlobalSettingsAsMap());
             try {                
                 mailSession.getTransport();                
-                CommonUiUtils.notify("SMTP Test", "Success!");
+                CommonUiUtils.notify("SMTP测试", "成功!");
             } catch (AuthenticationFailedException e) {
-                CommonUiUtils.notify("SMTP Test", "Failed with authentication exception: " + e.getMessage(), Type.ERROR_MESSAGE);
+                CommonUiUtils.notify("SMTP测试", "连接失败，身份验证异常： " + e.getMessage(), Type.ERROR_MESSAGE);
                 log.warn("SMTP test failed authentication", e);
             } catch (MessagingException e) {
-                CommonUiUtils.notify("SMTP Test", "Failed with message exception: " + e.getMessage(), Type.ERROR_MESSAGE);
+                CommonUiUtils.notify("SMTP测试", "连接失败，消息异常：" + e.getMessage(), Type.ERROR_MESSAGE);
                 log.warn("SMTP test failed", e);
             } finally {
                 mailSession.closeTransport();

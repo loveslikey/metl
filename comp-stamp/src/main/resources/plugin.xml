@@ -27,7 +27,7 @@
              inputOutputModelsMatch='true'
              outputMessageType='any'
              resourceCategory='none'>
-    <name>Stamp</name>
+    <name>时间戳</name>
     <className>org.jumpmind.metl.core.runtime.component.Stamp</className>
     <keywords>stamp,header,message</keywords>
     <description></description>
@@ -35,24 +35,24 @@
       <setting id='header.name.to.use'
                required='true'
                type='text'>
-        <name>Header Name to Use</name>
-      </setting>    
+        <name>标题名称使用</name>
+      </setting>
       <setting id='stamp.type'
                required='true'
                type='choice'>
-        <name>Stamp Type</name>
+        <name>标记类型</name>
         <defaultValue>FIRST ENTITY ATTRIBUTE</defaultValue>
         <choices>
           <choice>FIRST ENTITY ATTRIBUTE</choice>
           <choice>TIMESTAMP</choice>
           <choice>yyyy-MM-dd hh:mm:ss.S</choice>
-          <choice>yyyyMMddhhmmssS</choice>                    
+          <choice>yyyyMMddhhmmssS</choice>
         </choices>
-      </setting>      
+      </setting>
       <setting id='entity.column'
                required='false'
                type='entity_column'>
-        <name>Entity Attribute to Use</name>
+        <name>使用的实体属性</name>
         <defaultValue>false</defaultValue>
       </setting>
     </settings>

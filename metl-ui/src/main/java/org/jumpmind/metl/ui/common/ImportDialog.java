@@ -95,7 +95,7 @@ public class ImportDialog extends Window {
         buttonLayout.addComponent(spacer);
         buttonLayout.setExpandRatio(spacer, 1);       
 
-        Button closeButton = new Button("Close");
+        Button closeButton = new Button("关闭");
         closeButton.addStyleName(ValoTheme.BUTTON_PRIMARY);
         closeButton.setClickShortcut(KeyCode.ESCAPE);
         closeButton.addClickListener(new ClickListener() {
@@ -122,7 +122,7 @@ public class ImportDialog extends Window {
         final UploadHandler handler = new UploadHandler();
         upload = new Upload(null, handler);
         upload.setImmediate(true);
-        upload.setButtonCaption("Upload");
+        upload.setButtonCaption("上传");
         upload.addFinishedListener(new Upload.FinishedListener() {
             private static final long serialVersionUID = 1L;
 
@@ -131,14 +131,14 @@ public class ImportDialog extends Window {
                     String content = handler.getContent();   
                     importListener.onFinished(content);
                     importLayout.removeAllComponents();
-                    Label label = new Label("Import Succeeded!");
+                    Label label = new Label("导入成功!");
                     label.setStyleName(ValoTheme.LABEL_SUCCESS);
                     importLayout.addComponent(label);
                     importLayout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
                 } catch (Exception e) {
-                    log.error("Import failed", e);
+                    log.error("导入失败", e);
                     importLayout.removeAllComponents();
-                    String message = "Import Failed! Please check log file for details.";
+                    String message = "导入失败！详情请参阅日志文件。";
                     if (e instanceof MessageException) {
                         message = e.getMessage();
                     }

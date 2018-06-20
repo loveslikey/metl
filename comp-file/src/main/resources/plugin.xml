@@ -22,13 +22,13 @@
 -->
 <definitions>
     <component category='READER' id='File Poller' inputMessageType='any' inputOutputModelsMatch='false' outputMessageType='text' resourceCategory='streamable'>
-        <name>File Poller</name>
+        <name>文件轮询器</name>
         <className>org.jumpmind.metl.core.runtime.component.FilePoller</className>
         <keywords>files</keywords>
         <description></description>
         <settings>
             <setting id='run.when' required='false' type='choice'>
-                <name>Run When</name>
+                <name>当...时运行</name>
                 <defaultValue>PER UNIT OF WORK</defaultValue>
                 <choices>
                     <choice>PER UNIT OF WORK</choice>
@@ -36,18 +36,18 @@
                 </choices>
             </setting>
             <setting id='get.file.pattern.from.message' required='false' type='boolean'>
-                <name>Get File Pattern From Message</name>
+                <name>从消息获取文件模式</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='file.pattern' required='false' type='text'>
-                <name>File Pattern</name>
+                <name>文件模式</name>
             </setting>
             <setting id='cancel.on.no.files' required='false' type='boolean'>
-                <name>Cancel On No Files</name>
+                <name>没有文件时取消</name>
                 <defaultValue>true</defaultValue>
             </setting>
             <setting id='file.sort.order' required='false' type='choice'>
-                <name>File Sort Order</name>
+                <name>文件排序</name>
                 <defaultValue>Last Modified</defaultValue>
                 <choices>
                     <choice>Last Modified</choice>
@@ -55,27 +55,27 @@
                 </choices>
             </setting>
             <setting id='file.sort.descending' required='false' type='boolean'>
-                <name>Sort Descending</name>
+                <name>降序排列</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='rows.per.message' required='false' type='integer'>
-                <name>Files/Msg</name>
+                <name>文件/消息</name>
                 <defaultValue>1</defaultValue>
             </setting>
             <setting id='min.files.to.poll' required='true' type='integer'>
-                <name>Min Files To Poll</name>
+                <name>最小轮询文件数</name>
                 <defaultValue>1</defaultValue>
             </setting>
             <setting id='max.files.to.poll' required='true' type='integer'>
-                <name>Max Files To Poll</name>
+                <name>最大轮询文件数</name>
                 <defaultValue>1000</defaultValue>
             </setting>
             <setting id='only.files.older.than.minutes' required='true' type='integer'>
-                <name>Include Only Files Older Than (minutes)</name>
+                <name>仅包含存在时长超过(minutes)</name>
                 <defaultValue>0</defaultValue>
             </setting>
             <setting id='action.on.success' required='false' type='choice'>
-                <name>Action on Flow Success</name>
+                <name>成功后的动作</name>
                 <defaultValue>None</defaultValue>
                 <choices>
                     <choice>None</choice>
@@ -85,10 +85,10 @@
                 </choices>
             </setting>
             <setting id='archive.on.success.path' required='false' type='text'>
-                <name>Archive On Success Path</name>
+                <name>成功（文件）存档路径</name>
             </setting>
             <setting id='action.on.error' required='false' type='choice'>
-                <name>Action on Error</name>
+                <name>出错后的动作</name>
                 <defaultValue>None</defaultValue>
                 <choices>
                     <choice>None</choice>
@@ -98,25 +98,25 @@
                 </choices>
             </setting>
             <setting id='archive.on.error.path' required='false' type='text'>
-                <name>Archive On Error Path</name>
+                <name>出错（文件）存档路径</name>
             </setting>
             <setting id='use.trigger.file' required='false' type='boolean'>
-                <name>Use Trigger File</name>
+                <name>使用触发文件</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='trigger.file.path' required='false' type='text'>
-                <name>Relative Trigger File Path</name>
+                <name>相关触发文件路径</name>
             </setting>
         </settings>
     </component>
     <component category='PROCESSOR' id='File Util' inputMessageType='any' inputOutputModelsMatch='false' outputMessageType='text' resourceCategory='streamable'>
-        <name>File Util</name>
+        <name>文件操作</name>
         <className>org.jumpmind.metl.core.runtime.component.FileUtil</className>
         <keywords>files,copy,move</keywords>
         <description></description>
         <settings>
             <setting id='run.when' required='false' type='choice'>
-                <name>Run When</name>
+                <name>当...时运行</name>
                 <defaultValue>PER UNIT OF WORK</defaultValue>
                 <choices>
                     <choice>PER UNIT OF WORK</choice>
@@ -124,7 +124,7 @@
                 </choices>
             </setting>
             <setting id='action' required='false' type='choice'>
-                <name>Action</name>
+                <name>行为</name>
                 <defaultValue>Copy</defaultValue>
                 <choices>
                     <choice>Copy</choice>
@@ -133,37 +133,37 @@
                 </choices>
             </setting>
             <setting id='relative.path' required='false' type='text'>
-                <name>Source Relative Path</name>
+                <name>源相对路径</name>
             </setting>
             <setting id='target.relative.path' required='false' type='text'>
-                <name>Target Relative Path</name>
+                <name>目标相对路径</name>
             </setting>
             <setting id='new.name' required='false' type='text'>
-                <name>Target File Name</name>
+                <name>目标文件名称</name>
                 <description></description>
             </setting>
             <setting id='get.file.name.from.message' required='false' type='boolean'>
-                <name>Get File Name From Message</name>
+                <name>从消息获取文件名</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='overwrite' required='false' type='boolean'>
-                <name>Overwrite</name>
+                <name>覆盖</name>
                 <defaultValue>true</defaultValue>
             </setting>
             <setting id='append.to.name' required='false' type='text'>
-                <name>Append To Name</name>
+                <name>附加到名称</name>
             </setting>
         </settings>
     </component>
 
     <component category='READER' id='Text File Reader' inputMessageType='text' inputOutputModelsMatch='false' outputMessageType='text' resourceCategory='streamable'>
-        <name>Text File Reader</name>
+        <name>文本文件读取器</name>
         <className>org.jumpmind.metl.core.runtime.component.TextFileReader</className>
         <keywords>file,files</keywords>
         <description></description>
         <settings>
             <setting id='run.when' required='false' type='choice'>
-                <name>Run When</name>
+                <name>当...时运行</name>
                 <defaultValue>PER UNIT OF WORK</defaultValue>
                 <choices>
                     <choice>PER UNIT OF WORK</choice>
@@ -171,26 +171,26 @@
                 </choices>
             </setting>
             <setting id='get.file.name.from.message' required='false' type='boolean'>
-                <name>Get File Name From Message</name>
+                <name>从消息获取文件名</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='must.exist' required='false' type='boolean'>
-                <name>Must Exist</name>
+                <name>必须存在</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='relative.path' required='false' type='text'>
-                <name>File Path</name>
+                <name>文件路径</name>
             </setting>
             <setting id='split.on.line.feed' required='false' type='boolean'>
-                <name>Split On Line Feed</name>
+                <name>在换行处拆分</name>
                 <defaultValue>true</defaultValue>
-            </setting>            
+            </setting>
             <setting id='text.rows.per.message' required='false' type='integer'>
-                <name>Rows/Msg</name>
+                <name>n行/消息</name>
                 <defaultValue>1000</defaultValue>
             </setting>
             <setting id='action.on.success' required='false' type='choice'>
-                <name>Action on Flow Success</name>
+                <name>成功后的动作</name>
                 <defaultValue>NONE</defaultValue>
                 <choices>
                     <choice>None</choice>
@@ -199,10 +199,10 @@
                 </choices>
             </setting>
             <setting id='archive.on.success.path' required='false' type='text'>
-                <name>Archive On Success Path</name>
+                <name>成功（文件）存档路径</name>
             </setting>
             <setting id='action.on.error' required='false' type='choice'>
-                <name>Action on Error</name>
+                <name>出错后的动作</name>
                 <defaultValue>NONE</defaultValue>
                 <choices>
                     <choice>None</choice>
@@ -211,32 +211,32 @@
                 </choices>
             </setting>
             <setting id='archive.on.error.path' required='false' type='text'>
-                <name>Archive On Error Path</name>
+                <name>出错（文件）存档路径</name>
             </setting>
             <setting id='encoding' required='false' type='text'>
-                <name>Encoding</name>
+                <name>编码</name>
                 <defaultValue>UTF-8</defaultValue>
             </setting>
             <setting id='text.header.lines.to.skip' required='false' type='integer'>
-                <name>Header Lines to Skip</name>
+                <name>标题行跳过</name>
             </setting>
             <setting id='control.message.on.eof' required='false' type='boolean'>
-                <name>Send Control Message on EOF</name>
+                <name>在EOF发送控制消息</name>
             </setting>
             <setting id='number.of.times.to.read.file' required='false' type='integer'>
-                <name>Number of times to read file content</name>
-                <defaultValue>1</defaultValue>                
-            </setting>            
+                <name>读取文件内容的次数</name>
+                <defaultValue>1</defaultValue>
+            </setting>
         </settings>
     </component>
     <component category='READER' id='Binary File Reader' inputMessageType='text' inputOutputModelsMatch='false' outputMessageType='binary' resourceCategory='streamable'>
-        <name>Binary File Reader</name>
+        <name>二进制文件读取器</name>
         <className>org.jumpmind.metl.core.runtime.component.BinaryFileReader</className>
         <keywords>files</keywords>
         <description></description>
         <settings>
             <setting id='run.when' required='false' type='choice'>
-                <name>Run When</name>
+                <name>当...时运行</name>
                 <defaultValue>PER UNIT OF WORK</defaultValue>
                 <choices>
                     <choice>PER UNIT OF WORK</choice>
@@ -244,18 +244,18 @@
                 </choices>
             </setting>
             <setting id='get.file.name.from.message' required='false' type='boolean'>
-                <name>Get File Name From Message</name>
+                <name>从消息获取文件名</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='must.exist' required='false' type='boolean'>
-                <name>Must Exist</name>
+                <name>必须存在</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='relative.path' required='false' type='text'>
-                <name>File Path</name>
+                <name>文件路径</name>
             </setting>
             <setting id='action.on.success' required='false' type='choice'>
-                <name>Action on Flow Success</name>
+                <name>成功后的动作</name>
                 <defaultValue>NONE</defaultValue>
                 <choices>
                     <choice>None</choice>
@@ -264,10 +264,10 @@
                 </choices>
             </setting>
             <setting id='archive.on.success.path' required='false' type='text'>
-                <name>Archive On Success Path</name>
+                <name>成功（文件）存档路径</name>
             </setting>
             <setting id='action.on.error' required='false' type='choice'>
-                <name>Action on Error</name>
+                <name>出错后的动作</name>
                 <defaultValue>NONE</defaultValue>
                 <choices>
                     <choice>None</choice>
@@ -276,53 +276,53 @@
                 </choices>
             </setting>
             <setting id='archive.on.error.path' required='false' type='text'>
-                <name>Archive On Error Path</name>
+                <name>出错（文件）存档路径</name>
             </setting>
             <setting id='size.per.message' required='false' type='integer'>
-                <name>Size / Message (MB)</name>
+                <name>大小/消息(MB)</name>
             </setting>
             <setting id='control.message.on.eof' required='false' type='boolean'>
-                <name>Send Control Message on EOF</name>
+                <name>在EOF发送控制消息</name>
             </setting>
         </settings>
     </component>
     <component category='WRITER' id='Text File Writer' inputMessageType='text' inputOutputModelsMatch='false' outputMessageType='text' resourceCategory='streamable'>
-        <name>Text File Writer</name>
+        <name>文本文件写入器</name>
         <className>org.jumpmind.metl.core.runtime.component.TextFileWriter</className>
         <keywords>files</keywords>
         <description></description>
         <settings>
             <setting id='relative.path' required='false' type='text'>
-                <name>Path and File</name>
+                <name>路径和文件名</name>
             </setting>
             <setting id='must.exist' required='true' type='boolean'>
-                <name>Must Exist</name>
+                <name>必须存在</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='append' required='true' type='boolean'>
-                <name>Append</name>
+                <name>附加</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='text.line.terminator' required='false' type='text'>
-                <name>Line Terminator</name>
+                <name>每行末尾</name>
             </setting>
             <setting id='encoding' required='false' type='text'>
-                <name>Encoding</name>
+                <name>编码</name>
                 <defaultValue>UTF-8</defaultValue>
             </setting>
             <setting id='get.file.name.from.message' required='false' type='boolean'>
-                <name>Get File Name From Message</name>
+                <name>从消息获取文件名</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='filename.property' required='false' type='text'>
-                <name>Param Name For Msg Based File Name</name>
+                <name>文件名在消息中的参数名称</name>
             </setting>
             <setting id='empty.file' required='true' type='boolean'>
-                <name>Empty File On No Input</name>
+                <name>无输入时输出空文件</name>
                 <defaultValue>true</defaultValue>
             </setting>
             <setting id='close.on' required='false' type='choice'>
-                <name>Close On</name>
+                <name>在...时关闭</name>
                 <defaultValue>UNIT OF WORK</defaultValue>
                 <choices>
                     <choice>UNIT OF WORK</choice>
@@ -333,28 +333,28 @@
         </settings>
     </component>
     <component category='WRITER' id='Binary File Writer' inputMessageType='binary' inputOutputModelsMatch='false' outputMessageType='text' resourceCategory='streamable'>
-        <name>Binary File Writer</name>
+        <name>二进制文件写入器</name>
         <className>org.jumpmind.metl.core.runtime.component.BinaryFileWriter</className>
         <keywords>files</keywords>
         <description></description>
         <settings>
             <setting id='relative.path' required='false' type='text'>
-                <name>Path and File</name>
+                <name>路径和文件</name>
             </setting>
             <setting id='must.exist' required='true' type='boolean'>
-                <name>Must Exist</name>
+                <name>必须存在</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='append' required='true' type='boolean'>
-                <name>Append</name>
+                <name>附加</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='get.file.name.from.message' required='false' type='boolean'>
-                <name>Get File Name From Message</name>
+                <name>从消息获取文件名</name>
                 <defaultValue>false</defaultValue>
             </setting>
             <setting id='filename.property' required='false' type='text'>
-                <name>Param Name For Msg Based File Name</name>
+                <name>文件名在消息中的参数名称</name>
             </setting>
         </settings>
     </component>

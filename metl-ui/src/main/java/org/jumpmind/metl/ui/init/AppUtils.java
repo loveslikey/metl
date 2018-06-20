@@ -27,7 +27,7 @@ public class AppUtils {
             System.out.println("The current config directory is " + baseDir);
         } else {
             baseDir = System.getProperty("user.dir");            
-            configDir = baseDir + File.separator + "conf";
+            configDir = baseDir + File.separator;
             databaseDir = baseDir + File.separator + "db";
             usersDir = baseDir + File.separator + "users";
         }

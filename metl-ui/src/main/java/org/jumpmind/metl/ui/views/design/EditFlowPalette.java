@@ -83,7 +83,7 @@ public class EditFlowPalette extends VerticalLayout {
         
         TextField filterField = new TextField();
         filterField.setWidth(WIDTH-30, Unit.PIXELS);
-        filterField.setInputPrompt("Filter");
+        filterField.setInputPrompt("查找");
         filterField.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
         filterField.setIcon(FontAwesome.SEARCH);
         filterField.setImmediate(true);

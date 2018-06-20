@@ -26,7 +26,7 @@
              inputMessageType='text'
              inputOutputModelsMatch='false'
              outputMessageType='text'>
-    <name>Text Constant</name>
+    <name>文本常量</name>
     <className>org.jumpmind.metl.core.runtime.component.TextConstant</className>
     <keywords>hardcode</keywords>
     <description></description>
@@ -34,7 +34,7 @@
       <setting id='run.when'
                required='false'
                type='choice'>
-        <name>Run When</name>
+        <name>当...时运行</name>
         <defaultValue>PER UNIT OF WORK</defaultValue>
         <choices>
           <choice>PER UNIT OF WORK</choice>
@@ -44,24 +44,24 @@
       <setting id='text'
                required='false'
                type='multiline_text'>
-        <name>Text</name>
+        <name>文本</name>
       </setting>
       <setting id='split.on.line.feed'
                required='false'
                type='boolean'>
-        <name>Split On Line Feed</name>
+        <name>在换行处拆分</name>
         <defaultValue>true</defaultValue>
       </setting>
       <setting id='rows.per.message'
                required='false'
                type='integer'>
-        <name>Rows/Msg</name>
+        <name>n行/消息</name>
         <defaultValue>1000</defaultValue>
       </setting>
       <setting id='control.message.on.text.send'
                required='false'
                type='boolean'>
-        <name>Send Control Message on Text Send</name>
+        <name>发送文本时发送控制消息</name>
         <defaultValue>false</defaultValue>
       </setting>
     </settings>
@@ -72,19 +72,19 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='none'>
-    <name>Text Replace</name>
+    <name>文本替换</name>
     <className>org.jumpmind.metl.core.runtime.component.TextReplace</className>
     <description></description>
     <settings>
       <setting id='search.for'
                required='true'
                type='text'>
-        <name>Search For (regex)</name>
+        <name>搜索（正则表达式）</name>
       </setting>
       <setting id='replace.with'
                required='false'
                type='text'>
-        <name>Replace With</name>
+        <name>替换为</name>
       </setting>
     </settings>
   </component>

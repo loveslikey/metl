@@ -56,7 +56,7 @@ public class AboutPanel extends VerticalLayout implements IUiPanel, IBackgroundR
         setMargin(true);
         setSpacing(true);
 
-        Button gcCollect = new Button("Garbage Collect", (e) -> {
+        Button gcCollect = new Button("垃圾收集", (e) -> {
             Runtime.getRuntime().gc();
             refresh();
         });
@@ -108,27 +108,27 @@ public class AboutPanel extends VerticalLayout implements IUiPanel, IBackgroundR
     protected void refresh() {
         table.removeAllItems();
         int itemId = 0;
-        table.addItem(new Object[] { "Application Version", VersionUtils.getCurrentVersion() },
+        table.addItem(new Object[] { "应用程序版本", VersionUtils.getCurrentVersion() },
                 itemId++);
-        table.addItem(new Object[] { "Build Time", VersionUtils.getBuildTime() }, itemId++);
-        table.addItem(new Object[] { "SCM Revision", VersionUtils.getScmVersion() }, itemId++);
-        table.addItem(new Object[] { "SCM Branch", VersionUtils.getScmBranch() }, itemId++);
+        table.addItem(new Object[] { "建立时间", VersionUtils.getBuildTime() }, itemId++);
+        table.addItem(new Object[] { "SCM修订", VersionUtils.getScmVersion() }, itemId++);
+        table.addItem(new Object[] { "SCM分支", VersionUtils.getScmBranch() }, itemId++);
 
-        table.addItem(new Object[] { "Host Name", AppUtils.getHostName() }, itemId++);
-        table.addItem(new Object[] { "IP Address", AppUtils.getIpAddress() }, itemId++);
-        table.addItem(new Object[] { "Java Version", System.getProperty("java.version") },
+        table.addItem(new Object[] { "主机名", AppUtils.getHostName() }, itemId++);
+        table.addItem(new Object[] { "IP地址", AppUtils.getIpAddress() }, itemId++);
+        table.addItem(new Object[] { "Java版本", System.getProperty("java.version") },
                 itemId++);
         table.addItem(
-                new Object[] { "System Time",
+                new Object[] { "系统时间",
                         FastDateFormat.getTimeInstance(FastDateFormat.MEDIUM).format(new Date()) },
                 itemId++);
         table.addItem(
-                new Object[] { "Used Heap", Long.toString(
+                new Object[] { "使用的堆内存", Long.toString(
                         Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) },
                 itemId++);
-        table.addItem(new Object[] { "Heap Size", Long.toString(Runtime.getRuntime().maxMemory()) },
+        table.addItem(new Object[] { "堆内存大小", Long.toString(Runtime.getRuntime().maxMemory()) },
                 itemId++);
-        table.addItem(new Object[] { "Last Restart",
+        table.addItem(new Object[] { "最后重启时间",
                 CommonUiUtils.formatDateTime(AgentManager.lastRestartTime) }, itemId++);
     }
 

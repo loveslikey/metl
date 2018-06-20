@@ -29,7 +29,7 @@
              outputMessageType='any'
              resourceCategory='any'
              supportsMultipleThreads='true'>
-    <name>Groovy Script</name>
+    <name>Groovy脚本</name>
     <className>org.jumpmind.metl.core.runtime.component.Script</className>
     <keywords>groovy,logic,java</keywords>
     <description></description>
@@ -38,40 +38,40 @@
                required='true'
                type='script'
                visible='false'>
-        <name>Import Statements</name>
+        <name>导入外部类</name>
       </setting>
       <setting id='methods'
                required='true'
                type='script'
                visible='false'>
-        <name>Additional Methods</name>
+        <name>额外的方法</name>
       </setting>
       <setting id='init.script'
                required='true'
                type='script'
                visible='false'>
-        <name>Init Script</name>
+        <name>初始化脚本</name>
       </setting>
       <setting id='handle.msg.script'
                required='true'
                type='script'
                visible='false'>
-        <name>Handle Msg Script</name>
+        <name>处理消息脚本</name>
         <defaultValue>
-forwardMessage()        
+forwardMessage()
         </defaultValue>
       </setting>
       <setting id='on.flow.success.script'
                required='true'
                type='script'
                visible='false'>
-        <name>Ended with Success Script</name>
+        <name>成功结束脚本</name>
       </setting>
       <setting id='on.flow.error.script'
                required='true'
                type='script'
                visible='false'>
-        <name>Ended with Error Script</name>
+        <name>失败结束脚本</name>
       </setting>
     </settings>
   </component>

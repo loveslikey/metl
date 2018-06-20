@@ -32,10 +32,10 @@ public class ProjectMenuManager extends AbstractDesignSelectedValueMenuManager {
     @Override
     protected String[] getEnabledPaths(Object selected) {
         return (String[])ArrayUtils.addAll(super.getEnabledPaths(selected), new String[] {
-                "File|Hide",
-                "Edit|Rename",
-                "Edit|Remove",
-                "Tag",
+                "文件|隐藏",
+                "编辑|重命名",
+                "编辑|删除",
+                "标签",
         });
     }
 

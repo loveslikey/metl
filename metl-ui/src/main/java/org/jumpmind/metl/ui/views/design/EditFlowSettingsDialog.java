@@ -78,15 +78,15 @@ class EditFlowSettingsDialog extends ResizableWindow implements ValueChangeListe
     Button removeButton;
     
     public EditFlowSettingsDialog(ApplicationContext context, Flow flow, boolean readOnly) {
-        super("Flow Settings");
+        super("流程设置");
         this.context = context;
         this.flow = flow;
 
-        Button closeButton = new Button("Close");
+        Button closeButton = new Button("关闭");
         closeButton.addStyleName(ValoTheme.BUTTON_PRIMARY);
         closeButton.addClickListener(new CloseClickListener());
         
-        addHeader("General Settings");
+        addHeader("常规设置");
         
         FormLayout formLayout = new FormLayout();
         formLayout.setMargin(true);
@@ -94,7 +94,7 @@ class EditFlowSettingsDialog extends ResizableWindow implements ValueChangeListe
         formLayout.setWidth(100, Unit.PERCENTAGE);
         addComponent(formLayout);
         
-        ImmediateUpdateTextArea description = new ImmediateUpdateTextArea("Notes") {
+        ImmediateUpdateTextArea description = new ImmediateUpdateTextArea("说明") {
             protected void save(String text) {
                 flow.setNotes(text);
                 context.getConfigurationService().save(flow);
@@ -103,14 +103,14 @@ class EditFlowSettingsDialog extends ResizableWindow implements ValueChangeListe
         description.setValue(flow.getNotes());
         formLayout.addComponent(description);
 
-        addHeader("Parameters");
+        addHeader("参数");
         
         if (!readOnly) {
             ButtonBar buttonBar = new ButtonBar();
-            buttonBar.addButton("Add", FontAwesome.PLUS, new AddClickListener());
-            insertButton = buttonBar.addButton("Insert", FontAwesome.CHEVRON_RIGHT, new InsertClickListener());
+            buttonBar.addButton("添加", FontAwesome.PLUS, new AddClickListener());
+            insertButton = buttonBar.addButton("插入", FontAwesome.CHEVRON_RIGHT, new InsertClickListener());
             insertButton.setEnabled(false);
-            removeButton = buttonBar.addButton("Remove", FontAwesome.TRASH_O, new RemoveClickListener());
+            removeButton = buttonBar.addButton("删除", FontAwesome.TRASH_O, new RemoveClickListener());
             removeButton.setEnabled(false);
             addComponent(buttonBar);
         }
@@ -133,7 +133,7 @@ class EditFlowSettingsDialog extends ResizableWindow implements ValueChangeListe
             table.addValueChangeListener(this);
         }
         table.setVisibleColumns("position", "name", "defaultValue");
-        table.setColumnHeaders("#", "Name", "Default Value");
+        table.setColumnHeaders("#", "参数名称", "默认值");
         table.setColumnExpandRatio("name", .3f);
         table.setColumnExpandRatio("defaultValue", .6f);
         tableWrapperLayout.addComponent(table);
@@ -172,7 +172,7 @@ class EditFlowSettingsDialog extends ResizableWindow implements ValueChangeListe
     protected void addItem(int index) {
         FlowParameter parameter = new FlowParameter();
         parameter.setFlowId(flow.getId());
-        parameter.setName("Parameter " + (index + 1));
+        parameter.setName("参数 " + (index + 1));
         parameter.setPosition((index + 1));
         context.getConfigurationService().save(parameter);
         flow.getFlowParameters().add(parameter);

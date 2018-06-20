@@ -27,7 +27,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='none'>
-    <name>Http Request</name>
+    <name>Http请求</name>
     <className>org.jumpmind.metl.core.runtime.component.HttpRequest</className>
     <deploymentListenerClassName>org.jumpmind.metl.core.runtime.component.HttpRequestDeploymentListener</deploymentListenerClassName>
     <keywords>REST,ws,webservice,web</keywords>
@@ -36,7 +36,7 @@
       <setting id='http.method'
                required='true'
                type='choice'>
-        <name>HTTP Method</name>
+        <name>请求方式</name>
         <defaultValue>GET</defaultValue>
         <choices>
           <choice>GET</choice>
@@ -55,7 +55,7 @@
       <setting id='security.scheme'
                required='false'
                type='choice'>
-        <name>Security Scheme</name>
+        <name>安全计划</name>
         <defaultValue>NONE</defaultValue>
         <choices>
           <choice>NONE</choice>
@@ -65,12 +65,12 @@
       <setting id='secure.username'
                required='false'
                type='text'>
-        <name>Secure Username</name>
+        <name>安全用户名</name>
       </setting>
       <setting id='secure.password'
                required='false'
                type='password'>
-        <name>Secure Password</name>
+        <name>安全密码</name>
       </setting>
     </settings>
   </component>
@@ -80,7 +80,7 @@
              inputOutputModelsMatch='true'
              outputMessageType='none'
              resourceCategory='none'>
-    <name>Http Response</name>
+    <name>Http响应</name>
     <className>org.jumpmind.metl.core.runtime.component.HttpResponse</className>
     <keywords>REST,ws,webservice,web</keywords>
     <description></description>
@@ -88,14 +88,14 @@
       <setting id='returns.data'
                required='true'
                type='boolean'>
-        <name>Returns Data</name>
+        <name>返回数据</name>
         <defaultValue>true</defaultValue>
       </setting>
       <setting id='content.type'
                required='false'
                type='text'>
-        <name>Content Type</name>
-      </setting>      
+        <name>内容类型</name>
+      </setting>
     </settings>
   </component>
 </definitions>

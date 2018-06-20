@@ -108,7 +108,7 @@ public class LdapPanel extends Panel implements IUiPanel {
         securityPrincipalField.setWidth(25f, Unit.EM);
         form.addComponent(securityPrincipalField);
         
-        Button testButton = new Button("Test");
+        Button testButton = new Button("测试");
         testButton.addClickListener(new TestClickListener());
         form.addComponent(testButton);
         
@@ -172,7 +172,7 @@ public class LdapPanel extends Panel implements IUiPanel {
         private PasswordField samplePassword;
 
         public LdapTestDialog() {
-            super("LDAP Test");
+            super("LDAP测试");
 
             setModal(true);
             
@@ -205,7 +205,7 @@ public class LdapPanel extends Panel implements IUiPanel {
         }
         
         protected void addButtonFooter() {
-            Button testButton = new Button("Test");
+            Button testButton = new Button("测试");
             testButton.addClickListener(new Button.ClickListener() {
                 private static final long serialVersionUID = 1L;
                 public void buttonClick(ClickEvent event) {
@@ -214,7 +214,7 @@ public class LdapPanel extends Panel implements IUiPanel {
             });
             testButton.setClickShortcut(KeyCode.ENTER);
             
-            Button cancelButton = new Button("Done");
+            Button cancelButton = new Button("完成");
             cancelButton.addClickListener(new ClickListener() {
                 private static final long serialVersionUID = 1L;
                 public void buttonClick(ClickEvent event) {
@@ -226,13 +226,13 @@ public class LdapPanel extends Panel implements IUiPanel {
         }
 
         protected void addComponentsToLayout(VerticalLayout fieldLayout) {
-            sampleUser = new TextField("User Id");
+            sampleUser = new TextField("用户名");
             sampleUser.setNullRepresentation("");
             sampleUser.setValidationVisible(false);
             sampleUser.setWidth(100,Unit.PERCENTAGE);
             fieldLayout.addComponent(sampleUser);
             
-            samplePassword = new PasswordField("Password");
+            samplePassword = new PasswordField("密码");
             samplePassword.setNullRepresentation("");
             samplePassword.setValidationVisible(false);
             samplePassword.setWidth(100,Unit.PERCENTAGE);
@@ -243,7 +243,7 @@ public class LdapPanel extends Panel implements IUiPanel {
             try {
                 if (ldapAuthenticate.authenticate(sampleUser.getValue(), samplePassword.getValue(), hostField.getValue(), baseDnField.getValue(), 
                         searchAttrField.getValue(), securityPrincipalField.getValue())) {
-                    CommonUiUtils.notify("User authentication succeeded");
+                    CommonUiUtils.notify("用户身份验证成功");
                 }
             /* TODO fix these exceptions.  
              * Currently if the base DN is wrong, it says invalid user/password combo.
@@ -251,13 +251,13 @@ public class LdapPanel extends Panel implements IUiPanel {
              * Currently if the search attribute is wrong, it says wrong DN
              */
             } catch (Throwable t) {
-                log.warn("Failed LDAP test authentication", t);
+                log.warn("LDAP身份验证测试失败", t);
                 if (t instanceof ConsoleAuthenticationConnectionException) {                    
-                    CommonUiUtils.notify("Unable to connect to network resource.");
+                    CommonUiUtils.notify("无法连接到网络资源。");
                 } else if (t instanceof ConsoleAuthenticationCredentialException) {
-                    CommonUiUtils.notify("Invalid user id or password");                    
+                    CommonUiUtils.notify("无效的用户名或密码");
                 } else {
-                    CommonUiUtils.notify("General Error: " + t.getMessage(), Type.HUMANIZED_MESSAGE);                    
+                    CommonUiUtils.notify("常规错误: " + t.getMessage(), Type.HUMANIZED_MESSAGE);
                 }
             }
         }

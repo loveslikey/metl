@@ -68,7 +68,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 @UiComponent
 @Scope("ui")
-@TopBarLink(id = "exploreDirectories", category = Category.Explore, menuOrder = 20, name = "Directory", icon = FontAwesome.DATABASE)
+@TopBarLink(id = "exploreDirectories", category = Category.Explore, menuOrder = 20, name = "目录", icon = FontAwesome.DATABASE)
 public class ExploreDirectoryView extends VerticalLayout implements View {
 
     private static final long serialVersionUID = 1L;
@@ -85,7 +85,7 @@ public class ExploreDirectoryView extends VerticalLayout implements View {
         setMargin(false);
 
         ButtonBar buttonBar = new ButtonBar();
-        Button refreshButton = buttonBar.addButton("Refresh", FontAwesome.REFRESH);
+        Button refreshButton = buttonBar.addButton("刷新", FontAwesome.REFRESH);
         refreshButton.addClickListener(event -> refresh());
         addComponent(buttonBar);
 

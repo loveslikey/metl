@@ -368,13 +368,13 @@ public class DefinitionFactory implements IDefinitionFactory {
                                 xmlComponent.getSettings().setSetting(new ArrayList<XMLSetting>());
                             }
 
-                            xmlComponent.getSettings().getSetting().add(0, new XMLSetting(ENABLED, "Enabled", "true", Type.BOOLEAN, true));
-                            xmlComponent.getSettings().getSetting().add(new XMLSetting(LOG_INPUT, "Log Input", "false", Type.BOOLEAN, false));
+                            xmlComponent.getSettings().getSetting().add(0, new XMLSetting(ENABLED, "启用", "true", Type.BOOLEAN, true));
+                            xmlComponent.getSettings().getSetting().add(new XMLSetting(LOG_INPUT, "输入日志", "false", Type.BOOLEAN, false));
                             xmlComponent.getSettings().getSetting()
-                                    .add(new XMLSetting(LOG_OUTPUT, "Log Output", "false", Type.BOOLEAN, false));
+                                    .add(new XMLSetting(LOG_OUTPUT, "输出日志", "false", Type.BOOLEAN, false));
                             xmlComponent.getSettings().getSetting()
-                                    .add(new XMLSetting(INBOUND_QUEUE_CAPACITY, "Inbound Queue Capacity", "100", Type.INTEGER, true));
-                            xmlComponent.getSettings().getSetting().add(new XMLSetting(NOTES, "Notes", null, Type.MULTILINE_TEXT, false));
+                                    .add(new XMLSetting(INBOUND_QUEUE_CAPACITY, "入站队列容量", "100", Type.INTEGER, true));
+                            xmlComponent.getSettings().getSetting().add(new XMLSetting(NOTES, "备注", null, Type.MULTILINE_TEXT, false));
                         } else {
                             if (!classLoader.equals(componentsById.get(id).getClassLoader())) {
                                 logger.debug(

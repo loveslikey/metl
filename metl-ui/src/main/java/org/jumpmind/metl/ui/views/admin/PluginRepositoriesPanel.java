@@ -66,13 +66,13 @@ public class PluginRepositoriesPanel extends VerticalLayout implements IUiPanel 
         ButtonBar buttonBar = new ButtonBar();
         addComponent(buttonBar);
 
-        newButton = buttonBar.addButton("Add", FontAwesome.PLUS);
+        newButton = buttonBar.addButton("新增", FontAwesome.PLUS);
         newButton.addClickListener(new NewClickListener());
 
-        editButton = buttonBar.addButton("Edit", FontAwesome.EDIT);
+        editButton = buttonBar.addButton("编辑", FontAwesome.EDIT);
         editButton.addClickListener(new EditClickListener());
 
-        removeButton = buttonBar.addButton("Remove", FontAwesome.TRASH_O);
+        removeButton = buttonBar.addButton("删除", FontAwesome.TRASH_O);
         removeButton.addClickListener(new RemoveClickListener());
 
         container = new BeanItemContainer<PluginRepository>(PluginRepository.class);
@@ -87,7 +87,7 @@ public class PluginRepositoriesPanel extends VerticalLayout implements IUiPanel 
 
         table.setContainerDataSource(container);
         table.setVisibleColumns("name", "url", "lastUpdateTime");
-        table.setColumnHeaders("Name", "Url", "Updated");
+        table.setColumnHeaders("名称", "Url", "更新时间");
         table.setColumnWidth("lastUpdateTime", UIConstants.DATETIME_WIDTH_PIXELS);
         table.addItemClickListener(new TableItemClickListener());
         table.addValueChangeListener(new TableValueChangeListener());
@@ -146,7 +146,7 @@ public class PluginRepositoriesPanel extends VerticalLayout implements IUiPanel 
         public void buttonClick(ClickEvent event) {
             PluginRepository pluginRepository = new PluginRepository();
             PluginRepositoryEditPanel editPanel = new PluginRepositoryEditPanel(context, pluginRepository);
-            tabbedPanel.addCloseableTab(pluginRepository.getId(), "Edit Repository", getIcon(), editPanel);
+            tabbedPanel.addCloseableTab(pluginRepository.getId(), "新增库", getIcon(), editPanel);
         }
     }
 
@@ -155,7 +155,7 @@ public class PluginRepositoriesPanel extends VerticalLayout implements IUiPanel 
             PluginRepository pluginRepository = getFirstSelectedItem();
             context.getPluginService().refresh(pluginRepository);
             PluginRepositoryEditPanel editPanel = new PluginRepositoryEditPanel(context, pluginRepository);
-            tabbedPanel.addCloseableTab(pluginRepository.getId(), "Edit Repository", getIcon(), editPanel);
+            tabbedPanel.addCloseableTab(pluginRepository.getId(), "编辑库", getIcon(), editPanel);
         }
     }
 

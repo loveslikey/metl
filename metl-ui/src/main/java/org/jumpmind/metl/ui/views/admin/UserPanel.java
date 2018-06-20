@@ -67,13 +67,13 @@ public class UserPanel extends VerticalLayout implements IUiPanel {
         ButtonBar buttonBar = new ButtonBar();
         addComponent(buttonBar);
 
-        newButton = buttonBar.addButton("New", FontAwesome.PLUS);
+        newButton = buttonBar.addButton("新建", FontAwesome.PLUS);
         newButton.addClickListener(new NewClickListener());
 
-        editButton = buttonBar.addButton("Edit", FontAwesome.EDIT);
+        editButton = buttonBar.addButton("编辑", FontAwesome.EDIT);
         editButton.addClickListener(new EditClickListener());
 
-        removeButton = buttonBar.addButton("Remove", FontAwesome.TRASH_O);
+        removeButton = buttonBar.addButton("移除", FontAwesome.TRASH_O);
         removeButton.addClickListener(new RemoveClickListener());
 
         container = new BeanItemContainer<User>(User.class);
@@ -88,7 +88,7 @@ public class UserPanel extends VerticalLayout implements IUiPanel {
 
         table.setContainerDataSource(container);
         table.setVisibleColumns("loginId", "name", "authMethod", "lastLoginTime");
-        table.setColumnHeaders("Login ID", "Full Name", "Authentication Method", "Last Login Time");
+        table.setColumnHeaders("登陆用户名", "全名", "认证方法", "最后登陆时间");
         table.addItemClickListener(new TableItemClickListener());
         table.addValueChangeListener(new TableValueChangeListener());
         table.setSortContainerPropertyId("loginId");
@@ -146,7 +146,7 @@ public class UserPanel extends VerticalLayout implements IUiPanel {
         public void buttonClick(ClickEvent event) {
             User user = new User();
             UserEditPanel editPanel = new UserEditPanel(context, user);
-            tabbedPanel.addCloseableTab(user.getId(), "Edit User", getIcon(), editPanel);
+            tabbedPanel.addCloseableTab(user.getId(), "新增用户", getIcon(), editPanel);
         }
     }
 
@@ -155,7 +155,7 @@ public class UserPanel extends VerticalLayout implements IUiPanel {
             User user = getFirstSelectedItem();
             context.getOperationsService().refresh(user);
             UserEditPanel editPanel = new UserEditPanel(context, user);
-            tabbedPanel.addCloseableTab(user.getId(), "Edit User", getIcon(), editPanel);
+            tabbedPanel.addCloseableTab(user.getId(), "编辑用户", getIcon(), editPanel);
         }
     }
 

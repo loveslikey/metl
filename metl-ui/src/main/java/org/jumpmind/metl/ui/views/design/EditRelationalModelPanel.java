@@ -126,29 +126,29 @@ public class EditRelationalModelPanel extends VerticalLayout implements IUiPanel
         ButtonBar buttonBar2 = new ButtonBar();
         addComponent(buttonBar2);
 
-            addEntityButton = buttonBar1.addButton("Add Entity", FontAwesome.TABLE);
+            addEntityButton = buttonBar1.addButton("添加实体", FontAwesome.TABLE);
             addEntityButton.addClickListener(new AddEntityClickListener());
 
-            addAttributeButton = buttonBar1.addButton("Add Attr", FontAwesome.COLUMNS);
+            addAttributeButton = buttonBar1.addButton("添加属性", FontAwesome.COLUMNS);
             addAttributeButton.addClickListener(new AddAttributeClickListener());
 
-            editButton = buttonBar1.addButton("Edit", FontAwesome.EDIT);
+            editButton = buttonBar1.addButton("编辑", FontAwesome.EDIT);
             editButton.addClickListener(new EditClickListener());
 
-            removeButton = buttonBar1.addButton("Remove", FontAwesome.TRASH_O);
+            removeButton = buttonBar1.addButton("删除", FontAwesome.TRASH_O);
             removeButton.addClickListener(new RemoveClickListener());
 
-            moveUpButton = buttonBar2.addButton("Up", FontAwesome.ARROW_UP, e -> moveUp());
-            moveDownButton = buttonBar2.addButton("Down", FontAwesome.ARROW_DOWN, e -> moveDown());
-            moveTopButton = buttonBar2.addButton("Top", FontAwesome.ANGLE_DOUBLE_UP,
+            moveUpButton = buttonBar2.addButton("上移", FontAwesome.ARROW_UP, e -> moveUp());
+            moveDownButton = buttonBar2.addButton("下移", FontAwesome.ARROW_DOWN, e -> moveDown());
+            moveTopButton = buttonBar2.addButton("置顶", FontAwesome.ANGLE_DOUBLE_UP,
                     e -> moveTop());
-            moveBottomButton = buttonBar2.addButton("Bottom", FontAwesome.ANGLE_DOUBLE_DOWN,
+            moveBottomButton = buttonBar2.addButton("置底", FontAwesome.ANGLE_DOUBLE_DOWN,
                     e -> moveBottom());
 
-            importButton = buttonBar1.addButtonRight("Import ...", FontAwesome.UPLOAD,
+            importButton = buttonBar1.addButtonRight("导入 ...", FontAwesome.UPLOAD,
                     new ImportClickListener());
 
-        buttonBar1.addButtonRight("Export...", FontAwesome.DOWNLOAD, (e) -> export());
+        buttonBar1.addButtonRight("导出...", FontAwesome.DOWNLOAD, (e) -> export());
 
         filterField = buttonBar2.addFilter();
         filterField.addTextChangeListener(new TextChangeListener() {
@@ -192,7 +192,7 @@ public class EditRelationalModelPanel extends VerticalLayout implements IUiPanel
                                 obj.setName(newName);
                                 EditRelationalModelPanel.this.context.getConfigurationService().save(obj);
                             } else {
-                                NotifyDialog.show("Name needs to be unique", "Name needs to be unique", null, Type.WARNING_MESSAGE);
+                                NotifyDialog.show("名称必须唯一", "名称必须唯一", null, Type.WARNING_MESSAGE);
                             }
                         };
                     };
@@ -342,13 +342,13 @@ public class EditRelationalModelPanel extends VerticalLayout implements IUiPanel
         HorizontalLayout hlayout = new HorizontalLayout();
         addComponent(hlayout);
 
-        Button collapseAll = new Button("Collapse All");
+        Button collapseAll = new Button("全部折叠");
         collapseAll.addStyleName(ValoTheme.BUTTON_LINK);
         collapseAll.addStyleName(ValoTheme.BUTTON_SMALL);
         hlayout.addComponent(collapseAll);
         collapseAll.addClickListener(e -> collapseAll());
 
-        Button expandAll = new Button("Expand All");
+        Button expandAll = new Button("全部展开");
         expandAll.addStyleName(ValoTheme.BUTTON_LINK);
         expandAll.addStyleName(ValoTheme.BUTTON_SMALL);
         hlayout.addComponent(expandAll);
@@ -639,8 +639,8 @@ public class EditRelationalModelPanel extends VerticalLayout implements IUiPanel
             Set<Object> itemIds = new HashSet<Object>();
             Set<Object> selectedIds = getSelectedItems();
             
-            ConfirmDialog.show("Delete?",
-                    "Are you sure you want to delete the " + selectedIds.size() + " selected items?",
+            ConfirmDialog.show("确定删除?",
+                    "你确定删除选中的 " + selectedIds.size() + " 个选项吗?",
                     ()->{
                         for (Object itemId : selectedIds) {
                             Collection<Object> children = (Collection<Object>) treeTable

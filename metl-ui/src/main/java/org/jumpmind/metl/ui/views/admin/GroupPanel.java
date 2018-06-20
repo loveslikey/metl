@@ -70,13 +70,13 @@ public class GroupPanel extends VerticalLayout implements IUiPanel {
         ButtonBar buttonBar = new ButtonBar();
         addComponent(buttonBar);
 
-        newButton = buttonBar.addButton("New", FontAwesome.PLUS);
+        newButton = buttonBar.addButton("新增", FontAwesome.PLUS);
         newButton.addClickListener(new NewClickListener());
 
-        editButton = buttonBar.addButton("Edit", FontAwesome.EDIT);
+        editButton = buttonBar.addButton("编辑", FontAwesome.EDIT);
         editButton.addClickListener(new EditClickListener());
 
-        removeButton = buttonBar.addButton("Remove", FontAwesome.TRASH_O);
+        removeButton = buttonBar.addButton("删除", FontAwesome.TRASH_O);
         removeButton.addClickListener(new RemoveClickListener());
 
         container = new BeanItemContainer<Group>(Group.class);
@@ -91,7 +91,7 @@ public class GroupPanel extends VerticalLayout implements IUiPanel {
 
         table.setContainerDataSource(container);
         table.setVisibleColumns("name", "createTime", "lastUpdateTime");
-        table.setColumnHeaders("Name", "Create Time", "Update Time");
+        table.setColumnHeaders("名称", "创建时间", "更新时间");
         table.addItemClickListener(new TableItemClickListener());
         table.addValueChangeListener(new TableValueChangeListener());
         table.setSortContainerPropertyId("name");
@@ -149,7 +149,7 @@ public class GroupPanel extends VerticalLayout implements IUiPanel {
         public void buttonClick(ClickEvent event) {
             Group group = new Group();
             GroupEditPanel editPanel = new GroupEditPanel(context, group);
-            tabbedPanel.addCloseableTab(group.getId(), "Edit Group", getIcon(), editPanel);
+            tabbedPanel.addCloseableTab(group.getId(), "新增用户组", getIcon(), editPanel);
         }
     }
 
@@ -158,7 +158,7 @@ public class GroupPanel extends VerticalLayout implements IUiPanel {
             Group group = getFirstSelectedItem();
             context.getOperationsService().refresh(group);
             GroupEditPanel editPanel = new GroupEditPanel(context, group);
-            tabbedPanel.addCloseableTab(group.getId(), "Edit Group", getIcon(), editPanel);
+            tabbedPanel.addCloseableTab(group.getId(), "编辑用户组", getIcon(), editPanel);
         }
     }
 
@@ -177,12 +177,12 @@ public class GroupPanel extends VerticalLayout implements IUiPanel {
                     container.removeItem(group);
                 }
             } else {
-                String message = "There are " + users.size() + " users assigned to this group. " +
-                        "Re-assign or delete the users first.  ";
+                String message = "已有 " + users.size() + " 个用户分配到该用户组。" +
+                        "请先重新分配或删除这些用户。";
                 if (users.size() < 10) {
                     message += users.toString();
                 }
-                Notification note = new Notification("Cannot Delete", message);
+                Notification note = new Notification("不能删除", message);
                 note.show(Page.getCurrent());
             }
             table.setValue(null);

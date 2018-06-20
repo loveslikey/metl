@@ -156,7 +156,7 @@ public class DesignNavigator extends VerticalLayout {
         TextField filterField = new TextField();
         filterField.setIcon(Icons.SEARCH);
         filterField.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
-        filterField.setInputPrompt("Tag Filter");
+        filterField.setInputPrompt("查找标签");
         filterField.setImmediate(true);
         filterField.setTextChangeEventMode(TextChangeEventMode.LAZY);
         filterField.setTextChangeTimeout(200);
@@ -693,7 +693,7 @@ public class DesignNavigator extends VerticalLayout {
     }
 
     public void doImport() {
-        ImportDialog.show("Import Config", "Click the upload button to import your config", new ImportConfigurationListener());
+        ImportDialog.show("导入配置", "点击上传按钮导入你的配置文件", new ImportConfigurationListener());
     }
 
     public void doNewProjectBranch() {
@@ -704,7 +704,7 @@ public class DesignNavigator extends VerticalLayout {
             List<ProjectVersion> versions = original.getProject().getProjectVersions();
             for (ProjectVersion version : versions) {
                 if (version.getVersionType().equalsIgnoreCase(ProjectVersion.VersionType.BRANCH.toString())) {
-                    CommonUiUtils.notify("Existing branch already exists for this project.  Cannot create a new one.", Type.WARNING_MESSAGE);
+                    CommonUiUtils.notify("此项目已经存在该分支，不能创建。", Type.WARNING_MESSAGE);
                     return;
                 }
             }
@@ -771,29 +771,29 @@ public class DesignNavigator extends VerticalLayout {
         Object object = treeTable.getValue();
         if (object instanceof FlowName) {
             FlowName flow = (FlowName) object;
-            ConfirmDialog.show("Delete Flow?", "Are you sure you want to delete the '" + flow.getName() + "' flow?",
+            ConfirmDialog.show("删除流程?", "你确定删除 '" + flow.getName() + "' 这个流程吗?",
                     new DeleteFlowConfirmationListener(flow));
         } else if (object instanceof ResourceName) {
             ResourceName resource = (ResourceName) object;
-            ConfirmDialog.show("Delete Resource?", "Are you sure you want to delete the '" + resource.getName() + "' resource?",
+            ConfirmDialog.show("删除资源?", "你确定删除 '" + resource.getName() + "' 这个资源吗?",
                     new DeleteResourceConfirmationListener(resource));
 
         } else if (object instanceof ModelName) {
             ModelName model = (ModelName) object;
             if (!configurationService.isModelUsed(model.getId())) {
-                ConfirmDialog.show("Delete Model?", "Are you sure you want to delete the '" + model.getName() + "' model?",
+                ConfirmDialog.show("删除模型?", "你确定删除 '" + model.getName() + "' 这个模型吗?",
                         new DeleteModelConfirmationListener(model));
             } else {
-                CommonUiUtils.notify("The model is currently in use.  It cannot be deleted.", Type.WARNING_MESSAGE);
+                CommonUiUtils.notify("这个模型正在被使用，不能被删除。", Type.WARNING_MESSAGE);
             }
         } else if (object instanceof Project) {
             Project namedObject = (Project) object;
-            ConfirmDialog.show("Delete Project?", "Are you sure you want to delete the '" + namedObject.getName() + "' project?",
+            ConfirmDialog.show("删除项目?", "你确定删除 '" + namedObject.getName() + "' 这个项目吗?",
                     new DeleteProjectConfirmationListener(namedObject));
 
         } else if (object instanceof ProjectVersion) {
             ProjectVersion namedObject = (ProjectVersion) object;
-            ConfirmDialog.show("Delete Project Version?", "Are you sure you want to delete the '" + namedObject.getName() + "' version?",
+            ConfirmDialog.show("删除项目版本?", "你确定删除 '" + namedObject.getName() + "' 的版本吗?",
                     new DeleteProjectVersionConfirmationListener(namedObject));
         } else if (object instanceof ProjectVersionDepends) {
             configurationService.delete((ProjectVersionDepends) object);
@@ -906,31 +906,31 @@ public class DesignNavigator extends VerticalLayout {
     }
 
     public void addNewDatabase() {
-        addNewResource("Database", "Database", Icons.DATABASE);
+        addNewResource("Database", "数据库", Icons.DATABASE);
     }
 
     public void addNewFtpFileSystem() {
-        addNewResource("Ftp", "FTP Directory", Icons.FILE_SYSTEM);
+        addNewResource("Ftp", "FTP目录", Icons.FILE_SYSTEM);
     }
-    
+
     public void addNewJmsSubscribe() {
-        addNewResource("JMS Subscribe", "JMS Subscribe", Icons.QUEUE);
-    }    
+        addNewResource("JMS Subscribe", "JMS订阅", Icons.QUEUE);
+    }
 
     public void addNewLocalFileSystem() {
-        addNewResource("Local File System", "Directory", Icons.FILE_SYSTEM);
+        addNewResource("Local File System", "目录", Icons.FILE_SYSTEM);
     }
 
     public void addNewSftpFileSystem() {
-        addNewResource("Sftp", "SFTP Directory", Icons.FILE_SYSTEM);
+        addNewResource("Sftp", "SFTP目录", Icons.FILE_SYSTEM);
     }
 
     public void addNewJMSFileSystem() {
-        addNewResource("JMS", "JMS Directory", Icons.QUEUE);
+        addNewResource("JMS", "JMS目录", Icons.QUEUE);
     }
 
     public void addNewSMBFileSystem() {
-        addNewResource("SMB", "SMB Directory", Icons.FILE_SYSTEM);
+        addNewResource("SMB", "SMB目录", Icons.FILE_SYSTEM);
     }
 
     public void addNewHttpResource() {
@@ -938,7 +938,7 @@ public class DesignNavigator extends VerticalLayout {
     }
 
     public void addNewMailSession() {
-        addNewResource("MailSession", "Mail Session", Icons.EMAIL);
+        addNewResource("MailSession", "邮件会话", Icons.EMAIL);
     }
 
     protected void addNewResource(String type, String defaultName, FontAwesome icon) {

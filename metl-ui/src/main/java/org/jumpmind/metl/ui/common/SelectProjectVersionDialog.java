@@ -78,8 +78,8 @@ public class SelectProjectVersionDialog extends ResizableWindow {
         layout.setExpandRatio(scrollable, 1.0f);
         addComponent(layout, 1);
 
-        Button cancelButton = new Button("Cancel");
-        Button selectButton = new Button("Select");
+        Button cancelButton = new Button("取消");
+        Button selectButton = new Button("选择");
         addComponent(buildButtonFooter(cancelButton, selectButton));
 
         cancelButton.addClickListener(new ClickListener() {
@@ -101,7 +101,7 @@ public class SelectProjectVersionDialog extends ResizableWindow {
     public static void show(ApplicationContext context, Project projectToExclude,
             IProjectVersionSelectListener listener, String introText) {
         SelectProjectVersionDialog dialog = new SelectProjectVersionDialog(context,
-                projectToExclude, "Select Version", introText);
+                projectToExclude, "选择版本", introText);
         dialog.setProjectVersionSelectListener(listener);
         UI.getCurrent().addWindow(dialog);
     }

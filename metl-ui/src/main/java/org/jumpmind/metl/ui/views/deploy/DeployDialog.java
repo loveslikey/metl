@@ -82,7 +82,7 @@ public class DeployDialog extends ResizableWindow {
     ValidateFlowDeploymentPanel validateFlowDeploymentPanel;
 
     public DeployDialog(ApplicationContext context, EditAgentPanel parentPanel) {
-        super("Deploy");
+        super("部署");
         this.context = context;
         this.configurationService = context.getConfigurationService();
         this.operationsService = context.getOperationsService();
@@ -103,7 +103,7 @@ public class DeployDialog extends ResizableWindow {
         layout.setSizeFull();
         addComponent(layout, 1);
 
-        deployByOptionGroup = new OptionGroup("Deployment Type:");
+        deployByOptionGroup = new OptionGroup("部署类型:");
         deployByOptionGroup.addStyleName(ValoTheme.OPTIONGROUP_HORIZONTAL);
         deployByOptionGroup.addItem(DEPLOY_BY_PACKAGE);
         deployByOptionGroup.addItem(DEPLOY_BY_FLOW);
@@ -115,8 +115,8 @@ public class DeployDialog extends ResizableWindow {
         layout.addComponent(selectDeploymentLayout);
         layout.setExpandRatio(selectDeploymentLayout, 1);
 
-        backButton = new Button("Cancel", e -> back());
-        actionButton = new Button("Deploy", e -> takeAction());
+        backButton = new Button("取消", e -> back());
+        actionButton = new Button("部署", e -> takeAction());
         actionButton.addStyleName(ValoTheme.BUTTON_PRIMARY);
         actionButton.setClickShortcut(KeyCode.ENTER);
         addComponent(buildButtonFooter(backButton, actionButton));
@@ -149,19 +149,19 @@ public class DeployDialog extends ResizableWindow {
 
     protected Component buildDeployByFlow() {
         if (selectFlowsPanel == null) {
-            String introText = "Select one or more flows for deployment to this agent:";
+            String introText = "选中一个或多个流程部署在此代理上：";
             selectFlowsPanel = new SelectFlowsPanel(context, introText, parentPanel.getAgent().isAllowTestFlows());
         }
-        actionButton.setCaption("Next");
+        actionButton.setCaption("下一步");
         return selectFlowsPanel;
     }
 
     protected Component buildDeployByPackage() {
         if (selectPackagePanel == null) {
-            String introText = "Select a package for deployment to this agent:";
+            String introText = "选中一个包部署在此代理上：";
             selectPackagePanel = new SelectPackagePanel(context, introText);            
         }
-        actionButton.setCaption("Next");
+        actionButton.setCaption("下一步");
         return selectPackagePanel;        
     }
     
@@ -193,8 +193,8 @@ public class DeployDialog extends ResizableWindow {
                 }
             }
             deployByOptionGroup.setVisible(false);
-            backButton.setCaption("Previous");
-            actionButton.setCaption("Deploy");
+            backButton.setCaption("上一步");
+            actionButton.setCaption("部署");
             selectDeploymentLayout.removeAllComponents();
             selectDeploymentLayout.addComponent(validateFlowDeploymentPanel);            
         } else {
@@ -263,7 +263,7 @@ public class DeployDialog extends ResizableWindow {
             close();
         } else {
             deployByOptionGroup.setVisible(true);
-            backButton.setCaption("Cancel");
+            backButton.setCaption("取消");
             deployByChanged();
         }
     }

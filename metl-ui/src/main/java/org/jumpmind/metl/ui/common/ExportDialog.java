@@ -20,46 +20,28 @@
  */
 package org.jumpmind.metl.ui.common;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.Serializable;
-import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.jumpmind.metl.core.model.AbstractObjectNameBasedSorter;
-import org.jumpmind.metl.core.model.Flow;
-import org.jumpmind.metl.core.model.FlowName;
-import org.jumpmind.metl.core.model.Model;
-import org.jumpmind.metl.core.model.ModelName;
-import org.jumpmind.metl.core.model.ProjectVersion;
-import org.jumpmind.metl.core.model.Resource;
-import org.jumpmind.metl.core.model.ResourceName;
+import com.vaadin.server.Page;
+import com.vaadin.server.ResourceReference;
+import com.vaadin.server.StreamResource;
+import com.vaadin.server.StreamResource.StreamSource;
+import com.vaadin.ui.*;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.themes.ValoTheme;
+import org.jumpmind.metl.core.model.*;
 import org.jumpmind.metl.core.persist.IConfigurationService;
 import org.jumpmind.vaadin.ui.common.CommonUiUtils;
 import org.jumpmind.vaadin.ui.common.ResizableWindow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.vaadin.server.Page;
-import com.vaadin.server.ResourceReference;
-import com.vaadin.server.StreamResource;
-import com.vaadin.server.StreamResource.StreamSource;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.HorizontalSplitPanel;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification.Type;
-import com.vaadin.ui.OptionGroup;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.themes.ValoTheme;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class ExportDialog extends ResizableWindow {
 
@@ -73,13 +55,13 @@ public class ExportDialog extends ResizableWindow {
     String projectVersionId;
 
     public ExportDialog(ApplicationContext context, Object selectedElement) {
-        super("Export Configuration");
+        super("导出配置");
         this.context = context;
         initWindow(selectedElement);
     }
 
     private void initWindow(Object selectedItem) {
-        Panel exportPanel = new Panel("Export and Dependencies");
+        Panel exportPanel = new Panel("导出依赖关系");
         exportPanel.addStyleName(ValoTheme.PANEL_SCROLL_INDICATOR);
         exportPanel.setSizeFull();
         VerticalLayout exportLayout = new VerticalLayout();
@@ -87,7 +69,7 @@ public class ExportDialog extends ResizableWindow {
         addSelectedAndDependentObjects(exportLayout, selectedItem);
         exportPanel.setContent(exportLayout);
 
-        Panel affectedPanel = new Panel("Possible Affected Flows");
+        Panel affectedPanel = new Panel("可能影响到的流程");
         affectedPanel.setSizeFull();
         exportPanel.addStyleName(ValoTheme.PANEL_SCROLL_INDICATOR);
         affectedLayout = new VerticalLayout();
@@ -103,15 +85,15 @@ public class ExportDialog extends ResizableWindow {
 
         addComponent(splitPanel, 1);
         
-        Button selectAllLink = new Button("Select All");
+        Button selectAllLink = new Button("全选");
         selectAllLink.addStyleName(ValoTheme.BUTTON_LINK);
         selectAllLink.addClickListener((event) -> selectAll());
 
-        Button selectNoneLink = new Button("Select None");
+        Button selectNoneLink = new Button("取消选择");
         selectNoneLink.addStyleName(ValoTheme.BUTTON_LINK);
         selectNoneLink.addClickListener((event) -> selectNone());
         
-        addComponent(buildButtonFooter(new Button[] {selectAllLink, selectNoneLink}, new Button("Export", new ExportClickListener()), buildCloseButton()));
+        addComponent(buildButtonFooter(new Button[] {selectAllLink, selectNoneLink}, new Button("导出", new ExportClickListener()), buildCloseButton()));
 
         setWidth(700, Unit.PIXELS);
         setHeight(500, Unit.PIXELS);
@@ -175,7 +157,7 @@ public class ExportDialog extends ResizableWindow {
         AbstractObjectNameBasedSorter.sort(allFlows);
 
         // flows
-        exportFlowGroup = new OptionGroup("Flows");
+        exportFlowGroup = new OptionGroup("流程");
         exportFlowGroup.addStyleName(ValoTheme.OPTIONGROUP_SMALL);
         exportFlowGroup.setMultiSelect(true);
         for (FlowName key : allFlows) {
@@ -191,7 +173,7 @@ public class ExportDialog extends ResizableWindow {
         // models
         List<ModelName> models = configurationService.findModelsInProject(projectVersionId);
         AbstractObjectNameBasedSorter.sort(models);
-        exportModelGroup = new OptionGroup("Models");
+        exportModelGroup = new OptionGroup("模型");
         exportModelGroup.addStyleName(ValoTheme.OPTIONGROUP_SMALL);
         exportModelGroup.setMultiSelect(true);
         for (ModelName key : models) {
@@ -206,7 +188,7 @@ public class ExportDialog extends ResizableWindow {
         // resources
         List<ResourceName> resources = configurationService.findResourcesInProject(projectVersionId);
         AbstractObjectNameBasedSorter.sort(resources);
-        exportResourceGroup = new OptionGroup("Resources");
+        exportResourceGroup = new OptionGroup("资源");
         exportResourceGroup.addStyleName(ValoTheme.OPTIONGROUP_SMALL);
         exportResourceGroup.setMultiSelect(true);
         for (ResourceName key : resources) {
@@ -273,7 +255,7 @@ public class ExportDialog extends ResizableWindow {
                     return new ByteArrayInputStream(export.getBytes(Charset.forName("utf-8")));
                 } catch (Exception e) {
                     log.error("Failed to export configuration", e);
-                    CommonUiUtils.notify("Failed to export configuration.", Type.ERROR_MESSAGE);
+                    CommonUiUtils.notify("导出配置文件失败！", Type.ERROR_MESSAGE);
                     return null;
                 }
             }

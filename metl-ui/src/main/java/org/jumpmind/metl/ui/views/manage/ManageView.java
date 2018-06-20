@@ -80,7 +80,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 @UiComponent
 @Scope(value = "ui")
-@TopBarLink(category = Category.Manage, name = "Manage", id = "manage", icon = FontAwesome.GEARS, menuOrder = 25)
+@TopBarLink(category = Category.Manage, name = "管理", id = "manage", icon = FontAwesome.GEARS, menuOrder = 25)
 public class ManageView extends HorizontalLayout implements View, IUiPanel, IBackgroundRefreshable<Object> {
     
     final Logger log = LoggerFactory.getLogger(getClass());
@@ -112,7 +112,7 @@ public class ManageView extends HorizontalLayout implements View, IUiPanel, IBac
     @SuppressWarnings("serial")
     @PostConstruct
     protected void init() {
-        viewButton = new Button("View Log");
+        viewButton = new Button("查看日志");
         viewButton.setEnabled(false);
         viewButton.addClickListener(new ClickListener() {
             public void buttonClick(ClickEvent event) {
@@ -126,7 +126,7 @@ public class ManageView extends HorizontalLayout implements View, IUiPanel, IBac
         header.addComponent(viewButton);
         header.setComponentAlignment(viewButton, Alignment.BOTTOM_RIGHT);
 
-        statusSelect = new ComboBox("Status");
+        statusSelect = new ComboBox("状态");
         statusSelect.setNewItemsAllowed(false);
         statusSelect.setNullSelectionAllowed(false);
         statusSelect.addItem(ANY);
@@ -146,7 +146,7 @@ public class ManageView extends HorizontalLayout implements View, IUiPanel, IBac
 
         HorizontalLayout limitLayout = new HorizontalLayout();
         limitLayout.setSpacing(true);
-        Label limitLabel = new Label("Limit:");
+        Label limitLabel = new Label("限制:");
         limitLayout.addComponent(limitLabel);
         limitLayout.setComponentAlignment(limitLabel, Alignment.MIDDLE_CENTER);
         TextField limitField = new TextField(null, String.valueOf(DEFAULT_LIMIT));
@@ -170,7 +170,7 @@ public class ManageView extends HorizontalLayout implements View, IUiPanel, IBac
         header.setExpandRatio(limitLayout, 1.0f);
 
         TextField filterField = new TextField();
-        filterField.setInputPrompt("Filter");
+        filterField.setInputPrompt("查找");
         filterField.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
         filterField.setIcon(FontAwesome.SEARCH);
         filterField.setImmediate(true);
@@ -210,8 +210,8 @@ public class ManageView extends HorizontalLayout implements View, IUiPanel, IBac
         });
         table.setVisibleColumns(new Object[] { "agentName", "deploymentName", "hostName", "status",
                 "startTime", "endTime", "createBy", "parameters" });
-        table.setColumnHeaders(new String[] { "Agent", "Deployment", "Host", "Status", "Start",
-                "End", "Caller", "Parameters" });
+        table.setColumnHeaders(new String[] { "代理", "部署", "主机", "状态", "开始",
+                "结束", "调用者", "参数" });
         table.setColumnWidth("agentName", 250);
         table.setColumnWidth("deploymentName", 250);
         table.setColumnWidth("hostName", 145);
@@ -228,7 +228,7 @@ public class ManageView extends HorizontalLayout implements View, IUiPanel, IBac
         mainTab.setExpandRatio(table, 1.0f);
 
         tabs = new TabbedPanel();
-        tabs.setMainTab("Executions", Icons.EXECUTION, mainTab);
+        tabs.setMainTab("执行", Icons.EXECUTION, mainTab);
 
         HorizontalSplitPanel split = new HorizontalSplitPanel();
         split.setSizeFull();

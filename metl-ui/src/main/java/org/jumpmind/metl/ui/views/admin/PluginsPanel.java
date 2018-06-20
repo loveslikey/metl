@@ -69,14 +69,14 @@ public class PluginsPanel extends VerticalLayout implements IUiPanel {
         ButtonBar buttonBar = new ButtonBar();
         addComponent(buttonBar);
 
-        addButton = buttonBar.addButton("Add", FontAwesome.PLUS);
+        addButton = buttonBar.addButton("新增", FontAwesome.PLUS);
         addButton.addClickListener(e -> addPlugin());
 
-        moveUpButton = buttonBar.addButton("Move Up", FontAwesome.ARROW_UP, e -> moveUp());
+        moveUpButton = buttonBar.addButton("上移", FontAwesome.ARROW_UP, e -> moveUp());
 
-        moveDownButton = buttonBar.addButton("Move Down", FontAwesome.ARROW_DOWN, e -> moveDown());
+        moveDownButton = buttonBar.addButton("下移", FontAwesome.ARROW_DOWN, e -> moveDown());
 
-        removeButton = buttonBar.addButton("Purge Unused", FontAwesome.TRASH_O, e -> purgeUnused());
+        removeButton = buttonBar.addButton("清除未使用", FontAwesome.TRASH_O, e -> purgeUnused());
 
         container = new BeanItemContainer<Plugin>(Plugin.class);
 
@@ -90,7 +90,7 @@ public class PluginsPanel extends VerticalLayout implements IUiPanel {
 
         table.setContainerDataSource(container);
         table.setVisibleColumns("artifactGroup", "artifactName", "artifactVersion", "lastUpdateTime");
-        table.setColumnHeaders("Group", "Name", "Version", "Updated");
+        table.setColumnHeaders("组", "名称", "版本", "更新");
         table.setColumnWidth("lastUpdateTime", UIConstants.DATETIME_WIDTH_PIXELS);
         table.addValueChangeListener(e -> setButtonsEnabled());
 

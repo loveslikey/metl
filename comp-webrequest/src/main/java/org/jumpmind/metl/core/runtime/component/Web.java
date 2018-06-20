@@ -20,8 +20,8 @@
  */
 package org.jumpmind.metl.core.runtime.component;
 
-import static org.apache.commons.lang.StringUtils.isBlank;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
+import static org.apache.commons.lang.StringUtils.isBlank;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -39,6 +39,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
@@ -60,6 +61,7 @@ import org.jumpmind.metl.core.runtime.TextMessage;
 import org.jumpmind.metl.core.runtime.flow.ISendMessageCallback;
 import org.jumpmind.metl.core.runtime.resource.HttpDirectory;
 import org.jumpmind.metl.core.runtime.resource.IResourceRuntime;
+import org.jumpmind.util.FormatUtils;
 
 public class Web extends AbstractComponentRuntime {
 
@@ -155,7 +157,7 @@ public class Web extends AbstractComponentRuntime {
             inputPayload.addAll(getInputPayload(inputMessage));
 
             if (inputPayload != null) {
-                String path = assemblePath(httpDirectory.getUrl(), inputMessage);
+                String path = assemblePath(httpDirectory.getUrl());
                 for (String requestContent : inputPayload) {
                     getComponentStatistics().incrementNumberEntitiesProcessed(threadNumber);
                     requestContent = replaceParameters(inputMessage, requestContent);
@@ -207,9 +209,7 @@ public class Web extends AbstractComponentRuntime {
             throw new IoException(String.format("Error calling service %s.  Error: %s", httpRequest.getURI().getPath(), ex.getMessage()));
         } finally {
             try {
-                if (httpResponse != null) {
-                    httpResponse.close();
-                }
+            httpResponse.close(); 
             } catch (IOException iox) {
                 //close quietly
                 log.info(String.format("Unable to close http session %s", iox.getMessage()));
@@ -335,10 +335,11 @@ public class Web extends AbstractComponentRuntime {
         }
     }    
     
-    private String assemblePath(String basePath, Message inputMessage) {
+    private String assemblePath(String basePath) {
         Component component = getComponent();
         if (isNotBlank(relativePath)) {
-            String path = basePath + resolveParamsAndHeaders(component.get(RELATIVE_PATH), inputMessage);
+            String path = basePath + FormatUtils.replaceTokens(component.get(RELATIVE_PATH),
+                    context.getFlowParameters(), true);
             int parmCount = 0;
             for (Map.Entry<String, String> entry : httpParameters.entrySet()) {
                 parmCount++;

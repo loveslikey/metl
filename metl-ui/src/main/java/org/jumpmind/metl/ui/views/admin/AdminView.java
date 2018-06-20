@@ -52,7 +52,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 @UiComponent
 @Scope(value = "ui")
-@TopBarLink(category = Category.Admin, name = "Admin", id = "admin", icon = FontAwesome.GEARS, menuOrder = 10)
+@TopBarLink(category = Category.Admin, name = "系统", id = "admin", icon = FontAwesome.GEARS, menuOrder = 10)
 public class AdminView extends HorizontalLayout implements View, IUiPanel, ItemClickListener {
 
     private static final long serialVersionUID = 1L;
@@ -95,20 +95,20 @@ public class AdminView extends HorizontalLayout implements View, IUiPanel, ItemC
         table.addContainerProperty("id", String.class, null);
         table.setVisibleColumns(new Object[] { "id" });
         table.setColumnExpandRatio("id", 1);
-        addItem("Users", Icons.USER);
-        addItem("Groups", Icons.GROUP);
-        addItem("Tags", Icons.TAG);
-        addItem("REST", Icons.REST);
-        addItem("General Settings", Icons.SETTINGS);
-        addItem("Plugin Repositories", Icons.DATABASE);
-        addItem("Plugins", Icons.COMPONENT);
-        addItem("Mail Server", Icons.EMAIL);
+        addItem("用户", Icons.USER);
+        addItem("用户组", Icons.GROUP);
+        addItem("标签", Icons.TAG);
+        addItem("REST服务", Icons.REST);
+        addItem("通用设置", Icons.SETTINGS);
+        addItem("组件仓储", Icons.DATABASE);
+        addItem("组件", Icons.COMPONENT);
+        addItem("邮件服务器", Icons.EMAIL);
         addItem("LDAP",Icons.BOOK);
-        addItem("Notifications", Icons.NOTIFICATION);
-        addItem("Active Users", FontAwesome.USERS);
-        addItem("Audit Events", FontAwesome.BARS);
-        addItem("Logging", Icons.LOGGING);
-        addItem("About", FontAwesome.QUESTION);
+        addItem("通知", Icons.NOTIFICATION);
+        addItem("活动用户", FontAwesome.USERS);
+        addItem("事件审计", FontAwesome.BARS);
+        addItem("日志", Icons.LOGGING);
+        addItem("关于", FontAwesome.QUESTION);
         
         VerticalLayout navigator = new VerticalLayout();
         navigator.addStyleName(ValoTheme.MENU_ROOT);
@@ -142,33 +142,33 @@ public class AdminView extends HorizontalLayout implements View, IUiPanel, ItemC
             if (value != null) {
                 String id = value.toString();
                 Component panel = null;
-                if (id.equals("Users")) {
+                if (id.equals("用户")) {
                     panel = new UserPanel(context, tabbedPanel);
-                } else if (id.equals("Groups")) {
+                } else if (id.equals("用户组")) {
                     panel = new GroupPanel(context, tabbedPanel);
-                } else if (id.equals("Tags")) {
+                } else if (id.equals("标签")) {
                     panel = new TagPanel(context, tabbedPanel);
-                } else if (id.equals("REST")) {
+                } else if (id.equals("REST服务")) {
                     panel = new ApiPanel(context, tabbedPanel);
-                } else if (id.equals("General Settings")) {
+                } else if (id.equals("通用设置")) {
                     panel = new GeneralSettingsPanel(context, tabbedPanel);
-                } else if (id.equals("Mail Server")) {
+                } else if (id.equals("邮件服务器")) {
                     panel = new MailServerPanel(context, tabbedPanel);
                 } else if (id.equals("LDAP")) {
                     panel = new LdapPanel(context, tabbedPanel);
-                } else if (id.equals("Notifications")) {
+                } else if (id.equals("通知")) {
                     panel = new NotificationPanel(context, tabbedPanel);
-                } else if (id.equals("Logging")) {
+                } else if (id.equals("日志")) {
                     panel = new LoggingPanel(context, tabbedPanel);
-                } else if (id.equals("Plugin Repositories")) {
+                } else if (id.equals("组件仓储")) {
                     panel = new PluginRepositoriesPanel(context, tabbedPanel);                    
-                } else if (id.equals("About")) {
+                } else if (id.equals("关于")) {
                     panel = new AboutPanel(context, tabbedPanel);
-                } else if (id.equals("Plugins")) {
+                } else if (id.equals("组件")) {
                     panel = new PluginsPanel(context, tabbedPanel);
-                } else if (id.equals("Active Users")) {
+                } else if (id.equals("活动用户")) {
                     panel = new ActiveUsersPanel(context, tabbedPanel);
-                } else if (id.equals("Audit Events")) {
+                } else if (id.equals("事件审计")) {
                     panel = new AuditEventPanel(context, tabbedPanel);
                 }
                 tabbedPanel.addCloseableTab(id, id, table.getItemIcon(id), panel);

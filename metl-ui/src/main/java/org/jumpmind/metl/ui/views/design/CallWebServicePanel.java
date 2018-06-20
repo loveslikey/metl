@@ -126,9 +126,9 @@ public class CallWebServicePanel extends VerticalLayout implements IUiPanel, IFl
         Flow flow = configurationService.findFlow(deployment.getFlowId());
 
         ButtonBar buttonBar = new ButtonBar();
-        buttonBar.addButton("Call Service", Icons.RUN, (e) -> runFlow());
+        buttonBar.addButton("调用服务", Icons.RUN, (e) -> runFlow());
 
-        viewExecutionLogButton = buttonBar.addButton("View Log", Icons.LOG, (e) -> openExecution());
+        viewExecutionLogButton = buttonBar.addButton("查看日志", Icons.LOG, (e) -> openExecution());
         viewExecutionLogButton.setEnabled(false);
 
         addComponent(buttonBar);
@@ -149,7 +149,7 @@ public class CallWebServicePanel extends VerticalLayout implements IUiPanel, IFl
         urlField = new TextField("URL");
         formLayout.addComponent(urlField);
 
-        methodGroup = new OptionGroup("Method");
+        methodGroup = new OptionGroup("请求方式");
         methodGroup.addStyleName(ValoTheme.OPTIONGROUP_HORIZONTAL);
         methodGroup.addItem("GET");
         methodGroup.addItem("PUT");
@@ -157,13 +157,13 @@ public class CallWebServicePanel extends VerticalLayout implements IUiPanel, IFl
         methodGroup.addItem("DELETE");
         formLayout.addComponent(methodGroup);
 
-        ComboBox contentType = new ComboBox("Content Type");
+        ComboBox contentType = new ComboBox("内容类型");
         contentType.addItem(MimeTypeUtils.APPLICATION_JSON.toString());
         contentType.addItem(MimeTypeUtils.APPLICATION_XML.toString());
         contentType.setNullSelectionAllowed(false);
         formLayout.addComponent(contentType);
 
-        securitySchemeCombo = new ComboBox("Security Scheme");
+        securitySchemeCombo = new ComboBox("安全计划");
         securitySchemeCombo.setNullSelectionAllowed(false);
         SecurityScheme[] types = SecurityScheme.values();
         for (SecurityScheme securityType : types) {
@@ -172,23 +172,23 @@ public class CallWebServicePanel extends VerticalLayout implements IUiPanel, IFl
         securitySchemeCombo.addValueChangeListener((e) -> securityMethodChanged());
         formLayout.addComponent(securitySchemeCombo);
 
-        userField = new TextField("Security Username");
+        userField = new TextField("安全用户名");
         userField.setNullRepresentation("");
         userField.setVisible(false);
         formLayout.addComponent(userField);
 
-        passwordField = new PasswordField("Security Password");
+        passwordField = new PasswordField("安全密码");
         passwordField.setNullRepresentation("");
         passwordField.setVisible(false);
         formLayout.addComponent(passwordField);
 
-        requestTabs = new ReqRespTabSheet("Request", true);
+        requestTabs = new ReqRespTabSheet("请求", true);
         formLayout.addComponent(requestTabs);
 
-        responseTabs = new ReqRespTabSheet("Response", false);
+        responseTabs = new ReqRespTabSheet("响应", false);
         responseStatusAreaLayout = new VerticalLayout();
         responseStatusAreaLayout.setSizeFull();
-        responseStatusAreaLayout.setCaption("Status");
+        responseStatusAreaLayout.setCaption("状态");
         responseStatusArea = new TextArea();
         responseStatusArea.setSizeFull();
         responseStatusAreaLayout.addComponent(responseStatusArea);
@@ -250,7 +250,7 @@ public class CallWebServicePanel extends VerticalLayout implements IUiPanel, IFl
         if (isNotBlank(executionId)) {
             ExecutionRunPanel logPanel = new ExecutionRunPanel(executionId, context, tabs, this);
             logPanel.onBackgroundUIRefresh(logPanel.onBackgroundDataRefresh());
-            tabs.addCloseableTab(executionId, "Run " + deployment.getName(), Icons.LOG,
+            tabs.addCloseableTab(executionId, "执行 " + deployment.getName(), Icons.LOG,
                     logPanel);
         }
     }
@@ -338,7 +338,7 @@ public class CallWebServicePanel extends VerticalLayout implements IUiPanel, IFl
             payload.setNullRepresentation("");
             payload.setSizeFull();
             payloadLayout.addComponent(payload);
-            addTab(payloadLayout, "Payload");
+            addTab(payloadLayout, "消息体");
 
             VerticalLayout requestHeadersLayout = new VerticalLayout();
             requestHeadersLayout.setSizeFull();
@@ -355,17 +355,17 @@ public class CallWebServicePanel extends VerticalLayout implements IUiPanel, IFl
 
             headersGrid = new Grid();
             headersGrid.setEditorEnabled(editable);
-            headersGrid.setEditorSaveCaption("Save");
-            headersGrid.setEditorCancelCaption("Cancel");
+            headersGrid.setEditorSaveCaption("保存");
+            headersGrid.setEditorCancelCaption("取消");
             headersGrid.setSelectionMode(SelectionMode.SINGLE);
             headersGrid.setSizeFull();
-            headersGrid.addColumn("headerName").setHeaderCaption("Header").setEditable(true)
+            headersGrid.addColumn("headerName").setHeaderCaption("参数").setEditable(true)
                     .setExpandRatio(1);
-            headersGrid.addColumn("headerValue").setHeaderCaption("Value").setEditable(true)
+            headersGrid.addColumn("headerValue").setHeaderCaption("值").setEditable(true)
                     .setExpandRatio(1);
             requestHeadersLayout.addComponent(headersGrid);
             requestHeadersLayout.setExpandRatio(headersGrid, 1);
-            addTab(requestHeadersLayout, "Headers");
+            addTab(requestHeadersLayout, "请求头");
         }
 
         public VerticalLayout getPayloadLayout() {

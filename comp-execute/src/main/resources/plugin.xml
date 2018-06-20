@@ -27,7 +27,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='none'>
-    <name>Execute</name>
+    <name>执行</name>
     <className>org.jumpmind.metl.core.runtime.component.Execute</className>
     <keywords>launch,process</keywords>
     <description></description>
@@ -35,7 +35,7 @@
       <setting id='run.when'
                required='false'
                type='choice'>
-        <name>Run When</name>
+        <name>当...时运行</name>
         <defaultValue>PER UNIT OF WORK</defaultValue>
         <choices>
           <choice>PER UNIT OF WORK</choice>
@@ -45,26 +45,26 @@
       <setting id='command'
                required='true'
                type='text'>
-        <name>Command</name>
+        <name>命令</name>
       </setting>
       <setting id='continue.on.error'
                required='false'
                type='boolean'>
-        <name>Continue On Error</name>
+        <name>错误继续</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='success.code'
                required='false'
                type='integer'>
-        <name>Success Code</name>
+        <name>成功代码</name>
         <defaultValue>0</defaultValue>
       </setting>
       <setting id='parameter.replacement'
                required='false'
                type='boolean'>
-        <name>Parameter replacement</name>
+        <name>用参数替换</name>
         <defaultValue>false</defaultValue>
-      </setting>      
+      </setting>
     </settings>
   </component>
 </definitions>

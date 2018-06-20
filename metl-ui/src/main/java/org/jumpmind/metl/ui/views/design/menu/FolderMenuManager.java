@@ -43,27 +43,27 @@ public class FolderMenuManager extends AbstractDesignSelectedValueMenuManager {
     protected String[] getEnabledPaths(Object selected) {
         
         String[] enabledPaths = (String[]) ArrayUtils.addAll(super.getEnabledPaths(selected), new String[] {
-                "File|New|Project Dependency",
-                "File|New|Flow|Design",
-                "File|New|Flow|Test",
-                "File|New|Model|Hierarchical",
-                "File|New|Model|Relational",
-                "File|New|Resource|Database",
-                "File|New|Resource|Directory|FTP",
-                "File|New|Resource|Directory|File System",
-                "File|New|Resource|Directory|JMS",
-                "File|New|Resource|Directory|SFTP",
-                "File|New|Resource|Directory|SMB",
-                "File|New|Resource|HTTP",
-                "File|New|Resource|Mail Session",
-                "File|New|Resource|Subscribe|JMS",
-                "File|Import...",        
-                "File|Export..."
+                "文件|新建|项目依赖",
+                "文件|新建|流程|设计",
+                "文件|新建|流程|测试",
+                "文件|新建|模型|层级",
+                "文件|新建|模型|关系",
+                "文件|新建|资源|数据库",
+                "文件|新建|资源|目录|FTP",
+                "文件|新建|资源|目录|文件系统",
+                "文件|新建|资源|目录|JMS",
+                "文件|新建|资源|目录|SFTP",
+                "文件|新建|资源|目录|SMB",
+                "文件|新建|资源|HTTP",
+                "文件|新建|资源|邮件会话",
+                "文件|新建|资源|订阅|JMS",
+                "文件|导入...",
+                "文件|导出..."
         });
 
         if (navigator.getContext().getClipboard()
                 .containsKey(CutCopyPasteManager.CLIPBOARD_OBJECT_TYPE)) {
-            enabledPaths = (String[]) ArrayUtils.add(enabledPaths, "Edit|Paste");
+            enabledPaths = (String[]) ArrayUtils.add(enabledPaths, "编辑|粘贴");
         }
         return enabledPaths;
     }

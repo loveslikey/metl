@@ -77,12 +77,12 @@ public class TabbedPanel extends TabSheet {
         setCloseHandler((tabsheet, tabContent) -> close(tabContent));
 
         ContextMenu menu = new ContextMenu(this, true);
-        menu.addItem("Close", selectedItem -> close());
-        menu.addItem("Close Others", selectedItem -> closeOthers());
-        menu.addItem("Close To the Left", selectedItem -> closeToTheLeft());
-        menu.addItem("Close To the Right", selectedItem -> closeToTheRight());
+        menu.addItem("关闭", selectedItem -> close());
+        menu.addItem("关闭其它", selectedItem -> closeOthers());
+        menu.addItem("关闭左侧", selectedItem -> closeToTheLeft());
+        menu.addItem("关闭右侧", selectedItem -> closeToTheRight());
         menu.addSeparator();
-        menu.addItem("Close All", selectedItem -> closeAll());
+        menu.addItem("关闭全部", selectedItem -> closeAll());
     }
 
     protected void close(Component tabContent) {

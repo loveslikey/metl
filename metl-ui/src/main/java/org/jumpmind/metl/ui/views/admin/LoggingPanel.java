@@ -97,7 +97,7 @@ public class LoggingPanel extends VerticalLayout implements IUiPanel, IBackgroun
         topPanelLayout.setWidth(100, Unit.PERCENTAGE);
         topPanelLayout.setSpacing(true);
 
-        Button refreshButton = new Button("Refresh");
+        Button refreshButton = new Button("刷新");
         refreshButton.addClickListener(new ClickListener() {
             public void buttonClick(ClickEvent event) {
                 refresh();
@@ -119,7 +119,7 @@ public class LoggingPanel extends VerticalLayout implements IUiPanel, IBackgroun
 
         filter = new TextField();
         filter.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
-        filter.setInputPrompt("Filter");
+        filter.setInputPrompt("查找");
         filter.setIcon(FontAwesome.SEARCH);
         filter.setNullRepresentation("");
         filter.setImmediate(true);
@@ -133,7 +133,7 @@ public class LoggingPanel extends VerticalLayout implements IUiPanel, IBackgroun
         topPanelLayout.addComponent(filter);
         topPanelLayout.setComponentAlignment(filter, Alignment.BOTTOM_LEFT);
 
-        autoRefreshOn = new CheckBox("Auto Refresh");
+        autoRefreshOn = new CheckBox("自动刷新");
         autoRefreshOn.setValue(true);
         autoRefreshOn.setImmediate(true);
         topPanelLayout.addComponent(autoRefreshOn);
@@ -144,7 +144,7 @@ public class LoggingPanel extends VerticalLayout implements IUiPanel, IBackgroun
         topPanelLayout.setExpandRatio(spacer, 1);
 
         if (logFile != null && logFile.exists()) {
-            Button downloadButton = new Button("Download log file");
+            Button downloadButton = new Button("下载日志文件");
             downloadButton.addStyleName(ValoTheme.BUTTON_LINK);
             downloadButton.addStyleName(ValoTheme.BUTTON_SMALL);
 
@@ -156,7 +156,7 @@ public class LoggingPanel extends VerticalLayout implements IUiPanel, IBackgroun
 
         addComponent(topPanelLayout);
 
-        logPanel = new Panel("Log Output");
+        logPanel = new Panel("日志输出");
         logPanel.setSizeFull();
         logView = new Label("", ContentMode.HTML);
         logView.setSizeUndefined();
@@ -173,8 +173,8 @@ public class LoggingPanel extends VerticalLayout implements IUiPanel, IBackgroun
                 try {
                     return new BufferedInputStream(new FileInputStream(logFile));
                 } catch (FileNotFoundException e) {
-                    Notification note = new Notification("File Not Found", "Could not find "
-                            + logFile.getName() + " to download");
+                    Notification note = new Notification("未找到文件", "没有找到要下载的 "
+                            + logFile.getName() + " 文件");
                     note.show(Page.getCurrent());
                     return null;
                 }

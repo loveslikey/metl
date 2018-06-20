@@ -27,16 +27,16 @@
              inputOutputModelsMatch='true'
              outputMessageType='entity'
              resourceCategory='none'>
-    <name>Transformer</name>
+    <name>转换器</name>
     <className>org.jumpmind.metl.core.runtime.component.Transformer</className>
     <description></description>
     <settings>
       <setting id='pass.along.control.messages'
                required='false'
                type='boolean'>
-        <name>Pass Along Control Messages</name>
+        <name>传递控制信息</name>
         <defaultValue>false</defaultValue>
-      </setting>    
+      </setting>
     </settings>
   </component>
 </definitions>

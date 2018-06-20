@@ -94,7 +94,7 @@ public class PluginsPanelAddDialog extends ResizableWindow {
     private byte[] jarContents;
 
     public PluginsPanelAddDialog(ApplicationContext context, PluginsPanel pluginsPanel) {
-        super("Add Plugins");
+        super("添加插件");
         this.context = context;
         this.pluginsPanel = pluginsPanel;
         this.pluginRepositories = context.getPluginService().findPluginRepositories();
@@ -102,19 +102,19 @@ public class PluginsPanelAddDialog extends ResizableWindow {
         TabSheet tabSheet = new TabSheet();
 
         AbstractLayout searchLayout = buildSearchLayout();
-        tabSheet.addTab(searchLayout, "Search For New Versions");
+        tabSheet.addTab(searchLayout, "寻找新的版本");
 
         AbstractLayout uploadLayout = buildUploadLayout();
-        tabSheet.addTab(uploadLayout, "Upload");
+        tabSheet.addTab(uploadLayout, "上传");
 
-        searchButton = new Button("Search", e -> search());
+        searchButton = new Button("查找", e -> search());
         searchButton.setEnabled(false);
 
         uploadHandler = new UploadHandler();
         uploadButton = new Upload(null, uploadHandler);
         uploadButton.setImmediate(true);
         uploadButton.setVisible(false);
-        uploadButton.setButtonCaption("Upload");
+        uploadButton.setButtonCaption("上传");
         uploadButton.addFinishedListener(e -> finishedUpload());
 
         tabSheet.addSelectedTabChangeListener(e -> {
@@ -126,10 +126,10 @@ public class PluginsPanelAddDialog extends ResizableWindow {
         addComponent(tabSheet, 1);
         tabSheet.setSelectedTab(0);
 
-        cancelButton = new Button("Cancel");
+        cancelButton = new Button("取消");
         cancelButton.addClickListener(new CloseButtonListener());
 
-        addButton = new Button("Add");
+        addButton = new Button("添加");
         addButton.setEnabled(false);
         addButton.addStyleName(ValoTheme.BUTTON_PRIMARY);
         addButton.addClickListener(e -> addPlugin());
@@ -182,9 +182,9 @@ public class PluginsPanelAddDialog extends ResizableWindow {
             names.add(plugin.getArtifactName());
         }
 
-        versionSelect = new ListSelect("Versions");
-        groupCombo = new ComboBox("Group");
-        nameCombo = new ComboBox("Name");
+        versionSelect = new ListSelect("版本");
+        groupCombo = new ComboBox("组");
+        nameCombo = new ComboBox("名称");
 
         versionSelect.setRows(4);
         versionSelect.setMultiSelect(false);
@@ -258,17 +258,17 @@ public class PluginsPanelAddDialog extends ResizableWindow {
         FormLayout layout = new FormLayout();
         layout.setMargin(true);
 
-        groupField = new TextField("Group");
+        groupField = new TextField("组");
         groupField.setWidth(100, Unit.PERCENTAGE);
         groupField.setRequired(true);
         layout.addComponent(groupField);
 
-        nameField = new TextField("Name");
+        nameField = new TextField("名称");
         nameField.setWidth(100, Unit.PERCENTAGE);
         nameField.setRequired(true);
         layout.addComponent(nameField);
 
-        versionField = new TextField("Version");
+        versionField = new TextField("版本");
         versionField.setWidth(100, Unit.PERCENTAGE);
         versionField.setRequired(true);
         layout.addComponent(versionField);

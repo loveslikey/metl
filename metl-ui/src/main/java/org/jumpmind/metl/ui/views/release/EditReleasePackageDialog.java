@@ -76,7 +76,7 @@ public class EditReleasePackageDialog extends ResizableWindow {
     Map<String, OptionGroup> projectVersionOptionGroups = new HashMap<String, OptionGroup>();
 
     public EditReleasePackageDialog(ReleasePackage releasePackage, ApplicationContext context, IReleasePackageListener listener) {
-        super(releasePackage == null ? "New Release Package" : "Edit Release Package");
+        super(releasePackage == null ? "新建发布包" : "编辑发布包");
         this.releasePackage = releasePackage;
         this.listener = listener;
         this.context = context;
@@ -109,15 +109,15 @@ public class EditReleasePackageDialog extends ResizableWindow {
         FormLayout form = new FormLayout();
         form.addStyleName(ValoTheme.FORMLAYOUT_LIGHT);
         form.setMargin(true);
-        nameField = new TextField("Name");
+        nameField = new TextField("名称");
         nameField.setValue(releasePackage.getName() != null ? releasePackage.getName() : "");
         nameField.setReadOnly(releasePackage.isReleased());
         form.addComponent(nameField);
-        versionLabelField = new TextField("Version");
+        versionLabelField = new TextField("版本");
         versionLabelField.setValue(releasePackage.getVersionLabel() != null ? releasePackage.getVersionLabel() : "");
         versionLabelField.setReadOnly(releasePackage.isReleased());
         form.addComponent(versionLabelField);
-        releaseDateField = new DateField("Release Date");
+        releaseDateField = new DateField("发布日期");
         releaseDateField.setValue(releasePackage.getReleaseDate() != null ? releasePackage.getReleaseDate() : null);
         releaseDateField.setReadOnly(releasePackage.isReleased());
         form.addComponent(releaseDateField);
@@ -125,7 +125,7 @@ public class EditReleasePackageDialog extends ResizableWindow {
     }
 
     protected Panel buildProjectsAndVersions(String releasePackageId) {
-        Panel projectsAndVersionsPanel = new Panel("Projects and Branches");
+        Panel projectsAndVersionsPanel = new Panel("项目和分支");
         projectsAndVersionsPanel.addStyleName(ValoTheme.PANEL_SCROLL_INDICATOR);
         projectsAndVersionsPanel.setSizeFull();
 
@@ -195,8 +195,8 @@ public class EditReleasePackageDialog extends ResizableWindow {
     }
     
     protected HorizontalLayout buildButtonBar() {
-        Button cancelButton = new Button("Cancel", e->cancel());
-        Button saveButton = new Button("Save", e->save());
+        Button cancelButton = new Button("取消", e->cancel());
+        Button saveButton = new Button("保存", e->save());
         saveButton.addStyleName(ValoTheme.BUTTON_PRIMARY);
         saveButton.setClickShortcut(KeyCode.ENTER);
         return buildButtonFooter(cancelButton, saveButton);        

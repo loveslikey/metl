@@ -110,7 +110,7 @@ public class TableColumnSelectWindow extends ResizableWindow implements ValueCha
     String encoding = "UTF-8";
 
     public TableColumnSelectWindow(ApplicationContext context, Model model) {
-        super("Import Model Entity and Attributes");
+        super("导入模型实体和属性");
         this.context = context;
         this.model = model;
 
@@ -121,9 +121,9 @@ public class TableColumnSelectWindow extends ResizableWindow implements ValueCha
         layout.setSpacing(true);
         layout.setMargin(true);
         layout.setSizeFull();
-        layout.addComponent(new Label("Import Entity and Attributes from a database, csv file or source file header row into the model."));
+        layout.addComponent(new Label("从数据库、csv文件或包含头行的源文件导入实体和属性。"));
 
-        optionGroup = new OptionGroup("Select the location of the model.");
+        optionGroup = new OptionGroup("选择模型位置。");
         optionGroup.addItem(OPTION_DB);
         optionGroup.addItem(OPTION_REL_FILE);
         optionGroup.addItem(OPTION_FILE_HEADER_ROW);
@@ -145,21 +145,21 @@ public class TableColumnSelectWindow extends ResizableWindow implements ValueCha
         dbTree = new DbTree(provider, new DefaultSettingsProvider(context.getConfigDir()));
         scrollable.setContent(dbTree);
 
-        relCsvUpload = new Upload("Comma separated file with 5 columns:  ENTITY, ATTRIBUTE, DESCRIPTION, DATA_TYPE, PK", this);
+        relCsvUpload = new Upload("5列以逗号分隔的文件:  ENTITY, ATTRIBUTE, DESCRIPTION, DATA_TYPE, PK", this);
         relCsvUpload.addSucceededListener(this);
         relCsvUpload.setButtonCaption(null);
 
-        fileHeaderEntity = new TextField("Entity Name");
+        fileHeaderEntity = new TextField("实体名称");
         fileHeaderEntity.setColumns(25);
         fileHeaderEntity.setNullRepresentation("");
         fileHeaderEntity.setRequired(true);
 
-        fileHeaderDelimiter = new TextField("Header Row Delimiter", ",");
+        fileHeaderDelimiter = new TextField("标题行分隔符", ",");
         fileHeaderDelimiter.setColumns(5);
         fileHeaderDelimiter.setNullRepresentation("");
         fileHeaderDelimiter.setRequired(true);
         
-        fileHeaderUpload = new Upload("Source file containing a header row to use as attributes (will be created as VARCHAR type, no PK)", this);
+        fileHeaderUpload = new Upload("包含属性名称行的源文件（将会被创建为VARCHAR类型，不包含主键）", this);
         fileHeaderUpload.addSucceededListener(this);
         fileHeaderUpload.setButtonCaption(null);
 
@@ -168,9 +168,9 @@ public class TableColumnSelectWindow extends ResizableWindow implements ValueCha
         rebuildOptionLayout();
         addComponent(layout, 1);
 
-        Button refreshButton = new Button("Refresh");
-        Button cancelButton = new Button("Cancel");
-        Button selectButton = new Button("Import");
+        Button refreshButton = new Button("刷新");
+        Button cancelButton = new Button("取消");
+        Button selectButton = new Button("导入");
         addComponent(buildButtonFooter(refreshButton, cancelButton, selectButton));
 
         cancelButton.addClickListener(event -> close());
@@ -294,18 +294,18 @@ public class TableColumnSelectWindow extends ResizableWindow implements ValueCha
         	ModelEntity entity = null;
             while (csvReader.readRecord()) {
             	if (csvReader.getColumnCount() != 5) {
-            		throw new IllegalStateException("The model input file is not in a valid format.  Please verify the file contains 5 columns comma separated. Entity,Attribute,Description,Type,PK");
+            		throw new IllegalStateException("模型输入文件格式不正确，请验证文件是否包含以逗号分隔的五列，ENTITY, ATTRIBUTE, DESCRIPTION, DATA_TYPE, PK。");
             	}
             	
             	if (csvReader.get(0) != null && isNotBlank(csvReader.get(0).toString())) {
             		entityName = csvReader.get(0).toString();
             		firstRec = false;
             	} else if (firstRec) {
-            		throw new IllegalStateException("The model input file is missing the Entity Name.  Please verify the file is formatted properly. Entity,Attribute,Description,Type,PK");
+            		throw new IllegalStateException("这个模型导入文件缺少了实体名称，请检查文件格式是否正确，ENTITY, ATTRIBUTE, DESCRIPTION, DATA_TYPE, PK。");
             	}
             	
             	if (csvReader.get(1) == null || csvReader.get(1).toString() == "") {
-            		throw new IllegalStateException("The model input file is missing an Attribute Name.  Please verify the file is formatted properly. Entity,Attribute,Description,Type,PK");
+            		throw new IllegalStateException("这个模型导入文件缺少了属性名称，请检查文件格式是否正确，ENTITY, ATTRIBUTE, DESCRIPTION, DATA_TYPE, PK。");
             	}
             	attributeName = csvReader.get(1).toString();
             	description = csvReader.get(2) != null ? csvReader.get(2).toString() : "";

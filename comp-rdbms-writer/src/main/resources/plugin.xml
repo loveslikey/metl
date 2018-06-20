@@ -28,7 +28,7 @@
              outputMessageType='text'
              resourceCategory='datasource'
              supportsMultipleThreads='true'>
-    <name>RDBMS Writer</name>
+    <name>RDBMS写入器</name>
     <className>org.jumpmind.metl.core.runtime.component.RdbmsWriter</className>
     <keywords>database,db,dml,insert,update,delete,crud</keywords>
     <description></description>
@@ -36,76 +36,76 @@
       <setting id='catalog'
                required='false'
                type='text'>
-        <name>Catalog</name>
+        <name>编目分类</name>
       </setting>
       <setting id='schema'
                required='false'
                type='text'>
-        <name>Schema</name>
+        <name>大纲</name>
       </setting>
       <setting id='replace'
                required='false'
                type='boolean'>
-        <name>Replace rows if they exist</name>
+        <name>如果存在替换行</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='update.first'
                required='false'
                type='boolean'>
-        <name>Update rows first instead of insert</name>
+        <name>先更新行而不是先插入</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='insert.fallback'
                required='false'
                type='boolean'>
-        <name>Fallback to insert if no rows updated</name>
+        <name>如果更新失败则返回执行插入</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='quote.identifiers'
                required='false'
                type='boolean'>
-        <name>Quote table and column names</name>
+        <name>将表和列名引用起来</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='fit.to.column'
                required='false'
                type='boolean'>
-        <name>Trim character data to fit within column</name>
+        <name>裁剪字符数据以适应列</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='continue.on.error'
                required='false'
                type='boolean'>
-        <name>Continue on Error</name>
+        <name>错误继续</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='batch.mode'
                required='false'
                type='boolean'>
-        <name>Batch Mode</name>
+        <name>批处理模式</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='table.auto.create'
                required='false'
                type='boolean'>
-        <name>Create table if missing</name>
+        <name>缺少表则创建表</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='use.cached.table.metadata'
                required='false'
                type='boolean'>
-        <name>Use Previously Cached Table Metadata</name>
+        <name>使用以前缓存的表数据</name>
         <defaultValue>false</defaultValue>
-      </setting>      
+      </setting>
       <setting id='table.prefix'
                required='false'
                type='text'>
-        <name>Table Prefix</name>
+        <name>表前缀</name>
       </setting>
       <setting id='table.suffix'
                required='false'
                type='text'>
-        <name>Table Suffix</name>
+        <name>表后缀</name>
       </setting>
     </settings>
   </component>

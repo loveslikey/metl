@@ -191,9 +191,9 @@ public class PropertySheet extends AbsoluteLayout {
             }
         }
         if (components.size() != 0 && !readOnly) {
-            formLayout.addComponent(buildOptionGroup("Enabled", ENABLED, components));
-            formLayout.addComponent(buildOptionGroup("Log Input", LOG_INPUT, components));
-            formLayout.addComponent(buildOptionGroup("Log Output", LOG_OUTPUT, components));
+            formLayout.addComponent(buildOptionGroup("启用", ENABLED, components));
+            formLayout.addComponent(buildOptionGroup("输入日志", LOG_INPUT, components));
+            formLayout.addComponent(buildOptionGroup("输出日志", LOG_OUTPUT, components));
         }
     }
 
@@ -218,7 +218,7 @@ public class PropertySheet extends AbsoluteLayout {
     }
 
     protected void addResourceProperties(FormLayout formLayout, Resource resource) {
-        TextField textField = new TextField("Resource Type");
+        TextField textField = new TextField("资源类型");
         textField.setValue(resource.getType());
         textField.setReadOnly(true);
         formLayout.addComponent(textField);
@@ -228,7 +228,7 @@ public class PropertySheet extends AbsoluteLayout {
         XMLComponentDefinition componentDefintion = context.getDefinitionFactory().getComponentDefinition(component.getProjectVersionId(),
                 component.getType());
         addComponentName(formLayout, component);
-        TextField textField = new TextField("Component Type");
+        TextField textField = new TextField("组件类型");
         textField.setValue(componentDefintion.getName());
         textField.setReadOnly(true);
         formLayout.addComponent(textField);
@@ -252,7 +252,7 @@ public class PropertySheet extends AbsoluteLayout {
             if ((componentDefintion.getOutputMessageType() == MessageType.ENTITY
                     || (componentDefintion.getOutputMessageType() == MessageType.ANY && componentDefintion.isShowOutputModel()))
                     && !componentDefintion.isInputOutputModelsMatch()) {
-                final AbstractSelect combo = new ComboBox("Output Model");
+                final AbstractSelect combo = new ComboBox("输出模型");
                 combo.setImmediate(true);
                 combo.setNullSelectionAllowed(true);
                 List<ModelName> models = new ArrayList<>(configurationService.findModelsInProject(projectVersionId));
@@ -292,7 +292,7 @@ public class PropertySheet extends AbsoluteLayout {
 
     protected void addComponentName(FormLayout formLayout, final Component component) {
 
-        ImmediateUpdateTextField textField = new ImmediateUpdateTextField("Component Name") {
+        ImmediateUpdateTextField textField = new ImmediateUpdateTextField("组件名称") {
             private static final long serialVersionUID = 1L;
 
             protected void save(String text) {
@@ -307,7 +307,7 @@ public class PropertySheet extends AbsoluteLayout {
         };
         textField.setValue(component.getName());
         textField.setRequired(true);
-        textField.setDescription("Name for the component on the flow");
+        textField.setDescription("组件在流程中的名称");
         formLayout.addComponent(textField);
     }
 
@@ -318,7 +318,7 @@ public class PropertySheet extends AbsoluteLayout {
             String projectVersionId = step.getComponent().getProjectVersionId();
             if (componentDefintion.getInputMessageType() == MessageType.ENTITY
                     || (componentDefintion.getInputMessageType() == MessageType.ANY && componentDefintion.isShowInputModel())) {
-                final AbstractSelect combo = new ComboBox("Input Model");
+                final AbstractSelect combo = new ComboBox("输入模型");
                 combo.setImmediate(true);
                 combo.setNullSelectionAllowed(true);
                 List<ModelName> models = new ArrayList<>(configurationService.findModelsInProject(projectVersionId));
@@ -367,7 +367,7 @@ public class PropertySheet extends AbsoluteLayout {
             FlowStep step = getSingleFlowStep();
             if (componentDefintion.getResourceCategory() != null && componentDefintion.getResourceCategory() != ResourceCategory.NONE
                     && step != null) {
-                final AbstractSelect resourcesCombo = new ComboBox("Resource");
+                final AbstractSelect resourcesCombo = new ComboBox("资源");
                 resourcesCombo.setImmediate(true);
                 String projectVersionId = step.getComponent().getProjectVersionId();
                 Set<XMLResourceDefinition> types = context.getDefinitionFactory().getResourceDefinitions(projectVersionId,

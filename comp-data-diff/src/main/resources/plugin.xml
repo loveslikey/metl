@@ -27,32 +27,32 @@
              inputOutputModelsMatch='true'
              outputMessageType='entity'
              resourceCategory='none'>
-    <name>Model Data Diff</name>
+    <name>模型数据比较器</name>
     <className>org.jumpmind.metl.core.runtime.component.DataDiff</className>
     <keywords>change</keywords>
     <settings>
       <setting id='source.1'
                required='true'
                type='source_step'>
-        <name>Source of Old Version</name>
+        <name>旧版本数据来源</name>
       </setting>
       <setting id='source.2'
                required='true'
                type='source_step'>
-        <name>Source of New Version</name>
+        <name>新版本数据来源</name>
       </setting>
       <setting id='rows.per.message'
                required='false'
                type='integer'>
-        <name>Rows/Msg</name>
+        <name>n行/消息</name>
         <defaultValue>1000</defaultValue>
       </setting>
       <setting id='in.memory.compare'
                required='true'
                type='boolean'>
-        <name>In Memory Compare</name>
+        <name>在内存中比较</name>
         <defaultValue>true</defaultValue>
       </setting>
     </settings>
-  </component> 
+  </component>
 </definitions>

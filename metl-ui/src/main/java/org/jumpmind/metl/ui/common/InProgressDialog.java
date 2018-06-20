@@ -63,7 +63,7 @@ public class InProgressDialog<T> extends Window {
         this.failureMessage = failureMessage;
         setWidth(300, Unit.PIXELS);
         setHeight(150, Unit.PIXELS);
-        setCaption("Working...");
+        setCaption("进行中...");
         setModal(true);
 
         VerticalLayout content = new VerticalLayout();
@@ -88,7 +88,7 @@ public class InProgressDialog<T> extends Window {
         HorizontalLayout buttonBar = new HorizontalLayout();
         buttonBar.setWidth(100, Unit.PERCENTAGE);
         buttonBar.addStyleName(ValoTheme.WINDOW_BOTTOM_TOOLBAR);
-        Button dismiss = new Button("Dismiss");
+        Button dismiss = new Button("撤销");
         dismiss.addStyleName(ValoTheme.BUTTON_PRIMARY);
         dismiss.setClickShortcut(KeyCode.ENTER);
         dismiss.addClickListener(new ClickListener() {

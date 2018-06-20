@@ -27,88 +27,88 @@
              showInputModel='true'
              outputMessageType='any'
              resourceCategory='none'>
-    <name>Assert</name>
+    <name>断言</name>
     <className>org.jumpmind.metl.core.runtime.component.Assert</className>
     <keywords>test</keywords>
     <settings>
       <setting id='expected.entity.messages.count'
                required='false'
                type='integer'>
-        <name>Expected Number of Entity Messages</name>
+        <name>预期实体消息数</name>
         <defaultValue>0</defaultValue>
       </setting>
       <setting id='expected.entity.couunt.per.message'
                required='false'
                type='integer'>
-        <name>Expected Number of Entities Per Entity Message</name>
+        <name>预期实体消息的实体数量</name>
       </setting>
       <setting id='expected.distinct.entities.count'
                required='false'
                type='integer'>
-        <name>Expected Distinct Types of Entities</name>
+        <name>预期不同类型实体数量</name>
         <defaultValue></defaultValue>
       </setting>
       <setting id='expected.distinct.attributes.count'
                required='false'
                type='integer'>
-        <name>Expected Distinct Types of Attributes</name>
+        <name>预期不同类型属性数量</name>
         <defaultValue></defaultValue>
-      </setting>            
+      </setting>
       <setting id='expected.text.messages.count'
                required='false'
                type='integer'>
-        <name>Expected Number of Text Messages</name>
+        <name>预期文本消息数量</name>
         <defaultValue>0</defaultValue>
       </setting>
       <setting id='expected.binary.messages.count'
                required='false'
                type='integer'>
-        <name>Expected Number of Binary Messages</name>
+        <name>预期二进制消息数量</name>
         <defaultValue>0</defaultValue>
       </setting>
       <setting id='expected.control.messages.count'
                required='false'
                type='integer'>
-        <name>Expected Number of Control Messages</name>
+        <name>预期控制消息数量</name>
         <defaultValue>0</defaultValue>
       </setting>
       <setting id='expected.empty.payload.messages.count'
                required='false'
                type='integer'>
-        <name>Expected Number of Empty Payload Messages</name>
+        <name>预期空负载消息数量</name>
         <defaultValue>0</defaultValue>
       </setting>
       <setting id='expected.custom.header.pairs'
                required='false'
                type='multiline_text'>
-        <name>Expected Custom Content Message Header Pairs</name>
+        <name>预期自定义内容消息标题对</name>
       </setting>
       <setting id='expected.custom.control.header.pairs'
                required='false'
                type='multiline_text'>
-        <name>Expected Custom Control Message Header Pairs</name>
-      </setting>      
-            
+        <name>预期自定义控制消息标题对</name>
+      </setting>
+
       <setting id='expected.text.payload'
                required='false'
                type='multiline_text'>
-        <name>Expected Text Payload</name>
-      </setting>      
+        <name>预期文本负载</name>
+      </setting>
       <setting id='sql.datasource'
                required='false'
                type='datasource_resource'>
-        <name>Assert DataSource</name>
+        <name>断言数据源</name>
         <defaultValue>0</defaultValue>
       </setting>
       <setting id='sql'
                required='true'
                type='multiline_text'>
-        <name>Assert Sql</name>
+        <name>断言Sql语句</name>
       </setting>
       <setting id='expected.sql.count'
                required='false'
                type='integer'>
-        <name>Expected Count from Assert Sql</name>
+        <name>从断言Sql语句中预期的记录数</name>
         <defaultValue>0</defaultValue>
       </setting>
     </settings>

@@ -96,12 +96,12 @@ public class ValidateFlowDeploymentPanel extends VerticalLayout {
         HeaderCell existingDeployHdr = hdr1.join("existingDeployName","existingDeployVersion","existingDeployType");
         existingDeployHdr.setText("Existing Deployment");
         existingDeployHdr.setStyleName("header-center");
-        grid.getColumn("newDeployName").setHeaderCaption("Name");
-        grid.getColumn("newDeployVersion").setHeaderCaption("Version");
-        grid.getColumn("newDeployType").setHeaderCaption("Type");
-        grid.getColumn("existingDeployName").setHeaderCaption("Name");
-        grid.getColumn("existingDeployVersion").setHeaderCaption("Version");
-        grid.getColumn("existingDeployType").setHeaderCaption("Type");
+        grid.getColumn("newDeployName").setHeaderCaption("名称");
+        grid.getColumn("newDeployVersion").setHeaderCaption("版本");
+        grid.getColumn("newDeployType").setHeaderCaption("类型");
+        grid.getColumn("existingDeployName").setHeaderCaption("名称");
+        grid.getColumn("existingDeployVersion").setHeaderCaption("版本");
+        grid.getColumn("existingDeployType").setHeaderCaption("类型");
     }
     
     protected void buildGrid() {

@@ -1,14 +1,17 @@
+import org.apache.tools.ant.filters.FixCrLfFilter
+import org.apache.tools.ant.filters.ReplaceTokens
 import java.text.SimpleDateFormat
+import java.util.Date
 
-apply from: metlAssembleDir + '/asciidoc.gradle'
+    apply from: metlAssembleDir + '/asciidoc.gradle'
 
     group = 'org.jumpmind.metl'
         
     apply plugin: 'eclipse-wtp'
     apply plugin: 'java'
-
+    apply plugin: 'license-report'
 	apply plugin: 'jacoco'
-
+	apply plugin: 'license'
 	apply plugin: 'maven'
 	
 	ext {
@@ -38,7 +41,12 @@ apply from: metlAssembleDir + '/asciidoc.gradle'
         }
     }   
     
-
+    license {
+        header rootProject.file('HEADER')
+        strictCheck true
+        includes(["**/*.java", "**/*.properties", "**/*.xml"])
+        excludes(["**/AppWidgetSet.gwt.xml"])
+    }     
     
     ext {
         majorMinorVersion = version.substring(0, version.indexOf(".", version.indexOf(".")+ 1))
@@ -100,6 +108,7 @@ apply from: metlAssembleDir + '/asciidoc.gradle'
     if (JavaVersion.current().isJava8Compatible()) {
       allprojects {
         tasks.withType(Javadoc) {
+            options.encoding = "UTF-8"
           options.addStringOption('Xdoclint:none', '-quiet')
           options.addStringOption("sourcepath", "")
           classpath += [configurations.provided]

@@ -88,45 +88,45 @@ public class ProjectVersionSettingsPanel extends Panel implements IUiPanel {
         VerticalLayout content = new VerticalLayout();
         setContent(content);
         
-        addHeader("Project Version Settings");
+        addHeader("项目版本设置");
         
         FormLayout formLayout = new FormLayout();
         formLayout.addStyleName(ValoTheme.FORMLAYOUT_LIGHT);
-        DateField releaseDateField = new DateField("Release Date");
+        DateField releaseDateField = new DateField("发布日期");
         releaseDateField.setValue(projectVersion.getReleaseDate());
         releaseDateField.setEnabled(false);        
         formLayout.addComponent(releaseDateField);
         
-        CheckBox archiveCheckBox = new CheckBox("Archived");
+        CheckBox archiveCheckBox = new CheckBox("归档");
         archiveCheckBox.setImmediate(true);
         archiveCheckBox.setValue(projectVersion.isArchived());
         archiveCheckBox.addValueChangeListener(e->toggleArchived(e));
         formLayout.addComponent(archiveCheckBox);
         content.addComponent(formLayout);
 
-        addHeader("Component Plugin Settings");
+        addHeader("组件插件设置");
 
         ButtonBar buttonBar = new ButtonBar();
         content.addComponent(buttonBar);
-        buttonBar.addButton("Refresh", Icons.REFRESH, (event)->refreshPlugins()); 
-        updateButton = buttonBar.addButton("Update", Icons.UPDATE, (event)->update());        
-        pinButton =  buttonBar.addButton("Pin", FontAwesome.CHECK_CIRCLE_O, (event)->pin(true));
-        unpinButton = buttonBar.addButton("Unpin", FontAwesome.CIRCLE_O, (event)->pin(false));
+        buttonBar.addButton("刷新", Icons.REFRESH, (event)->refreshPlugins());
+        updateButton = buttonBar.addButton("更新", Icons.UPDATE, (event)->update());
+        pinButton =  buttonBar.addButton("锁定", FontAwesome.CHECK_CIRCLE_O, (event)->pin(true));
+        unpinButton = buttonBar.addButton("不锁定", FontAwesome.CIRCLE_O, (event)->pin(false));
 
         componentPluginsGrid = new Grid();
         componentPluginsGrid.setSelectionMode(SelectionMode.MULTI);
         componentPluginsGrid.setHeightMode(HeightMode.ROW);
         componentPluginsGrid.setWidth(100, Unit.PERCENTAGE);
-        componentPluginsGrid.addColumn("definitionType", String.class).setHeaderCaption("Plugin Type").setEditable(false);
-        componentPluginsGrid.addColumn("definitionName", String.class).setHeaderCaption("Name").setEditable(false);
-        componentPluginsGrid.addColumn("definitionTypeId", String.class).setHeaderCaption("Type").setEditable(false);
-        componentPluginsGrid.addColumn("pluginId", String.class).setHeaderCaption("Plugin").setEditable(false);
-        componentPluginsGrid.addColumn("enabled", Boolean.class).setHeaderCaption("Enabled").setWidth(75);
-        componentPluginsGrid.addColumn("pinVersion", Boolean.class).setHeaderCaption("Pin Version").setWidth(95);
+        componentPluginsGrid.addColumn("definitionType", String.class).setHeaderCaption("插件类型").setEditable(false);
+        componentPluginsGrid.addColumn("definitionName", String.class).setHeaderCaption("名称").setEditable(false);
+        componentPluginsGrid.addColumn("definitionTypeId", String.class).setHeaderCaption("类型").setEditable(false);
+        componentPluginsGrid.addColumn("pluginId", String.class).setHeaderCaption("插件").setEditable(false);
+        componentPluginsGrid.addColumn("enabled", Boolean.class).setHeaderCaption("启用").setWidth(75);
+        componentPluginsGrid.addColumn("pinVersion", Boolean.class).setHeaderCaption("锁定版本").setWidth(95);
         
         final double VERSION_WIDTH = 190;
         
-        componentPluginsGrid.addColumn("artifactVersion", String.class).setHeaderCaption("Version").setWidth(VERSION_WIDTH)
+        componentPluginsGrid.addColumn("artifactVersion", String.class).setHeaderCaption("版本").setWidth(VERSION_WIDTH)
                 .setEditable(false);
         componentPluginsGrid.addColumn("updatesAvailable", String.class).setHeaderCaption("").setWidth(55)
                 .setEditable(false).setRenderer(new HtmlRenderer());

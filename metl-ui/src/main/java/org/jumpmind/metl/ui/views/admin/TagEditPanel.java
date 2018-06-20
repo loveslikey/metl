@@ -64,7 +64,7 @@ public class TagEditPanel extends VerticalLayout implements IUiPanel {
         FormLayout form = new FormLayout();
         form.setSpacing(true);
         
-        TextField nameField = new TextField("Name", StringUtils.trimToEmpty(tag.getName()));
+        TextField nameField = new TextField("标签名称", StringUtils.trimToEmpty(tag.getName()));
         form.addComponent(nameField);
         nameField.addValueChangeListener(new NameChangeListener());
         nameField.focus();
@@ -78,7 +78,7 @@ public class TagEditPanel extends VerticalLayout implements IUiPanel {
         colorPickerField.addColorChangeListener(new ColorFieldListener());         
 
         HorizontalLayout hLayout = new HorizontalLayout();
-        hLayout.setCaption("Color");
+        hLayout.setCaption("颜色");
         hLayout.addComponent(colorPickerField);
                 
         form.addComponent(hLayout);

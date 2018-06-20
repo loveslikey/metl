@@ -27,7 +27,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='none'>
-    <name>Format XML</name>
+    <name>格式化XML</name>
     <className>org.jumpmind.metl.core.runtime.component.XmlFormatter</className>
     <keywords>files</keywords>
     <description></description>
@@ -35,7 +35,7 @@
       <setting id='run.when'
                required='false'
                type='choice'>
-        <name>Run When</name>
+        <name>当...时运行</name>
         <defaultValue>PER MESSAGE</defaultValue>
         <choices>
           <choice>PER UNIT OF WORK</choice>
@@ -79,7 +79,7 @@
              outputMessageType='entity'
              resourceCategory='none'
              supportsMultipleThreads='true'>
-    <name>Simple XML Parser</name>
+    <name>简单XML解析器</name>
     <className>org.jumpmind.metl.core.runtime.component.XmlParser</className>
     <keywords>parse,file,files,xml</keywords>
     <description></description>
@@ -87,19 +87,19 @@
       <setting id='rows.per.message'
                required='true'
                type='integer'>
-        <name>Rows/Msg</name>
+        <name>n行/消息</name>
         <defaultValue>1000</defaultValue>
       </setting>
       <setting id='optimize.for.speed'
                required='false'
                type='boolean'>
-        <name>Optimize for speed. Supports only basic XPath</name>
+        <name>优化速度，仅支持基本的XPath</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='xml.formatter.ignore.namespace'
                required='false'
                type='boolean'>
-        <name>Ignore namespaces for XPath matching</name>
+        <name>在匹配XPath时忽略命名空间</name>
         <defaultValue>true</defaultValue>
       </setting>
     </settings>
@@ -111,7 +111,7 @@
              outputMessageType='entity'
              resourceCategory='none'
              supportsMultipleThreads='true'>
-    <name>XPath XML Parser</name>
+    <name>XPath XML解析器</name>
     <className>org.jumpmind.metl.core.runtime.component.XPathXmlParser</className>
     <keywords>parse,file,files,xml</keywords>
     <description></description>
@@ -119,13 +119,13 @@
       <setting id='rows.per.message'
                required='true'
                type='integer'>
-        <name>Rows/Msg</name>
+        <name>n行/消息</name>
         <defaultValue>1000</defaultValue>
       </setting>
       <setting id='xml.formatter.ignore.namespace'
                required='false'
                type='boolean'>
-        <name>Ignore namespaces for XPath matching</name>
+        <name>在匹配XPath时忽略命名空间</name>
         <defaultValue>true</defaultValue>
       </setting>
     </settings>
@@ -136,7 +136,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='none'>
-    <name>XSLT Processor</name>
+    <name>XSLT处理器</name>
     <className>org.jumpmind.metl.core.runtime.component.XsltProcessor</className>
     <keywords>xml</keywords>
     <description></description>
@@ -144,25 +144,25 @@
       <setting id='xslt.processor.output.all.attributes'
                required='false'
                type='boolean'>
-        <name>Output all attributes</name>
+        <name>输出所有属性</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='xslt.processor.parameter.replacement'
                required='false'
                type='boolean'>
-        <name>Parameter replacement</name>
+        <name>参数替换</name>
         <defaultValue>true</defaultValue>
       </setting>
       <setting id='xslt.processor.xml.omit.declaration'
                required='false'
                type='boolean'>
-        <name>Omit XML Declaration</name>
+        <name>省略XML声明</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='xslt.processor.xml.format'
                required='false'
                type='choice'>
-        <name>XML Format</name>
+        <name>XML格式化方式</name>
         <defaultValue>Pretty</defaultValue>
         <choices>
           <choice>Pretty</choice>
@@ -178,7 +178,7 @@
              inputOutputModelsMatch='false'
              outputMessageType='text'
              resourceCategory='streamable'>
-    <name>XML Reader</name>
+    <name>XML读取器</name>
     <className>org.jumpmind.metl.core.runtime.component.XmlReader</className>
     <keywords>files,file</keywords>
     <description></description>
@@ -186,7 +186,7 @@
       <setting id='run.when'
                required='false'
                type='choice'>
-        <name>Run When</name>
+        <name>当...时运行</name>
         <defaultValue>PER UNIT OF WORK</defaultValue>
         <choices>
           <choice>PER UNIT OF WORK</choice>
@@ -196,23 +196,23 @@
       <setting id='get.file.name.from.message'
                required='false'
                type='boolean'>
-        <name>Get File Name From Message</name>
+        <name>从消息获取文件名</name>
       </setting>
       <setting id='relative.path'
                required='false'
                type='text'>
-        <name>File Path</name>
+        <name>文件路径</name>
       </setting>
       <setting id='read.tag'
                required='false'
                type='text'>
-        <name>Tag to find and send, defaults to root</name>
+        <name>查找并发送的XML节点，默认为根节点</name>
         <description></description>
       </setting>
       <setting id='read.tags.per.message'
                required='false'
                type='integer'>
-        <name>Number of read tags to send together</name>
+        <name>一起发送的XML读取的节点数量</name>
       </setting>
     </settings>
   </component>

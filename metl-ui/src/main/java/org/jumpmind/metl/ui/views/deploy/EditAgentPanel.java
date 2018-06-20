@@ -119,12 +119,12 @@ public class EditAgentPanel extends VerticalLayout implements IUiPanel, IBackgro
         editAgentLayout.addStyleName(ValoTheme.LAYOUT_HORIZONTAL_WRAPPING);
         addComponent(editAgentLayout);
 
-        Button parameterButton = new Button("Parameters");
+        Button parameterButton = new Button("参数");
         parameterButton.addClickListener(new ParameterClickListener());
         editAgentLayout.addComponent(parameterButton);
         editAgentLayout.setComponentAlignment(parameterButton, Alignment.BOTTOM_LEFT);
 
-        TextField executionThreadsField = new ImmediateUpdateTextField("Execution Threads") {
+        TextField executionThreadsField = new ImmediateUpdateTextField("执行线程") {
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -135,7 +135,7 @@ public class EditAgentPanel extends VerticalLayout implements IUiPanel, IBackgro
                     context.getOperationsService().save((AbstractObject) agent);
                     EditAgentPanel.this.context.getAgentManager().refresh(agent);
                 } catch (NumberFormatException ex) {
-                    NotifyDialog.show("Number required", "Please enter a valid number", null, Type.WARNING_MESSAGE);
+                    NotifyDialog.show("数量不能为空", "请输入一个有效的数字", null, Type.WARNING_MESSAGE);
                 }
             }
         };
@@ -143,9 +143,9 @@ public class EditAgentPanel extends VerticalLayout implements IUiPanel, IBackgro
         editAgentLayout.addComponent(executionThreadsField);
         editAgentLayout.setComponentAlignment(executionThreadsField, Alignment.BOTTOM_LEFT);
 
-        CheckBox autoRefresh = new CheckBox("Refresh?", Boolean.valueOf(agent.isAutoRefresh()));
+        CheckBox autoRefresh = new CheckBox("更新?", Boolean.valueOf(agent.isAutoRefresh()));
         autoRefresh.setImmediate(true);
-        autoRefresh.setDescription("Automatically refresh flow from database before execution?");
+        autoRefresh.setDescription("执行开始之前从数据库自动更新流程?");
         autoRefresh.addValueChangeListener(event -> {
             agent.setAutoRefresh(autoRefresh.getValue());
             EditAgentPanel.this.context.getOperationsService().save((AbstractObject) agent);
@@ -154,8 +154,8 @@ public class EditAgentPanel extends VerticalLayout implements IUiPanel, IBackgro
         editAgentLayout.addComponent(autoRefresh);
         editAgentLayout.setComponentAlignment(autoRefresh, Alignment.BOTTOM_LEFT);
 
-        CheckBox showInExploreViewField = new CheckBox("Explore?", Boolean.valueOf(agent.isShowResourcesInExploreView()));
-        showInExploreViewField.setDescription("Show resources deployed to this agent in the explore view");
+        CheckBox showInExploreViewField = new CheckBox("探测?", Boolean.valueOf(agent.isShowResourcesInExploreView()));
+        showInExploreViewField.setDescription("在探测视图中展示部署在该代理上的资源");
         showInExploreViewField.setImmediate(true);
         showInExploreViewField.addValueChangeListener(event -> {
             agent.setShowResourcesInExploreView(showInExploreViewField.getValue());
@@ -165,8 +165,8 @@ public class EditAgentPanel extends VerticalLayout implements IUiPanel, IBackgro
         editAgentLayout.addComponent(showInExploreViewField);
         editAgentLayout.setComponentAlignment(showInExploreViewField, Alignment.BOTTOM_LEFT);
 
-        CheckBox allowTestFlowsField = new CheckBox("Allow Tests?", Boolean.valueOf(agent.isAllowTestFlows()));
-        allowTestFlowsField.setDescription("Allow test flows to be deployed to this agent");
+        CheckBox allowTestFlowsField = new CheckBox("允许测试?", Boolean.valueOf(agent.isAllowTestFlows()));
+        allowTestFlowsField.setDescription("允许将测试流程部署到此代理");
         allowTestFlowsField.setImmediate(true);
         allowTestFlowsField.addValueChangeListener(event -> {
             agent.setAllowTestFlows(allowTestFlowsField.getValue());
@@ -179,22 +179,22 @@ public class EditAgentPanel extends VerticalLayout implements IUiPanel, IBackgro
         ButtonBar buttonBar = new ButtonBar();
         addComponent(buttonBar);
 
-        addDeploymentButton = buttonBar.addButton("Deploy", Icons.DEPLOYMENT);
+        addDeploymentButton = buttonBar.addButton("部署", Icons.DEPLOYMENT);
         addDeploymentButton.addClickListener(e->new DeployDialog(context, this).show());
 
-        editButton = buttonBar.addButton("Edit", FontAwesome.EDIT);
+        editButton = buttonBar.addButton("编辑", FontAwesome.EDIT);
         editButton.addClickListener(event -> editClicked());
 
-        enableButton = buttonBar.addButton("Enable", FontAwesome.CHAIN);
+        enableButton = buttonBar.addButton("启用", FontAwesome.CHAIN);
         enableButton.addClickListener(event -> enableClicked());
 
-        disableButton = buttonBar.addButton("Disable", FontAwesome.CHAIN_BROKEN);
+        disableButton = buttonBar.addButton("禁用", FontAwesome.CHAIN_BROKEN);
         disableButton.addClickListener(event -> disableClicked());
 
-        removeButton = buttonBar.addButton("Remove", FontAwesome.TRASH_O);
+        removeButton = buttonBar.addButton("删除", FontAwesome.TRASH_O);
         removeButton.addClickListener(event -> removeClicked());
 
-        runButton = buttonBar.addButton("Run", Icons.RUN);
+        runButton = buttonBar.addButton("执行", Icons.RUN);
         runButton.addClickListener(event -> runClicked());
 
         container = new BeanItemContainer<AgentDeploymentSummary>(AgentDeploymentSummary.class);
@@ -216,7 +216,7 @@ public class EditAgentPanel extends VerticalLayout implements IUiPanel, IBackgro
 
         table.setContainerDataSource(container);
         table.setVisibleColumns("name", "projectName", "projectVersionLabel", "type", "status", "logLevel", "startType", "startExpression");
-        table.setColumnHeaders("Deployment", "Project", "Version", "Type", "Status", "Log Level", "Start Type", "Start Expression");
+        table.setColumnHeaders("部署", "项目", "版本", "类型", "状态", "日志级别", "启动类型", "启动表达式");
         table.addGeneratedColumn("status", new StatusRenderer());
         table.addItemClickListener(new TableItemClickListener());
         table.addValueChangeListener(new TableValueChangeListener());
@@ -386,13 +386,13 @@ public class EditAgentPanel extends VerticalLayout implements IUiPanel, IBackgro
             FlowName flow = context.getConfigurationService().findFlowName(deployment.getFlowId());
             if (flow.isWebService()) {
                 CallWebServicePanel panel = new CallWebServicePanel(deployment, context, tabbedPanel);
-                tabbedPanel.addCloseableTab(deployment.getId(), "Call " + deployment.getName(), Icons.RUN, panel);
+                tabbedPanel.addCloseableTab(deployment.getId(), "调用 " + deployment.getName(), Icons.RUN, panel);
             } else {
                 String executionId = agentManager.getAgentRuntime(deployment.getAgentId()).scheduleNow(context.getUser().getLoginId(),
                         deployment);
                 if (executionId != null) {
                     ExecutionRunPanel logPanel = new ExecutionRunPanel(executionId, context, tabbedPanel, null);
-                    tabbedPanel.addCloseableTab(executionId, "Run " + deployment.getName(), Icons.LOG, logPanel);
+                    tabbedPanel.addCloseableTab(executionId, "执行 " + deployment.getName(), Icons.LOG, logPanel);
                 }
             }
         }

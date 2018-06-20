@@ -23,12 +23,12 @@
 <definitions>
   <component category='WRITER'
              id='Sql Executor'
-             showInputModel='true'             
+             showInputModel='true'
              inputMessageType='any'
              inputOutputModelsMatch='true'
              outputMessageType='text'
              resourceCategory='datasource'>
-    <name>Sql Executor</name>
+    <name>Sql执行器</name>
     <className>org.jumpmind.metl.core.runtime.component.SqlExecutor</className>
     <keywords>database,db,sql</keywords>
     <description></description>
@@ -39,7 +39,7 @@
       <setting id='run.when'
                required='false'
                type='choice'>
-        <name>Run When</name>
+        <name>当...时运行</name>
         <defaultValue>PER MESSAGE</defaultValue>
         <choices>
           <choice>PER UNIT OF WORK</choice>
@@ -49,7 +49,7 @@
       </setting>
       <setting id='sql.file'
                type='text'>
-        <name>File</name>
+        <name>文件</name>
       </setting>
       <setting id='sql'
                type='multiline_text'>

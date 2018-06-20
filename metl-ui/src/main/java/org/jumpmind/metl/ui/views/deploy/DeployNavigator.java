@@ -20,36 +20,6 @@
  */
 package org.jumpmind.metl.ui.views.deploy;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-
-import org.jumpmind.metl.core.model.AbstractNamedObject;
-import org.jumpmind.metl.core.model.AbstractObject;
-import org.jumpmind.metl.core.model.Agent;
-import org.jumpmind.metl.core.model.AgentName;
-import org.jumpmind.metl.core.model.Folder;
-import org.jumpmind.metl.core.model.FolderType;
-import org.jumpmind.metl.core.persist.IConfigurationService;
-import org.jumpmind.metl.core.util.AppConstants;
-import org.jumpmind.metl.ui.common.ApplicationContext;
-import org.jumpmind.metl.ui.common.EnableFocusTextField;
-import org.jumpmind.metl.ui.common.Icons;
-import org.jumpmind.metl.ui.common.ImportDialog;
-import org.jumpmind.metl.ui.common.TabbedPanel;
-import org.jumpmind.metl.ui.common.ImportDialog.IImportListener;
-import org.jumpmind.vaadin.ui.common.CommonUiUtils;
-import org.jumpmind.vaadin.ui.common.ConfirmDialog;
-import org.jumpmind.vaadin.ui.common.ConfirmDialog.IConfirmListener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.vaadin.data.Container;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -69,10 +39,7 @@ import com.vaadin.server.StreamResource;
 import com.vaadin.server.StreamResource.StreamSource;
 import com.vaadin.shared.MouseEventDetails.MouseButton;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.DefaultFieldFactory;
-import com.vaadin.ui.Field;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.*;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.Notification.Type;
@@ -83,9 +50,23 @@ import com.vaadin.ui.Tree.CollapseEvent;
 import com.vaadin.ui.Tree.CollapseListener;
 import com.vaadin.ui.Tree.ExpandEvent;
 import com.vaadin.ui.Tree.ExpandListener;
-import com.vaadin.ui.TreeTable;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+import org.jumpmind.metl.core.model.*;
+import org.jumpmind.metl.core.persist.IConfigurationService;
+import org.jumpmind.metl.core.util.AppConstants;
+import org.jumpmind.metl.ui.common.*;
+import org.jumpmind.metl.ui.common.ImportDialog.IImportListener;
+import org.jumpmind.vaadin.ui.common.CommonUiUtils;
+import org.jumpmind.vaadin.ui.common.ConfirmDialog;
+import org.jumpmind.vaadin.ui.common.ConfirmDialog.IConfirmListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @SuppressWarnings("serial")
 public class DeployNavigator extends VerticalLayout {
@@ -192,25 +173,25 @@ public class DeployNavigator extends VerticalLayout {
         leftMenuBar.addStyleName(ValoTheme.MENUBAR_BORDERLESS);
         leftMenuBar.setWidth(100, Unit.PERCENTAGE);
 
-        MenuItem fileMenu = leftMenuBar.addItem("File", null);
+        MenuItem fileMenu = leftMenuBar.addItem("文件", null);
         
-        MenuItem newMenu = fileMenu.addItem("New", null);
+        MenuItem newMenu = fileMenu.addItem("新建", null);
         
-        miImport = fileMenu.addItem("Import",new Command() {
+        miImport = fileMenu.addItem("导入",new Command() {
             @Override
             public void menuSelected(MenuItem selectedItem) {
                 importAgentData();
             }
         });
         
-        export = fileMenu.addItem("Export", new Command() {
+        export = fileMenu.addItem("导出", new Command() {
             @Override
             public void menuSelected(MenuItem selectedItem) {
                 exportAgentData();
             }
         });
 
-        newFolder = newMenu.addItem("Folder", new Command() {
+        newFolder = newMenu.addItem("文件夹", new Command() {
 
             @Override
             public void menuSelected(MenuItem selectedItem) {
@@ -218,7 +199,7 @@ public class DeployNavigator extends VerticalLayout {
             }
         });
 
-        newAgent = newMenu.addItem("Agent", new Command() {
+        newAgent = newMenu.addItem("代理", new Command() {
 
             @Override
             public void menuSelected(MenuItem selectedItem) {
@@ -226,9 +207,9 @@ public class DeployNavigator extends VerticalLayout {
             }
         });
 
-        MenuItem editMenu = leftMenuBar.addItem("Edit", null);
+        MenuItem editMenu = leftMenuBar.addItem("编辑", null);
 
-        open = editMenu.addItem("Open", new Command() {
+        open = editMenu.addItem("打开", new Command() {
 
             @Override
             public void menuSelected(MenuItem selectedItem) {
@@ -236,14 +217,14 @@ public class DeployNavigator extends VerticalLayout {
             }
         });
 
-        rename = editMenu.addItem("Rename", new Command() {
+        rename = editMenu.addItem("重命名", new Command() {
             @Override
             public void menuSelected(MenuItem selectedItem) {
                 startEditingItem((AbstractObject) treeTable.getValue());
             }
         });
 
-        delete = editMenu.addItem("Remove", new Command() {
+        delete = editMenu.addItem("删除", new Command() {
 
             @Override
             public void menuSelected(MenuItem selectedItem) {
@@ -488,8 +469,8 @@ public class DeployNavigator extends VerticalLayout {
 
     protected void handleDelete() {
         if (getSelectedFolder() != null) {
-            ConfirmDialog.show("Delete Folder?",
-                    "Are you sure you want to delete the selected folders?",
+            ConfirmDialog.show("删除文件夹?",
+                    "你确定删除选中的文件夹吗?",
                     new IConfirmListener() {
 
                         private static final long serialVersionUID = 1L;
@@ -503,8 +484,8 @@ public class DeployNavigator extends VerticalLayout {
                                     context.getConfigurationService().delete(folder);
                                 } catch (Exception ex) {
                                     log.error("", ex);
-                                    CommonUiUtils.notify("Could not delete the \""
-                                            + folder.getName() + "\" folder", Type.WARNING_MESSAGE);
+                                    CommonUiUtils.notify("不能删除 \""
+                                            + folder.getName() + "\" 文件夹", Type.WARNING_MESSAGE);
                                 }
                             }
                             refresh();
@@ -520,7 +501,7 @@ public class DeployNavigator extends VerticalLayout {
     }
 
     protected void importAgentData() {
-        ImportDialog.show("Import Config", "Click the upload button to import your config", new ImportConfigurationListener());
+        ImportDialog.show("导入配置", "单击上传按钮上传配置文件", new ImportConfigurationListener());
     }
     
     class ImportConfigurationListener implements IImportListener {
@@ -542,8 +523,8 @@ public class DeployNavigator extends VerticalLayout {
                 try {
                     return new ByteArrayInputStream(export.getBytes());
                 } catch (Exception e) {
-                    log.error("Failed to export configuration", e);
-                    CommonUiUtils.notify("Failed to export configuration.", Type.ERROR_MESSAGE);
+                    log.error("导出配置失败", e);
+                    CommonUiUtils.notify("导出配置文件失败。", Type.ERROR_MESSAGE);
                     return null;
                 }
 
@@ -624,8 +605,8 @@ public class DeployNavigator extends VerticalLayout {
     protected void deleteTreeItems(AbstractObject obj) {
         if (obj instanceof AgentName) {
             AgentName agentName = (AgentName) obj;
-            ConfirmDialog.show("Delete Agent?",
-                    "Are you sure you want to delete the '" + agentName.getName() + "' agent?",
+            ConfirmDialog.show("删除代理?",
+                    "你确定删除选中的 '" + agentName.getName() + "' 代理吗?",
                     () -> {
                         Agent agent = context.getOperationsService().findAgent(agentName.getId(),
                                 false);

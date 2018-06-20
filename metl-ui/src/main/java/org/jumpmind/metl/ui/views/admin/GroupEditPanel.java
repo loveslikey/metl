@@ -60,12 +60,12 @@ public class GroupEditPanel extends VerticalLayout implements IUiPanel {
 
         FormLayout layout = new FormLayout();
 
-        TextField nameField = new TextField("Group Name", StringUtils.trimToEmpty(group.getName()));
+        TextField nameField = new TextField("用户组名称", StringUtils.trimToEmpty(group.getName()));
         nameField.addValueChangeListener(new NameChangeListener());
         layout.addComponent(nameField);
         nameField.focus();
         
-        readOnly = new CheckBox("Read Only");
+        readOnly = new CheckBox("只读");
         readOnly.setEnabled(isNotBlank(group.getName()));
         readOnly.setImmediate(true);
         readOnly.setValue(group.isReadOnly());
@@ -86,8 +86,8 @@ public class GroupEditPanel extends VerticalLayout implements IUiPanel {
         privSelect.setNullSelectionAllowed(true);
         privSelect.setMultiSelect(true);
         privSelect.setImmediate(true);
-        privSelect.setLeftColumnCaption("Available privileges");
-        privSelect.setRightColumnCaption("Selected privileges");
+        privSelect.setLeftColumnCaption("可用特权");
+        privSelect.setRightColumnCaption("选中的特权");
         privSelect.addValueChangeListener(new PrivilegeChangeListener());
         layout.addComponent(privSelect);
 

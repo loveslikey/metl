@@ -26,7 +26,7 @@
              inputMessageType='any'
              outputMessageType='any'
              resourceCategory='none'>
-    <name>Embed Flow</name>
+    <name>流程嵌入</name>
     <className>org.jumpmind.metl.core.runtime.component.EmbedFlow</className>
     <keywords>subflow,execute,embed</keywords>
     <flowManipulatorClassName>org.jumpmind.metl.core.runtime.component.EmbedFlowFlowManipulator</flowManipulatorClassName>
@@ -34,7 +34,7 @@
       <setting id='flow.id'
                required='true'
                type='flow'>
-        <name>Flow</name>
+        <name>流程</name>
       </setting>
     </settings>
   </component>
@@ -44,7 +44,7 @@
              inputOutputModelsMatch='true'
              outputMessageType='entity'
              resourceCategory='none'>
-    <name>Deduper</name>
+    <name>数据去重</name>
     <className>org.jumpmind.metl.core.runtime.component.Deduper</className>
     <keywords>unique</keywords>
     <description></description>
@@ -52,7 +52,7 @@
       <setting id='dedupe.type'
                required='true'
                type='choice'>
-        <name>Dedupe Type</name>
+        <name>重复类型</name>
         <defaultValue>ENTITY</defaultValue>
         <choices>
           <choice>ENTITY</choice>
@@ -62,7 +62,7 @@
       <setting id='preserve.record'
                required='false'
                type='choice'>
-        <name>Preserve Record</name>
+        <name>保存记录</name>
         <defaultValue>First Record</defaultValue>
         <choices>
           <choice>First Record</choice>
@@ -72,7 +72,7 @@
       <setting id='rows.per.message'
                required='false'
                type='integer'>
-        <name>Rows/Msg</name>
+        <name>n行/消息</name>
         <defaultValue>1000</defaultValue>
       </setting>
     </settings>
@@ -83,7 +83,7 @@
              inputOutputModelsMatch='true'
              outputMessageType='entity'
              resourceCategory='none'>
-    <name>Merger</name>
+    <name>合并</name>
     <className>org.jumpmind.metl.core.runtime.component.Merger</className>
     <keywords>merge,join</keywords>
     <description></description>
@@ -91,7 +91,7 @@
       <setting id='rows.per.message'
                required='false'
                type='integer'>
-        <name>Rows/Msg</name>
+        <name>n行/消息</name>
         <defaultValue>1000</defaultValue>
       </setting>
     </settings>
@@ -104,7 +104,7 @@
              outputMessageType='entity'
              resourceCategory='none'
              shareable='false'>
-    <name>Lookup</name>
+    <name>检索</name>
     <className>org.jumpmind.metl.core.runtime.component.Lookup</className>
     <keywords>find,enhance</keywords>
     <description></description>
@@ -112,38 +112,38 @@
       <setting id='lookup.data.source.step'
                required='true'
                type='source_step'>
-        <name>Lookup Data Source</name>
+        <name>查找数据源</name>
       </setting>
       <setting id='lookup.key.attribute'
                required='true'
                type='entity_column'>
-        <name>Lookup Key Attribute</name>
+        <name>查询键属性名</name>
       </setting>
       <setting id='lookup.value.attribute'
                required='true'
                type='entity_column'>
-        <name>Lookup Value Attribute</name>
+        <name>查询值属性名</name>
       </setting>
       <setting id='replacement.key.attribute'
                required='true'
                type='entity_column'>
-        <name>Replacement Key Attribute</name>
+        <name>替换键属性名</name>
       </setting>
       <setting id='replacement.value.attribute'
                required='true'
                type='entity_column'>
-        <name>Replacement Value Attribute</name>
+        <name>替换值属性名</name>
       </setting>
     </settings>
   </component>
   <component category='PROCESSOR'
              id='Message Logger'
              inputMessageType='any'
-             showInputModel='true'             
+             showInputModel='true'
              inputOutputModelsMatch='true'
              outputMessageType='any'
              resourceCategory='none'>
-    <name>Message Logger</name>
+    <name>消息记录器</name>
     <className>org.jumpmind.metl.core.runtime.component.MessageLogger</className>
     <keywords>log</keywords>
     <description></description>
@@ -151,7 +151,7 @@
       <setting id='qualify.with.entity.name'
                required='false'
                type='boolean'>
-        <name>Qualify Entity Attributes with Entity Name</name>
+        <name>使用带限定实体属性的实体名称</name>
         <defaultValue>false</defaultValue>
       </setting>
     </settings>
@@ -163,7 +163,7 @@
              outputMessageType='entity'
              resourceCategory='none'
              shareable='false'>
-    <name>Multiplier</name>
+    <name>倍增器</name>
     <className>org.jumpmind.metl.core.runtime.component.Multiplier</className>
     <keywords>generate,multiply</keywords>
     <description></description>
@@ -171,12 +171,12 @@
       <setting id='multiplier.source.step'
                required='true'
                type='source_step'>
-        <name>Multiplier Source</name>
+        <name>倍增组件</name>
       </setting>
       <setting id='rows.per.message'
                required='false'
                type='integer'>
-        <name>Rows/Msg</name>
+        <name>n行/消息</name>
         <defaultValue>1000</defaultValue>
       </setting>
     </settings>
@@ -188,7 +188,7 @@
              outputMessageType='any'
              resourceCategory='none'
              supportsMultipleThreads='true'>
-    <name>No Op</name>
+    <name>没有操作</name>
     <className>org.jumpmind.metl.core.runtime.component.NoOp</className>
     <keywords>nothing,noop</keywords>
     <description></description>
@@ -200,8 +200,8 @@
              inputOutputModelsMatch='true'
              outputMessageType='entity'
              resourceCategory='none'>
-    <name>Union</name>
+    <name>联合</name>
     <className>org.jumpmind.metl.core.runtime.component.Union</className>
     <description></description>
-  </component>  
+  </component>
 </definitions>

@@ -91,7 +91,7 @@ public class NotificationEditPanel extends Panel implements IUiPanel {
         form.setSizeFull();
         form.setSpacing(true);
 
-        levelField = new NativeSelect("Level");
+        levelField = new NativeSelect("级别");
         for (Notification.NotificationLevel level : Notification.NotificationLevel.values()) {
             levelField.addItem(level.toString());
         }
@@ -101,21 +101,21 @@ public class NotificationEditPanel extends Panel implements IUiPanel {
         levelField.addValueChangeListener(new LevelFieldListener());
         form.addComponent(levelField);
 
-        linkField = new ComboBox("Linked To");
+        linkField = new ComboBox("链接到");
         linkField.setNullSelectionAllowed(false);
         linkField.setImmediate(true);
         linkField.setWidth(15f, Unit.EM);
         linkField.addValueChangeListener(new LinkFieldListener());
         form.addComponent(linkField);
 
-        eventField = new NativeSelect("Event");
+        eventField = new NativeSelect("事件");
         eventField.setNullSelectionAllowed(false);
         eventField.setImmediate(true);
         eventField.setWidth(15f, Unit.EM);
         eventField.addValueChangeListener(new EventFieldListener());
         form.addComponent(eventField);
 
-        nameField = new ImmediateUpdateTextField("Name") {
+        nameField = new ImmediateUpdateTextField("名称") {
             protected void save(String value) {
                 notification.setName(value);
                 saveNotification();
@@ -123,10 +123,10 @@ public class NotificationEditPanel extends Panel implements IUiPanel {
         };
         nameField.setValue(StringUtils.trimToEmpty(notification.getName()));
         nameField.setWidth(20f, Unit.EM);
-        nameField.setDescription("Display name for the notification");
+        nameField.setDescription("显示通知的名称");
         form.addComponent(nameField);
 
-        ImmediateUpdateTextArea recipientsField = new ImmediateUpdateTextArea("Recipients") {
+        ImmediateUpdateTextArea recipientsField = new ImmediateUpdateTextArea("收件人") {
             protected void save(String value) {
                 notification.setRecipients(value);
                 saveNotification();
@@ -136,10 +136,10 @@ public class NotificationEditPanel extends Panel implements IUiPanel {
         recipientsField.setColumns(20);
         recipientsField.setRows(10);
         recipientsField.setInputPrompt("address1@example.com\r\naddress2@example.com");
-        recipientsField.setDescription("Email addresses of recipients, separated by commas.");
+        recipientsField.setDescription("收件人的电子邮件地址，用逗号分隔。");
         form.addComponent(recipientsField);
 
-        subjectField = new ImmediateUpdateTextField("Subject") {
+        subjectField = new ImmediateUpdateTextField("主题") {
             protected void save(String value) {
                 notification.setSubject(value);
                 saveNotification();
@@ -147,10 +147,10 @@ public class NotificationEditPanel extends Panel implements IUiPanel {
         };
         subjectField.setValue(StringUtils.trimToEmpty(notification.getSubject()));
         subjectField.setWidth(40f, Unit.EM);
-        subjectField.setDescription("The subject of the email can contain...");
+        subjectField.setDescription("电子邮件的主题可以包含...");
         form.addComponent(subjectField);
 
-        messageField = new ImmediateUpdateTextArea("Message") {
+        messageField = new ImmediateUpdateTextArea("消息") {
             protected void save(String value) {
                 notification.setMessage(value);
                 saveNotification();
@@ -159,10 +159,10 @@ public class NotificationEditPanel extends Panel implements IUiPanel {
         messageField.setValue(StringUtils.trimToEmpty(notification.getMessage()));
         messageField.setColumns(40);
         messageField.setRows(10);
-        messageField.setDescription("The body of the email can contain...");
+        messageField.setDescription("邮件正文可以包含...");
         form.addComponent(messageField);
         
-        CheckBox enableField = new CheckBox("Enabled", notification.isEnabled());
+        CheckBox enableField = new CheckBox("启用", notification.isEnabled());
         enableField.setImmediate(true);
         enableField.addValueChangeListener(new ValueChangeListener() {
             public void valueChange(ValueChangeEvent event) {

@@ -50,7 +50,7 @@ public class PluginRepositoryEditPanel extends VerticalLayout implements IUiPane
         FormLayout form = new FormLayout();
         form.setSpacing(true);
 
-        TextField field = new TextField("Name", StringUtils.trimToEmpty(pluginRepository.getName()));
+        TextField field = new TextField("名称", StringUtils.trimToEmpty(pluginRepository.getName()));
         field.setWidth(20, Unit.EM);
         form.addComponent(field);
         field.addValueChangeListener(new NameChangeListener());

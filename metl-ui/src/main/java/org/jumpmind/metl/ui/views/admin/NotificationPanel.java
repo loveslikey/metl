@@ -72,13 +72,13 @@ public class NotificationPanel extends VerticalLayout implements IUiPanel, TextC
         ButtonBar buttonBar = new ButtonBar();
         addComponent(buttonBar);
 
-        newButton = buttonBar.addButton("New", FontAwesome.PLUS);
+        newButton = buttonBar.addButton("新增", FontAwesome.PLUS);
         newButton.addClickListener(new NewClickListener());
 
-        editButton = buttonBar.addButton("Edit", FontAwesome.EDIT);
+        editButton = buttonBar.addButton("编辑", FontAwesome.EDIT);
         editButton.addClickListener(new EditClickListener());
 
-        removeButton = buttonBar.addButton("Remove", FontAwesome.TRASH_O);
+        removeButton = buttonBar.addButton("删除", FontAwesome.TRASH_O);
         removeButton.addClickListener(new RemoveClickListener());
 
         filterField = buttonBar.addFilter();
@@ -96,7 +96,7 @@ public class NotificationPanel extends VerticalLayout implements IUiPanel, TextC
 
         table.setContainerDataSource(container);
         table.setVisibleColumns("notificationLevel", "name", "notifyType", "eventType", "enabled");
-        table.setColumnHeaders("Level", "Name", "Notify Type", "Event Type", "Enabled");
+        table.setColumnHeaders("级别", "名称", "通知类型", "事件类型", "启用");
         table.addItemClickListener(new TableItemClickListener());
         table.addValueChangeListener(new TableValueChangeListener());
         table.setSortContainerPropertyId("name");
@@ -170,7 +170,7 @@ public class NotificationPanel extends VerticalLayout implements IUiPanel, TextC
             User user = new User();
             Notification notification = new Notification();
             NotificationEditPanel editPanel = new NotificationEditPanel(context, notification); 
-            tabbedPanel.addCloseableTab(user.getId(), "Edit Notification", getIcon(), editPanel);
+            tabbedPanel.addCloseableTab(user.getId(), "新建通知", getIcon(), editPanel);
         }
     }
 
@@ -179,7 +179,7 @@ public class NotificationPanel extends VerticalLayout implements IUiPanel, TextC
             Notification item = getFirstSelectedItem();
             context.getOperationsService().refresh(item);
             NotificationEditPanel editPanel = new NotificationEditPanel(context, item);
-            tabbedPanel.addCloseableTab(item.getId(), "Edit Notification", getIcon(), editPanel);
+            tabbedPanel.addCloseableTab(item.getId(), "编辑通知", getIcon(), editPanel);
         }
     }
 

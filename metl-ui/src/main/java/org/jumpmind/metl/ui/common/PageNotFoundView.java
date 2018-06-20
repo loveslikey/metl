@@ -49,8 +49,8 @@ public class PageNotFoundView extends VerticalLayout implements View {
         if (isBlank(uriFragment)) {
             viewManager.navigateToDefault();
         } else {
-            pageNotFoundLabel.addStyleName("failure");
-            pageNotFoundLabel.setValue("Could not find page for " + uriFragment);
+            pageNotFoundLabel.addStyleName("失败");
+            pageNotFoundLabel.setValue("没有发现页面 " + uriFragment);
         }
     }
 

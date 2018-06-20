@@ -26,14 +26,14 @@
              inputMessageType='entity'
              outputMessageType='entity'
              resourceCategory='none'>
-    <name>Temp RDBMS</name>
+    <name>暂存RDBMS</name>
     <className>org.jumpmind.metl.core.runtime.component.TempRdbms</className>
     <keywords>database,db,sql</keywords>
     <settings>
       <setting id='run.when'
                required='false'
                type='choice'>
-        <name>Run When</name>
+        <name>当...时运行</name>
         <defaultValue>PER UNIT OF WORK</defaultValue>
         <choices>
           <choice>PER UNIT OF WORK</choice>
@@ -55,25 +55,25 @@
       <setting id='rows.per.message'
                required='false'
                type='integer'>
-        <name>Rows/Msg</name>
+        <name>n行/消息</name>
         <defaultValue>1000</defaultValue>
       </setting>
       <setting id='in.memory.db'
                required='true'
                type='boolean'>
-        <name>In Memory Db</name>
+        <name>使用内存数据库</name>
         <defaultValue>true</defaultValue>
       </setting>
       <setting id='continue.on.error'
                required='true'
                type='boolean'>
-        <name>Continue On Error</name>
+        <name>错误继续</name>
         <defaultValue>false</defaultValue>
       </setting>
       <setting id='batch.mode'
                required='true'
                type='boolean'>
-        <name>Batch Mode</name>
+        <name>批处理模式</name>
         <defaultValue>false</defaultValue>
       </setting>
     </settings>

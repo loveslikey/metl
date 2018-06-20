@@ -82,15 +82,15 @@ public class TopBar extends HorizontalLayout implements ViewChangeListener {
             addComponent(systemLabel);
         }
 
-        Button helpButton = new Button("Help", FontAwesome.QUESTION_CIRCLE);
-        helpButton.addClickListener(event -> openHelp(event));
-        addComponent(helpButton);
+//        Button helpButton = new Button("Help", FontAwesome.QUESTION_CIRCLE);
+//        helpButton.addClickListener(event -> openHelp(event));
+//        addComponent(helpButton);
 
         Button settingsButton = new Button(context.getUser().getLoginId(), FontAwesome.GEAR);
         settingsButton.addClickListener((e) -> ChangePasswordDialog.show(context));
         addComponent(settingsButton);
 
-        Button logoutButton = new Button("Logout", FontAwesome.SIGN_OUT);
+        Button logoutButton = new Button("注销", FontAwesome.SIGN_OUT);
         logoutButton.addClickListener(event -> logout());
         addComponent(logoutButton);
 

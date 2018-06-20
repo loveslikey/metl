@@ -108,22 +108,22 @@ public class EditHierarchicalModelPanel extends VerticalLayout implements IUiPan
         ButtonBar buttonBar1 = new ButtonBar();
         addComponent(buttonBar1);
 
-        addEntityButton = buttonBar1.addButton("Add Entity", FontAwesome.TABLE);
+        addEntityButton = buttonBar1.addButton("添加实体", FontAwesome.TABLE);
         addEntityButton.addClickListener(new AddEntityClickListener());
 
-        addAttributeButton = buttonBar1.addButton("Add Attr", FontAwesome.COLUMNS);
+        addAttributeButton = buttonBar1.addButton("添加属性", FontAwesome.COLUMNS);
         addAttributeButton.addClickListener(new AddAttributeClickListener());
 
-        editButton = buttonBar1.addButton("Edit", FontAwesome.EDIT);
+        editButton = buttonBar1.addButton("编辑", FontAwesome.EDIT);
         editButton.addClickListener(new EditClickListener());
 
-        removeButton = buttonBar1.addButton("Remove", FontAwesome.TRASH_O);
+        removeButton = buttonBar1.addButton("删除", FontAwesome.TRASH_O);
         removeButton.addClickListener(new RemoveClickListener());
 
-        importButton = buttonBar1.addButtonRight("Import ...", FontAwesome.UPLOAD,
+        importButton = buttonBar1.addButtonRight("导入 ...", FontAwesome.UPLOAD,
                 new ImportClickListener());
 
-        buttonBar1.addButtonRight("Export...", FontAwesome.DOWNLOAD, (e) -> export());
+        buttonBar1.addButtonRight("导出...", FontAwesome.DOWNLOAD, (e) -> export());
 
         treeTable.setSizeFull();
         treeTable.setCacheRate(100);
@@ -158,7 +158,7 @@ public class EditHierarchicalModelPanel extends VerticalLayout implements IUiPan
                                 obj.setName(newName);
                                 EditHierarchicalModelPanel.this.context.getConfigurationService().save(obj);
                             } else {
-                                NotifyDialog.show("Name needs to be unique", "Name needs to be unique", null, Type.WARNING_MESSAGE);
+                                NotifyDialog.show("名称必须唯一", "名称必须设置成唯一的", null, Type.WARNING_MESSAGE);
                             }
                         };
                     };
@@ -277,13 +277,13 @@ public class EditHierarchicalModelPanel extends VerticalLayout implements IUiPan
         HorizontalLayout hlayout = new HorizontalLayout();
         addComponent(hlayout);
 
-        Button collapseAll = new Button("Collapse All");
+        Button collapseAll = new Button("全部折叠");
         collapseAll.addStyleName(ValoTheme.BUTTON_LINK);
         collapseAll.addStyleName(ValoTheme.BUTTON_SMALL);
         hlayout.addComponent(collapseAll);
         collapseAll.addClickListener(e -> collapseAll());
 
-        Button expandAll = new Button("Expand All");
+        Button expandAll = new Button("全部展开");
         expandAll.addStyleName(ValoTheme.BUTTON_LINK);
         expandAll.addStyleName(ValoTheme.BUTTON_SMALL);
         hlayout.addComponent(expandAll);
@@ -569,8 +569,8 @@ public class EditHierarchicalModelPanel extends VerticalLayout implements IUiPan
         public void buttonClick(ClickEvent event) {
 
             Set<Object> selectedItems = getSelectedItems();
-            ConfirmDialog.show("Delete?",
-                    "Are you sure you want to delete the " + selectedItems.size() + " selected items?",
+            ConfirmDialog.show("删除?",
+                    "你确定删除选中的 " + selectedItems.size() + " 个选项吗?",
                     ()->{
                     		deleteSelectedItems(selectedItems);
                     		return true;                    	

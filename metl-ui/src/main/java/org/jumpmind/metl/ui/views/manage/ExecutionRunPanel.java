@@ -197,7 +197,7 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
         topBar.addComponent(right);
         topBar.setComponentAlignment(right, Alignment.MIDDLE_RIGHT);
 
-        Label limitLabel = new Label("Max Log Messages To Show :");
+        Label limitLabel = new Label("最大日志消息显示：");
         right.addComponent(limitLabel);
         right.setComponentAlignment(limitLabel, Alignment.MIDDLE_RIGHT);
         limitField = new ImmediateUpdateTextField(null) {
@@ -218,7 +218,7 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
         right.addComponent(limitField);
         right.setComponentAlignment(limitField, Alignment.MIDDLE_RIGHT);
 
-        showDiagramCheckbox = new CheckBox("Show Diagram");
+        showDiagramCheckbox = new CheckBox("显示流程图");
         showDiagramCheckbox.addValueChangeListener((event) -> {
             if (showDiagramCheckbox.getValue()) {
                 showDiagram();
@@ -233,18 +233,18 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
 
         ButtonBar buttonBar = new ButtonBar();
 
-        rerunButton = buttonBar.addButton("Rerun", Icons.RUN, event -> rerun());
+        rerunButton = buttonBar.addButton("重新运行", Icons.RUN, event -> rerun());
         rerunButton.setVisible(false);
-        removeButton = buttonBar.addButton("Remove", Icons.DELETE, event -> remove());
+        removeButton = buttonBar.addButton("删除", Icons.DELETE, event -> remove());
         removeButton.setVisible(false);
-        cancelButton = buttonBar.addButton("Cancel", Icons.CANCEL, event -> cancel());
+        cancelButton = buttonBar.addButton("取消", Icons.CANCEL, event -> cancel());
 
         addComponent(buttonBar);
 
         HorizontalLayout header1 = new HorizontalLayout();
-        header1.addComponent(new Label("<b>Flow:</b>", ContentMode.HTML));
+        header1.addComponent(new Label("<b>流程:</b>", ContentMode.HTML));
         header1.addComponent(flowLabel);
-        header1.addComponent(new Label("<b>Start:</b>", ContentMode.HTML));
+        header1.addComponent(new Label("<b>开始时间:</b>", ContentMode.HTML));
         header1.addComponent(startLabel);
         header1.setSpacing(true);
         header1.setMargin(new MarginInfo(false, true, false, true));
@@ -252,9 +252,9 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
         addComponent(header1);
 
         HorizontalLayout header2 = new HorizontalLayout();
-        header2.addComponent(new Label("<b>Status:</b>", ContentMode.HTML));
+        header2.addComponent(new Label("<b>状态:</b>", ContentMode.HTML));
         header2.addComponent(statusLabel);
-        header2.addComponent(new Label("<b>End:</b>", ContentMode.HTML));
+        header2.addComponent(new Label("<b>结束时间:</b>", ContentMode.HTML));
         header2.addComponent(endLabel);
         header2.setSpacing(true);
         header2.setMargin(new MarginInfo(false, true, true, true));
@@ -279,25 +279,25 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
         stepTable.setSelectionMode(SelectionMode.SINGLE);
         stepTable.setImmediate(true);
         stepTable.setSizeFull();
-        stepTable.addColumn("componentName", String.class).setHeaderCaption("Component Name")
+        stepTable.addColumn("componentName", String.class).setHeaderCaption("组件名称")
                 .setWidth(250);
-        stepTable.addColumn("threadNumber", Integer.class).setHeaderCaption("Thread").setWidth(100);
-        stepTable.addColumn("status", String.class).setHeaderCaption("Status").setWidth(120);
-        stepTable.addColumn("payloadReceived", Integer.class).setHeaderCaption("Payload Recvd")
+        stepTable.addColumn("threadNumber", Integer.class).setHeaderCaption("线程").setWidth(100);
+        stepTable.addColumn("status", String.class).setHeaderCaption("状态").setWidth(120);
+        stepTable.addColumn("payloadReceived", Integer.class).setHeaderCaption("接收到的有效信息量")
                 .setWidth(120);
-        stepTable.addColumn("messagesReceived", Integer.class).setHeaderCaption("Msgs Recvd")
+        stepTable.addColumn("messagesReceived", Integer.class).setHeaderCaption("接收到的消息数量")
                 .setWidth(100);
-        stepTable.addColumn("messagesProduced", Integer.class).setHeaderCaption("Msgs Sent")
+        stepTable.addColumn("messagesProduced", Integer.class).setHeaderCaption("发出的消息数量")
                 .setWidth(100);
-        stepTable.addColumn("payloadProduced", Integer.class).setHeaderCaption("Payload Sent")
+        stepTable.addColumn("payloadProduced", Integer.class).setHeaderCaption("发出的有效信息量")
                 .setWidth(120);
-        stepTable.addColumn("startTime", Date.class).setHeaderCaption("Start").setWidth(120)
+        stepTable.addColumn("startTime", Date.class).setHeaderCaption("开始时间").setWidth(120)
                 .setMaximumWidth(170).setRenderer(new DateRenderer(UIConstants.TIME_FORMAT));
-        stepTable.addColumn("endTime", Date.class).setHeaderCaption("End").setWidth(120)
+        stepTable.addColumn("endTime", Date.class).setHeaderCaption("结束时间").setWidth(120)
                 .setMaximumWidth(170).setRenderer(new DateRenderer(UIConstants.TIME_FORMAT));
-        stepTable.addColumn("handleDurationString", String.class).setHeaderCaption("Run Duration")
+        stepTable.addColumn("handleDurationString", String.class).setHeaderCaption("运行时长")
                 .setWidth(140);
-        stepTable.addColumn("queueDurationString", String.class).setHeaderCaption("Wait Duration")
+        stepTable.addColumn("queueDurationString", String.class).setHeaderCaption("等待时长")
                 .setWidth(140);
         stepTable.setContainerDataSource(stepContainer);
         stepTable.addSelectionListener(event -> {
@@ -314,7 +314,7 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
         HeaderRow stepTableFilterHeader = stepTable.appendHeaderRow();
         HeaderCell componentNameFilterCell = stepTableFilterHeader.getCell("componentName");
         TextField componentNameFilterField = new TextField();
-        componentNameFilterField.setInputPrompt("Filter");
+        componentNameFilterField.setInputPrompt("查找");
         componentNameFilterField.addStyleName(ValoTheme.TEXTFIELD_TINY);
         componentNameFilterField.setWidth("100%");
         componentNameFilterField.addTextChangeListener(change -> {
@@ -327,11 +327,11 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
 
 
         logTable = new Grid();
-        logTable.addColumn("level", String.class).setHeaderCaption("Level").setWidth(110)
+        logTable.addColumn("level", String.class).setHeaderCaption("级别").setWidth(110)
                 .setMaximumWidth(200);
-        logTable.addColumn("createTime", Date.class).setHeaderCaption("Time").setWidth(120)
+        logTable.addColumn("createTime", Date.class).setHeaderCaption("时间").setWidth(120)
                 .setMaximumWidth(200).setRenderer(new DateRenderer(UIConstants.TIME_FORMAT));
-        logTable.addColumn("logText", String.class).setHeaderCaption("Message").setExpandRatio(1);
+        logTable.addColumn("logText", String.class).setHeaderCaption("消息").setExpandRatio(1);
         logTable.setContainerDataSource(logContainer);
         logTable.setSizeFull();
         logTable.addItemClickListener(event -> logTableCellClicked(logTable, event));
@@ -342,7 +342,7 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
         HeaderRow filteringHeader = logTable.appendHeaderRow();
         HeaderCell logTextFilterCell = filteringHeader.getCell("logText");
         TextField filterField = new TextField();
-        filterField.setInputPrompt("Filter");
+        filterField.setInputPrompt("查找");
         filterField.addStyleName(ValoTheme.TEXTFIELD_TINY);
         filterField.setWidth("100%");
 
@@ -392,7 +392,7 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
         statusBar.setComponentAlignment(status, Alignment.MIDDLE_LEFT);
         logLayout.addComponent(statusBar);
 
-        downloadLink = new Button("Download", FontAwesome.DOWNLOAD);
+        downloadLink = new Button("下载", FontAwesome.DOWNLOAD);
         downloadLink.addClickListener(e -> download());
         downloadLink.addStyleName(ValoTheme.BUTTON_LINK);
         statusBar.addComponent(downloadLink);
@@ -427,7 +427,7 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
                         return new FileInputStream(file);
                     } catch (Exception e) {
                         log.error("Failed to download log file", e);
-                        CommonUiUtils.notify("Failed to download log file", Type.ERROR_MESSAGE);
+                        CommonUiUtils.notify("下载日志文件失败！", Type.ERROR_MESSAGE);
                         return null;
                     }
                 }
@@ -559,7 +559,7 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
     }
 
     protected void remove() {
-        ConfirmDialog.show("Delete Execution?", "Are you sure you want to delete this execution?",
+        ConfirmDialog.show("删除执行?", "你确定删除本次执行吗？",
                 () -> {
                     context.getExecutionService().deleteExecution(executionId);
                     parentTabSheet.closeTab(executionId);
@@ -569,7 +569,7 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
     }
 
     protected void cancel() {
-        ConfirmDialog.show("Cancel Execution?", "Are you sure you want to cancel this execution?",
+        ConfirmDialog.show("取消执行?", "你确定取消本次执行吗？",
                 () -> {
                     context.getAgentManager().cancel(executionId);
                     cancelButton.setEnabled(false);
@@ -679,11 +679,11 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
         boolean max = logContainer.getItemIds().size() >= getMaxToShow();
         if (max) {
             status.setValue(
-                    "<span style='color:red'>Displaying only " + logContainer.getItemIds().size()
-                            + " messages.  Adjust max number of log message to show more.</span>");
+                    "<span style='color:red'>仅显示了 " + logContainer.getItemIds().size()
+                            + " 条日志，调整最大日志消息显示以显示更多。</span>");
         } else {
             status.setValue(
-                    "<span>Displaying " + logContainer.getItemIds().size() + " messages</span>");
+                    "<span>显示 " + logContainer.getItemIds().size() + " 条日志。</span>");
         }
     }
 
@@ -779,7 +779,7 @@ public class ExecutionRunPanel extends VerticalLayout implements IUiPanel, IBack
     }
 
     protected String formatDate(Date date) {
-        SimpleDateFormat df = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss aa");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if (date != null) {
             return df.format(date);
         }

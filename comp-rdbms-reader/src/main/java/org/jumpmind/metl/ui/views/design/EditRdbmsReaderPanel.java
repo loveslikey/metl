@@ -71,7 +71,7 @@ public class EditRdbmsReaderPanel extends AbstractComponentEditPanel {
 
             executeSqlClickListener = new ExecuteSqlClickListener();
 
-            executeButton = buttonBar.addButton("Execute", FontAwesome.PLAY, executeSqlClickListener);
+            executeButton = buttonBar.addButton("执行", FontAwesome.PLAY, executeSqlClickListener);
             executeButton.setEnabled(false);
 
             Resource resource = component.getResource();
@@ -157,7 +157,7 @@ public class EditRdbmsReaderPanel extends AbstractComponentEditPanel {
                 addComponent(queryPanel);
                 setExpandRatio(queryPanel, 1);
             } else {
-                Label label = new Label("Before configuring SQL you must select a data source");
+                Label label = new Label("配置SQL之前必须选定一个数据源！");
                 addComponent(label);
                 setExpandRatio(label, 1);
             }
