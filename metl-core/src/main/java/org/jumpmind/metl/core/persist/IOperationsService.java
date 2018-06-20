@@ -106,6 +106,8 @@ public interface IOperationsService {
     public void savePassword(User user, String newPassword);
     
     public boolean isUserLoginEnabled();
+    
+    public boolean isUserLocked(User user);
 
     public Group findGroupByName(String name);
         
@@ -115,5 +117,5 @@ public interface IOperationsService {
     
     public void save(AgentDeploy agentDeployment);
 
-    public List<AgentResourceSetting> findMostRecentDeployedResourceSettings(String agentId, String resourceId);
+    public List<AgentResourceSetting> findMostRecentDeployedResourceSettings(String agentId, String resourceId);    
 }
