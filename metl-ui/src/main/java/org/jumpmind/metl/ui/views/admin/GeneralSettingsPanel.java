@@ -21,114 +21,78 @@
 package org.jumpmind.metl.ui.views.admin;
 
 import org.jumpmind.metl.core.model.GlobalSetting;
-import org.jumpmind.metl.ui.common.ApplicationContext;
-import org.jumpmind.metl.ui.common.TabbedPanel;
-import org.jumpmind.vaadin.ui.common.IUiPanel;
 import org.jumpmind.vaadin.ui.common.ImmediateUpdateTextField;
+import org.jumpmind.vaadin.ui.common.UiComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.core.annotation.Order;
 
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.AbstractField;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
 @SuppressWarnings("serial")
-public class GeneralSettingsPanel extends Panel implements IUiPanel {
+@UiComponent
+@Scope(value = "ui")
+@Order(500)
+@AdminMenuLink(name = "General Settings", id = "General Settings", icon = FontAwesome.GEARS)
+public class GeneralSettingsPanel extends AbstractAdminPanel {
 
     private static final String THIS_WILL_TAKE_EFFECT_ON_THE_NEXT_SERVER_RESTART = "This will take effect on the next server restart";
 
     final Logger log = LoggerFactory.getLogger(getClass());
 
-    ApplicationContext context;
-
-    TabbedPanel tabbedPanel;
-
     boolean isChanged;
 
     FormLayout form;
 
-    public GeneralSettingsPanel(final ApplicationContext context, TabbedPanel tabbedPanel) {
-        this.context = context;
-        this.tabbedPanel = tabbedPanel;
-
+    public GeneralSettingsPanel() {
+    }
+    
+    public void init() {
         form = new FormLayout();
         form.addStyleName(ValoTheme.FORMLAYOUT_LIGHT);
 
-        Label section = new Label("显示设置");
+        Label section = new Label("Display Settings");
         section.addStyleName(ValoTheme.LABEL_H3);
         section.addStyleName(ValoTheme.LABEL_COLORED);
         form.addComponent(section);
 
-        addSetting("系统文本", GlobalSetting.SYSTEM_TEXT, "",
-                "将HTML内容设置为显示在可以标识特定环境的顶部栏中")
+        addSetting("System Text", GlobalSetting.SYSTEM_TEXT, "",
+                "Set HTML content to be displayed in the top bar that can identify a particular environment")
                         .focus();
-
-        section = new Label("清除设置");
-        section.addStyleName(ValoTheme.LABEL_H3);
-        section.addStyleName(ValoTheme.LABEL_COLORED);
-        form.addComponent(section);
-
-        addSetting("保留多少天内的审计事件", GlobalSetting.AUDIT_EVENT_RETENTION_IN_DAYS,
-                Integer.toString(GlobalSetting.DEFAULT_AUDIT_EVENT_RETENTION_IN_DAYS), "",
-                Integer.class);
         
-        section = new Label("自动备份");
+        section = new Label("Auto Backup");
         section.addStyleName(ValoTheme.LABEL_H3);
         section.addStyleName(ValoTheme.LABEL_COLORED);
         form.addComponent(section); 
         
-        Label instructions = new Label("更改以下设置后需要重新启动");
+        Label instructions = new Label("A restart is required after changing these settings");
         instructions.addStyleName(ValoTheme.LABEL_LIGHT);
         form.addComponent(instructions);
         
-        addSetting("启用备份", GlobalSetting.CONFIG_BACKUP_ENABLED,
+        addSetting("Enable Backup", GlobalSetting.CONFIG_BACKUP_ENABLED,
                 Boolean.toString(GlobalSetting.DEFAULT_CONFIG_BACKUP_ENABLED),
                 THIS_WILL_TAKE_EFFECT_ON_THE_NEXT_SERVER_RESTART, Boolean.class);
 
-        addSetting("备份Cron表达式", GlobalSetting.CONFIG_BACKUP_CRON,
+        addSetting("Backup Cron Expression", GlobalSetting.CONFIG_BACKUP_CRON,
                 GlobalSetting.DEFAULT_CONFIG_BACKUP_CRON,
                 THIS_WILL_TAKE_EFFECT_ON_THE_NEXT_SERVER_RESTART, String.class);
 
-        addSetting("保留天数", GlobalSetting.CONFIG_BACKUP_RETENTION_IN_DAYS,
+        addSetting("Retention in Days", GlobalSetting.CONFIG_BACKUP_RETENTION_IN_DAYS,
                 Integer.toString(GlobalSetting.DEFAULT_CONFIG_BACKUP_RETENTION_IN_DAYS),
                 THIS_WILL_TAKE_EFFECT_ON_THE_NEXT_SERVER_RESTART, Integer.class);       
-
-        section = new Label("用户密码设置");
-        section.addStyleName(ValoTheme.LABEL_H3);
-        section.addStyleName(ValoTheme.LABEL_COLORED);
-        form.addComponent(section);
-
-        addSetting("最大长度", GlobalSetting.PASSWORD_MIN_LENGTH, "6", "", Integer.class);
-
-        addSetting("禁止重复使用", GlobalSetting.PASSWORD_PROHIBIT_PREVIOUS, "5", "",
-                Integer.class);
-
-        addSetting("到期天数", GlobalSetting.PASSWORD_EXPIRE_DAYS, "60", "",
-                Integer.class);
-        
-        addSetting("失败尝试次数", GlobalSetting.PASSWORD_FAILED_ATTEMPTS,
-        		Integer.toString(GlobalSetting.PASSWORD_FAILED_ATTEMPTS_DEFAULT), "", Integer.class);
-
-        addSetting("禁止常用单词", GlobalSetting.PASSWORD_PROHIBIT_COMMON_WORDS, "true",
-                "", Boolean.class);
-
-        addSetting("要求字数", GlobalSetting.PASSWORD_REQUIRE_ALPHANUMERIC, "true", "",
-                Boolean.class);
-
-        addSetting("需要的象征", GlobalSetting.PASSWORD_REQUIRE_SYMBOL, "true", "",
-                Boolean.class);
-
-        addSetting("需要混合的情况", GlobalSetting.PASSWORD_REQUIRE_MIXED_CASE, "true", "",
-                Boolean.class);
 
         VerticalLayout paddedLayout = new VerticalLayout();
         paddedLayout.setMargin(true);
         paddedLayout.addComponent(form);
-        setContent(paddedLayout);
+        addComponent(paddedLayout);
     }
 
     protected AbstractField<?> addSetting(String text, String globalSetting, String defaultValue,
@@ -193,6 +157,18 @@ public class GeneralSettingsPanel extends Panel implements IUiPanel {
             setting.setValue(defaultValue);
         }
         return setting;
+    }
+
+    @Override
+    public void enter(ViewChangeEvent event) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void refresh() {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -20,14 +20,18 @@
  */
 package org.jumpmind.metl.ui.views.admin;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
-import org.jumpmind.metl.ui.common.UIConstants;
 import org.jumpmind.metl.ui.common.ApplicationContext;
 import org.jumpmind.metl.ui.common.Category;
-import org.jumpmind.metl.ui.common.Icons;
 import org.jumpmind.metl.ui.common.TabbedPanel;
 import org.jumpmind.metl.ui.common.TopBarLink;
+import org.jumpmind.metl.ui.common.UIConstants;
+import org.jumpmind.metl.ui.init.AppUI;
 import org.jumpmind.vaadin.ui.common.IUiPanel;
 import org.jumpmind.vaadin.ui.common.UiComponent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +56,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 @UiComponent
 @Scope(value = "ui")
-@TopBarLink(category = Category.Admin, name = "系统", id = "admin", icon = FontAwesome.GEARS, menuOrder = 10)
+@TopBarLink(category = Category.Admin, name = "Admin", id = "admin", icon = FontAwesome.GEARS, menuOrder = 10)
 public class AdminView extends HorizontalLayout implements View, IUiPanel, ItemClickListener {
 
     private static final long serialVersionUID = 1L;
@@ -60,10 +64,15 @@ public class AdminView extends HorizontalLayout implements View, IUiPanel, ItemC
     @Autowired
     ApplicationContext context;
 
+    @Autowired 
+    List<AdminSideView> sideMenu;
+    
     TabbedPanel tabbedPanel;
     
     TreeTable table;
 
+    Map<String, Component> sideMenuById = new HashMap<String, Component>();
+    
     @PostConstruct
     protected void init() {
         setSizeFull();
@@ -95,21 +104,15 @@ public class AdminView extends HorizontalLayout implements View, IUiPanel, ItemC
         table.addContainerProperty("id", String.class, null);
         table.setVisibleColumns(new Object[] { "id" });
         table.setColumnExpandRatio("id", 1);
-        addItem("用户", Icons.USER);
-        addItem("用户组", Icons.GROUP);
-        addItem("标签", Icons.TAG);
-        addItem("REST服务", Icons.REST);
-        addItem("通用设置", Icons.SETTINGS);
-        addItem("组件仓储", Icons.DATABASE);
-        addItem("组件", Icons.COMPONENT);
-        addItem("邮件服务器", Icons.EMAIL);
-        addItem("LDAP",Icons.BOOK);
-        addItem("通知", Icons.NOTIFICATION);
-        addItem("活动用户", FontAwesome.USERS);
-        addItem("事件审计", FontAwesome.BARS);
-        addItem("日志", Icons.LOGGING);
-        addItem("关于", FontAwesome.QUESTION);
         
+        for (AdminSideView sideView : sideMenu) {
+            AdminMenuLink link = (AdminMenuLink) sideView.getClass().getAnnotation(AdminMenuLink.class);
+            sideView.setAdminView(this);
+                if (link != null && link.uiClass().equals(AppUI.class) && sideView.isAccessible()) {
+                    addItem(link.id(), link.icon());
+                    sideMenuById.put(link.id(), sideView.getView());
+                }
+        }
         VerticalLayout navigator = new VerticalLayout();
         navigator.addStyleName(ValoTheme.MENU_ROOT);
         navigator.setSizeFull();
@@ -141,36 +144,7 @@ public class AdminView extends HorizontalLayout implements View, IUiPanel, ItemC
             Object value = event.getItemId();
             if (value != null) {
                 String id = value.toString();
-                Component panel = null;
-                if (id.equals("用户")) {
-                    panel = new UserPanel(context, tabbedPanel);
-                } else if (id.equals("用户组")) {
-                    panel = new GroupPanel(context, tabbedPanel);
-                } else if (id.equals("标签")) {
-                    panel = new TagPanel(context, tabbedPanel);
-                } else if (id.equals("REST服务")) {
-                    panel = new ApiPanel(context, tabbedPanel);
-                } else if (id.equals("通用设置")) {
-                    panel = new GeneralSettingsPanel(context, tabbedPanel);
-                } else if (id.equals("邮件服务器")) {
-                    panel = new MailServerPanel(context, tabbedPanel);
-                } else if (id.equals("LDAP")) {
-                    panel = new LdapPanel(context, tabbedPanel);
-                } else if (id.equals("通知")) {
-                    panel = new NotificationPanel(context, tabbedPanel);
-                } else if (id.equals("日志")) {
-                    panel = new LoggingPanel(context, tabbedPanel);
-                } else if (id.equals("组件仓储")) {
-                    panel = new PluginRepositoriesPanel(context, tabbedPanel);                    
-                } else if (id.equals("关于")) {
-                    panel = new AboutPanel(context, tabbedPanel);
-                } else if (id.equals("组件")) {
-                    panel = new PluginsPanel(context, tabbedPanel);
-                } else if (id.equals("活动用户")) {
-                    panel = new ActiveUsersPanel(context, tabbedPanel);
-                } else if (id.equals("事件审计")) {
-                    panel = new AuditEventPanel(context, tabbedPanel);
-                }
+                Component panel = sideMenuById.get(id);
                 tabbedPanel.addCloseableTab(id, id, table.getItemIcon(id), panel);
             }
         }
@@ -192,4 +166,18 @@ public class AdminView extends HorizontalLayout implements View, IUiPanel, ItemC
     @Override
     public void selected() {        
     }
+
+    protected ApplicationContext getContext() {
+        return context;
+    }
+
+    public TabbedPanel getTabbedPanel() {
+        return tabbedPanel;
+    }
+
+    protected TreeTable getTable() {
+        return table;
+    }
+
+
 }

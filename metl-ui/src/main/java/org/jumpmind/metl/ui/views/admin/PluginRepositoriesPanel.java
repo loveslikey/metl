@@ -24,31 +24,31 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.jumpmind.metl.core.model.PluginRepository;
-import org.jumpmind.metl.ui.common.ApplicationContext;
 import org.jumpmind.metl.ui.common.ButtonBar;
-import org.jumpmind.metl.ui.common.TabbedPanel;
 import org.jumpmind.metl.ui.common.UIConstants;
-import org.jumpmind.vaadin.ui.common.IUiPanel;
+import org.jumpmind.vaadin.ui.common.UiComponent;
+import org.springframework.context.annotation.Scope;
+import org.springframework.core.annotation.Order;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ItemClickEvent.ItemClickListener;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Table;
-import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
-public class PluginRepositoriesPanel extends VerticalLayout implements IUiPanel {
+@UiComponent
+@Scope(value = "ui")
+@Order(600)
+@AdminMenuLink(name = "Plugin Repositories", id = "Plugin Repositories", icon = FontAwesome.DATABASE)
+public class PluginRepositoriesPanel extends AbstractAdminPanel {
 
-    ApplicationContext context;
-    
-    TabbedPanel tabbedPanel;
-    
     Button newButton;
     
     Button editButton;
@@ -59,20 +59,17 @@ public class PluginRepositoriesPanel extends VerticalLayout implements IUiPanel 
     
     Table table;
     
-    public PluginRepositoriesPanel(ApplicationContext context, TabbedPanel tabbedPanel) {
-        this.context = context;
-        this.tabbedPanel = tabbedPanel;
-        
+    public PluginRepositoriesPanel() {
         ButtonBar buttonBar = new ButtonBar();
         addComponent(buttonBar);
 
-        newButton = buttonBar.addButton("新增", FontAwesome.PLUS);
+        newButton = buttonBar.addButton("Add", FontAwesome.PLUS);
         newButton.addClickListener(new NewClickListener());
 
-        editButton = buttonBar.addButton("编辑", FontAwesome.EDIT);
+        editButton = buttonBar.addButton("Edit", FontAwesome.EDIT);
         editButton.addClickListener(new EditClickListener());
 
-        removeButton = buttonBar.addButton("删除", FontAwesome.TRASH_O);
+        removeButton = buttonBar.addButton("Remove", FontAwesome.TRASH_O);
         removeButton.addClickListener(new RemoveClickListener());
 
         container = new BeanItemContainer<PluginRepository>(PluginRepository.class);
@@ -87,7 +84,7 @@ public class PluginRepositoriesPanel extends VerticalLayout implements IUiPanel 
 
         table.setContainerDataSource(container);
         table.setVisibleColumns("name", "url", "lastUpdateTime");
-        table.setColumnHeaders("名称", "Url", "更新时间");
+        table.setColumnHeaders("Name", "Url", "Updated");
         table.setColumnWidth("lastUpdateTime", UIConstants.DATETIME_WIDTH_PIXELS);
         table.addItemClickListener(new TableItemClickListener());
         table.addValueChangeListener(new TableValueChangeListener());
@@ -96,7 +93,6 @@ public class PluginRepositoriesPanel extends VerticalLayout implements IUiPanel 
 
         addComponent(table);
         setExpandRatio(table, 1.0f);
-        refresh();
     }
 
     @Override
@@ -146,7 +142,7 @@ public class PluginRepositoriesPanel extends VerticalLayout implements IUiPanel 
         public void buttonClick(ClickEvent event) {
             PluginRepository pluginRepository = new PluginRepository();
             PluginRepositoryEditPanel editPanel = new PluginRepositoryEditPanel(context, pluginRepository);
-            tabbedPanel.addCloseableTab(pluginRepository.getId(), "新增库", getIcon(), editPanel);
+            adminView.getTabbedPanel().addCloseableTab(pluginRepository.getId(), "Edit Repository", getIcon(), editPanel);
         }
     }
 
@@ -155,7 +151,7 @@ public class PluginRepositoriesPanel extends VerticalLayout implements IUiPanel 
             PluginRepository pluginRepository = getFirstSelectedItem();
             context.getPluginService().refresh(pluginRepository);
             PluginRepositoryEditPanel editPanel = new PluginRepositoryEditPanel(context, pluginRepository);
-            tabbedPanel.addCloseableTab(pluginRepository.getId(), "编辑库", getIcon(), editPanel);
+            adminView.getTabbedPanel().addCloseableTab(pluginRepository.getId(), "Edit Repository", getIcon(), editPanel);
         }
     }
 
@@ -190,4 +186,7 @@ public class PluginRepositoriesPanel extends VerticalLayout implements IUiPanel 
         }
     }
 
+    @Override
+    public void enter(ViewChangeEvent event) {
+    }
 }

@@ -25,30 +25,30 @@ import java.util.Set;
 
 import org.jumpmind.metl.core.model.Tag;
 import org.jumpmind.metl.core.persist.IConfigurationService;
-import org.jumpmind.metl.ui.common.ApplicationContext;
 import org.jumpmind.metl.ui.common.ButtonBar;
-import org.jumpmind.metl.ui.common.TabbedPanel;
-import org.jumpmind.vaadin.ui.common.IUiPanel;
+import org.jumpmind.vaadin.ui.common.UiComponent;
+import org.springframework.context.annotation.Scope;
+import org.springframework.core.annotation.Order;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ItemClickEvent.ItemClickListener;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Table;
-import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
-public class TagPanel extends VerticalLayout implements IUiPanel {
+@UiComponent
+@Scope(value = "ui")
+@Order(300)
+@AdminMenuLink(name = "Tags", id = "Tags", icon = FontAwesome.TAG)
+public class TagPanel extends AbstractAdminPanel {
 
-    ApplicationContext context;
-    
-    TabbedPanel tabbedPanel;
-    
     Button newButton;
     
     Button editButton;
@@ -59,20 +59,17 @@ public class TagPanel extends VerticalLayout implements IUiPanel {
     
     Table table;
     
-    public TagPanel(ApplicationContext context, TabbedPanel tabbedPanel) {
-        this.context = context;
-        this.tabbedPanel = tabbedPanel;
-        
+    public TagPanel() {
         ButtonBar buttonBar = new ButtonBar();
         addComponent(buttonBar);
 
-        newButton = buttonBar.addButton("新建", FontAwesome.PLUS);
+        newButton = buttonBar.addButton("New", FontAwesome.PLUS);
         newButton.addClickListener(new NewClickListener());
 
-        editButton = buttonBar.addButton("编辑", FontAwesome.EDIT);
+        editButton = buttonBar.addButton("Edit", FontAwesome.EDIT);
         editButton.addClickListener(new EditClickListener());
 
-        removeButton = buttonBar.addButton("删除", FontAwesome.TRASH_O);
+        removeButton = buttonBar.addButton("Remove", FontAwesome.TRASH_O);
         removeButton.addClickListener(new RemoveClickListener());
 
         container = new BeanItemContainer<Tag>(Tag.class);
@@ -87,7 +84,7 @@ public class TagPanel extends VerticalLayout implements IUiPanel {
 
         table.setContainerDataSource(container);
         table.setVisibleColumns("name", "color");
-        table.setColumnHeaders("标签名", "颜色");
+        table.setColumnHeaders("Tag Name", "Color");
         table.addItemClickListener(new TableItemClickListener());
         table.addValueChangeListener(new TableValueChangeListener());
         table.setSortContainerPropertyId("name");
@@ -95,7 +92,6 @@ public class TagPanel extends VerticalLayout implements IUiPanel {
 
         addComponent(table);
         setExpandRatio(table, 1.0f);
-        refresh();
     }
 
     @Override
@@ -145,7 +141,7 @@ public class TagPanel extends VerticalLayout implements IUiPanel {
         public void buttonClick(ClickEvent event) {
             Tag tag = new Tag();
             TagEditPanel editPanel = new TagEditPanel(context, tag);
-            tabbedPanel.addCloseableTab(tag.getId(), "新增标签", getIcon(), editPanel);
+            adminView.getTabbedPanel().addCloseableTab(tag.getId(), "Edit Tag", getIcon(), editPanel);
         }
     }
 
@@ -155,7 +151,7 @@ public class TagPanel extends VerticalLayout implements IUiPanel {
 //TODO: refresh if we want to do things like show all entities that are tagged            
 //            context.getOperationsService().refresh(tag);
             TagEditPanel editPanel = new TagEditPanel(context, tag);
-            tabbedPanel.addCloseableTab(tag.getId(), "编辑标签", getIcon(), editPanel);
+            adminView.getTabbedPanel().addCloseableTab(tag.getId(), "Edit Tag", getIcon(), editPanel);
         }
     }
 
@@ -191,4 +187,9 @@ public class TagPanel extends VerticalLayout implements IUiPanel {
             setButtonsEnabled();
         }
     }
+    
+    @Override
+    public void enter(ViewChangeEvent event) {
+    }
+
 }
