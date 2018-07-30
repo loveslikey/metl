@@ -33,83 +33,83 @@ abstract public class AbstractDesignSelectedValueMenuManager extends AbstractSel
     public AbstractDesignSelectedValueMenuManager(DesignNavigator navigator) {
         this.navigator = navigator;
     }
-    
+
     @Override
     public boolean handle(String menuSelected, Object valueSelected) {
         boolean handled = false;
         if (!super.handle(menuSelected, valueSelected)) {
-            if ("File|New|Project".equals(menuSelected)) {
+            if ("文件|新建|项目".equals(menuSelected)) {
                 navigator.addNewProject();
                 return true;
-            } else if ("Edit|Rename".equals(menuSelected)) {
+            } else if ("编辑|重命名".equals(menuSelected)) {
                 navigator.startEditingItem((AbstractNamedObject) valueSelected);
                 return true;
-            } else if ("File|New|Project Dependency".equals(menuSelected)) {
+            } else if ("文件|新建|项目依赖".equals(menuSelected)) {
                 navigator.promptForNewDependency();
                 return true;
-            } else if ("File|New|Project Branch".equals(menuSelected)) {
+            } else if ("文件|新建|项目分支".equals(menuSelected)) {
                 navigator.doNewProjectBranch();
                 return true;
-            } else if ("File|New|Flow|Design".equals(menuSelected)) {
+            } else if ("文件|新建|流程|设计".equals(menuSelected)) {
                 navigator.addNewFlow(false);
                 return true;
-            } else if ("File|New|Flow|Test".equals(menuSelected)) {
+            } else if ("文件|新建|流程|测试".equals(menuSelected)) {
                 navigator.addNewFlow(true);
                 return true;
-            } else if ("File|New|Model|Hierarchical".equals(menuSelected)) {
+            } else if ("文件|新建|模型|层级".equals(menuSelected)) {
                 navigator.addNewModel(Model.TYPE_HIERARCHICAL);
                 return true;
-            } else if ("File|New|Model|Relational".equals(menuSelected)) {
+            } else if ("文件|新建|模型|关系".equals(menuSelected)) {
                 navigator.addNewModel(Model.TYPE_RELATIONAL);
                 return true;
-            } else if ("File|New|Resource|Database".equals(menuSelected)) {
+            } else if ("文件|新建|资源|数据库".equals(menuSelected)) {
                 navigator.addNewDatabase();
                 return true;
-            } else if ("File|New|Resource|Directory|FTP".equals(menuSelected)) {
+            } else if ("文件|新建|资源|目录|FTP".equals(menuSelected)) {
                 navigator.addNewFtpFileSystem();
                 return true;
-            } else if ("File|New|Resource|Subscribe|JMS".equals(menuSelected)) {
+            } else if ("文件|新建|资源|订阅|JMS".equals(menuSelected)) {
                 navigator.addNewJmsSubscribe();
-                return true;                
-            } else if ("File|New|Resource|Directory|File System".equals(menuSelected)) {
+                return true;
+            } else if ("文件|新建|资源|目录|文件系统".equals(menuSelected)) {
                 navigator.addNewLocalFileSystem();
                 return true;
-            } else if ("File|New|Resource|Directory|JMS".equals(menuSelected)) {
+            } else if ("文件|新建|资源|目录|JMS".equals(menuSelected)) {
                 navigator.addNewJMSFileSystem();
                 return true;
-            } else if ("File|New|Resource|Directory|SFTP".equals(menuSelected)) {
+            } else if ("文件|新建|资源|目录|SFTP".equals(menuSelected)) {
                 navigator.addNewSftpFileSystem();
                 return true;
-            } else if ("File|New|Resource|Directory|SMB".equals(menuSelected)) {
+            } else if ("文件|新建|资源|目录|SMB".equals(menuSelected)) {
                 navigator.addNewSMBFileSystem();
                 return true;
-            } else if ("File|New|Resource|HTTP".equals(menuSelected)) {
+            } else if ("文件|新建|资源|HTTP".equals(menuSelected)) {
                 navigator.addNewHttpResource();
                 return true;
-            } else if ("File|New|Resource|Mail Session".equals(menuSelected)) {
+            } else if ("文件|新建|资源|邮件会话".equals(menuSelected)) {
                 navigator.addNewMailSession();
                 return true;
-            } else if ("File|Import...".equals(menuSelected)) {
+            } else if ("文件|导入...".equals(menuSelected)) {
                 navigator.doImport();
                 return true;
-            } else if ("File|Export...".equals(menuSelected)) {
+            } else if ("文件|导出...".equals(menuSelected)) {
                 navigator.doExport();
                 return true;
-            } else if ("File|Open".equals(menuSelected)) {
+            } else if ("文件|打开".equals(menuSelected)) {
                 navigator.doOpen();
                 return true;
-            } else if ("Edit|Remove".equals(menuSelected)) {
+            } else if ("编辑|删除".equals(menuSelected)) {
                 navigator.doRemove();
                 return true;
-            } else if ("Edit|Cut".equals(menuSelected)) {
+            } else if ("编辑|剪贴".equals(menuSelected)) {
                 navigator.doCut();
                 return true;
-            } else if ("Edit|Copy".equals(menuSelected)) {
+            } else if ("编辑|复制".equals(menuSelected)) {
                 navigator.doCopy();
                 return true;
-            } else if ("Edit|Paste".equals(menuSelected)) {
+            } else if ("编辑|粘贴".equals(menuSelected)) {
                 navigator.doPaste();
-            } else if ("Edit|Change Dependency Version".equals(menuSelected)) {
+            } else if ("编辑|更改依赖版本".equals(menuSelected)) {
                 navigator.doChangeDependencyVersion();
             } else if ("标签".equals(menuSelected)) {
                 navigator.doTag();
@@ -126,7 +126,7 @@ abstract public class AbstractDesignSelectedValueMenuManager extends AbstractSel
             return false;
         }
     }
-    
+
     protected String[] getDisabledPaths(Object selected) {
         if (isReadOnly(selected)) {
             return new String[] { "文件|新建|项目依赖", "文件|新建|流程|设计", "文件|新建|流程|测试",
@@ -137,11 +137,11 @@ abstract public class AbstractDesignSelectedValueMenuManager extends AbstractSel
         } else {
             return null;
         }
-    }    
+    }
 
     @Override
-    protected String[] getEnabledPaths(Object selected) {        
-        return new String[] { "File|New|Project", "View|Hidden", "File|Import..." };
+    protected String[] getEnabledPaths(Object selected) {
+        return new String[] { "文件|新建|项目", "视图|隐藏", "文件|导入..." };
     }
 
 }
